@@ -2,17 +2,40 @@
 
 {% block title %}Albania Election Data{% endblock %}
 
+{% block head %}
+   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+   <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+ {{super()}}
+   <style>
+   .navbar {
+     position: absolute;
+     opacity: 0.6;
+     margin-left: 8em;
+     z-index: 5;
+   }
+
+   #map {
+     position: absolute;
+     top: 0em;
+     bottom: -3em;
+     z-index: 3;
+     width: 100%;
+   }
+ </style>
+
+{% endblock %}
+
 {% block navbar %}
 <div class="navbar navbar-inverse" role="navigation">
     <div class="container">
 	<div class="navbar-header">
-	    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=.navbar-collapse">
-		<span class="sr-only">Toggle navigation</span>
-		<span class="icon-bar"></span>
-		<span class="icon-bar"></span>
-		<span class="icon-bar"></span>
+	    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+		    <span class="icon-bar"></span>
+		    <span class="icon-bar"></span>
 	    </button>
-	    <a class="navbar-brand" href="/">Albania Election Data</a>
+	    <a class="navbar-brand" href="/test">Albania Election Data</a>
 	</div>
 	<div class="navbar-collapse collapse">
 	    <ul class="nav navbar-nav">
@@ -24,7 +47,5 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
-    {% block page_content %}{% endblock %}
-</div>
+{% block page_content %}{% endblock %}
 {% endblock %}

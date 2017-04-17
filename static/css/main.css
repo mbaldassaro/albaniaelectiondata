@@ -1,0 +1,478 @@
+body {
+    background-color: #fff;
+    background-image: url(../img/AfSurvBackground.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 70;
+    overflow: auto;
+    color: #afafaf;
+    font-family: Helvetica;
+}
+
+#main {
+    height: 0px;
+    width: 0px;
+  }
+
+#brand {
+  width: 45px;
+  height: 30px;
+  margin: 10 -15;
+}
+
+#logo {
+    margin: 0 20 2 0;
+}
+
+#regions {
+  width: 100%;
+  height: 50%;
+}
+
+
+a, h4, h5 {
+    color: #afafaf;
+    font-weight: 100;
+}
+
+b, strong {
+    font-weight: 100;
+    color: #000;
+    opacity: 0.65;
+}
+
+#wrapper {
+    width: 100%;
+
+}
+
+#page-wrapper {
+    padding: 0 15px;
+    min-height: 568px;
+    margin-left: 30px;
+}
+
+#page-header {
+    font-weight: 100;
+}
+
+
+#template {
+    min-height: 568px;
+    width: 106%;
+    margin-left: -33px;
+    opacity: 0.6;
+}
+
+#menu-wrapper {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+#menu-canvas {
+  /*added*/
+    width: 100%;
+    height: 200px;
+    position: relative;
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    -webkit-transition: .5s ease all;
+    transition: .5s ease all;
+    padding: 5% 0; /* Temp: Just spacing. */
+    /*end-added*/
+
+}
+
+/* added */
+#site-menu {
+    width: 100%;
+    /*height: 100%;*/
+    position: absolute;
+    top: 0;
+    left: -100%;
+    background-color: #005288;
+    opacity: 0.8;
+    color: #afafaf;
+    font-weight: 100;
+    padding: 5px;
+    /*border-radius: 3px;*/
+}
+/*end added*/
+
+#site-menu > h4 {
+  margin: 1% 1% 1% 11%;
+}
+
+#site-menu > p {
+  margin: 1% 1% 1% 11%;
+}
+
+/*added*/
+#menu-wrapper.show-nav #menu-canvas {
+    -webkit-transform: translateX(90%);
+    transform: translateX(90%);
+}
+/*end added*/
+
+@media(min-width:768px) {
+    #page-wrapper {
+        position: inherit;
+        margin: 0 0 0 280px;
+        padding: 0 30px;
+        border-left: 1px solid #e7e7e7;
+    }
+}
+
+#info {
+margin-top: -5%;
+background-color: #005288;
+opacity: 0.8;
+}
+
+.navbar-brand {
+    height: 51px !important;
+}
+
+.navbar-top-links li {
+    display: inline-block;
+}
+
+.navbar-top-links li:last-child {
+    margin-right: 15px;
+}
+
+.navbar-top-links li a {
+    padding: 15px;
+    min-height: 50px;
+    font-family: Lato;
+    font-weight: 100;
+}
+
+.nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
+  background-color: #000;
+}
+
+#navhover:hover {
+  background-color: #000;
+  color: #0096d6;
+}
+
+
+#navhover:focus {
+  background-color: #000;
+}
+
+#inline {
+  padding: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.navbar-top-links .dropdown-menu li {
+    display: block;
+}
+
+.navbar-top-links .dropdown-menu li:last-child {
+    margin-right: 0;
+}
+
+.navbar-top-links .dropdown-menu li a {
+    padding: 3px 20px;
+    min-height: 0;
+}
+
+.navbar-top-links .dropdown-menu li a div {
+    white-space: normal;
+}
+.navbar-top-links .dropdown-messages li a:hover,
+.navbar-top-links .dropdown-tasks li a:hover,
+.navbar-top-links .dropdown-alerts li a:hover {
+  background-color: #000!important;
+}
+
+.navbar-top-links .dropdown-alerts li a {
+  padding: 10px;
+  font-family: Lato;
+  color: #afafaf;
+}
+
+.navbar-top-links .dropdown-messages,
+.navbar-top-links .dropdown-tasks {
+  width: 500px;
+  min-width: 100;
+  min-height: 200;
+  background-color: #000;
+  margin: -10px -45.5;
+}
+
+.navbar-top-links .dropdown-alerts {
+    width: 260px;
+    min-width: 0;
+    min-height: 0;
+    background-color: #000;
+    margin: -10px -55px;
+}
+
+.navbar-top-links .dropdown-user {
+    right: 58;
+    left: auto;
+    width: 0px;
+    height: 0px;
+    min-width: 0;
+    border: none;
+}
+
+.navbar-static-top {
+    border-width: 0 0 0px!important;
+    opacity: 0.8;
+    margin-left:30px;
+    background-color: #000;
+}
+
+.navbar-right {
+  float: right!important;
+  margin-right: 0px!important;
+}
+
+.sidebar .sidebar-nav.navbar-collapse {
+    padding-right: 0;
+    padding-left: 0;
+    background-color: #000;
+    color: #e7e7e7;
+}
+
+.sidebar .sidebar-search {
+    padding: 15px;
+}
+
+.sidebar ul li {
+    /*border-bottom: 1px solid #e7e7e7;*/
+}
+
+.nav>li>a:focus, .nav>li>a:hover {
+text-decoration: none;
+background-color: #005288;
+color: #afafaf;
+}
+
+.sidebar ul li a:hover {
+    background-color: #0096d6;
+    opacity: 0.7;
+    color: #efefef;
+}
+
+.sidebar ul li a.active {
+    background-color: #005288;
+    opacity: 0.7;
+    color: #efefef;
+}
+
+/*
+i.fa-caret-down:before {
+    content: "\f0d9";
+}
+
+i>a.active .fa-caret-down {
+    content: "\f0d7";
+}
+*/
+
+.sidebar .fa-caret-left {
+  float: right;
+  margin-top: 4px;
+}
+
+.sidebar .fa-caret-left:before {
+    content: "\f0d9";
+}
+
+.sidebar .active>a>.fa-caret-left:before {
+    content: "\f0d7";
+}
+
+.sidebar .nav-second-level li,
+.sidebar .nav-third-level li {
+    border-bottom: 0!important;
+}
+
+.sidebar .nav-second-level li a {
+    padding-left: 37px;
+}
+
+.sidebar .nav-third-level li a {
+    padding-left: 52px;
+}
+
+@media(min-width:768px) {
+    .sidebar {
+        z-index: 1;
+        position: absolute;
+        width: 250px;
+        margin-top: 0px;
+        margin-left: 30px;
+        opacity: 0.8;
+    }
+
+    .navbar-top-links .dropdown-messages,
+    .navbar-top-links .dropdown-tasks,
+    .navbar-top-links .dropdown-alerts {
+        margin-left: auto;
+    }
+}
+
+.btn-outline {
+    color: inherit;
+    background-color: transparent;
+    transition: all .5s;
+}
+
+.btn-info {
+  height: 22px;
+  width: 52px;
+}
+
+.btn-primary.btn-outline {
+    color: #428bca;
+}
+
+.btn-success.btn-outline {
+    color: #5cb85c;
+}
+
+.btn-info.btn-outline {
+    color: #5bc0de;
+}
+
+.btn-warning.btn-outline {
+    color: #f0ad4e;
+}
+
+.btn-danger.btn-outline {
+    color: #d9534f;
+}
+
+.btn-primary.btn-outline:hover,
+.btn-success.btn-outline:hover,
+.btn-info.btn-outline:hover,
+.btn-warning.btn-outline:hover,
+.btn-danger.btn-outline:hover {
+    color: #fff;
+}
+
+.nvtooltip {
+  position: absolute;
+  background-color: rgba(255,255,255,1.0);
+  padding: 1px;
+  border: 1px solid rgba(0,0,0,.2);
+  z-index: 10000;
+
+  font-family: sans-serif;
+  font-size: 12px;
+  text-align: left;
+  pointer-events: none;
+
+  white-space: nowrap;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/*Give tooltips that old fade in transition by
+    putting a "with-transitions" class on the container div.
+*/
+.nvtooltip.with-transitions, .with-transitions .nvtooltip {
+  transition: opacity 50ms linear;
+  -moz-transition: opacity 50ms linear;
+  -webkit-transition: opacity 50ms linear;
+
+  transition-delay: 200ms;
+  -moz-transition-delay: 200ms;
+  -webkit-transition-delay: 200ms;
+}
+
+.nvtooltip.x-nvtooltip,
+.nvtooltip.y-nvtooltip {
+  padding: 8px;
+}
+
+.nvtooltip h3 {
+  margin: 0;
+  font-family: sans-serif;
+  font-size: 16px;
+  padding: 4px 4px;
+  line-height: 18px;
+  font-weight: normal;
+  background-color: #a8a8a8;
+  text-align: center;
+
+  border-bottom: 1px solid #ebebeb;
+
+  -webkit-border-radius: 5px 5px 0 0;
+  -moz-border-radius: 5px 5px 0 0;
+  border-radius: 1px 5px 0 0;
+}
+
+.nvtooltip p {
+  font-family: sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0;
+  padding: 5px 14px;
+  text-align: center;
+}
+
+.nvtooltip span {
+  display: inline-block;
+  margin: 2px 0;
+}
+
+.nvtooltip table {
+  margin: 6px;
+  border-spacing:0;
+}
+
+
+.nvtooltip table td {
+  padding: 2px 9px 2px 0;
+  vertical-align: middle;
+}
+
+.nvtooltip table td.key {
+  font-weight:normal;
+}
+.nvtooltip table td.value {
+  text-align: right;
+  font-weight: bold;
+}
+
+.nvtooltip table tr.highlight td {
+  padding: 1px 9px 1px 0;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-top-style: solid;
+  border-top-width: 1px;
+}
+
+.nvtooltip table td.legend-color-guide div {
+  width: 8px;
+  height: 8px;
+  vertical-align: middle;
+}
+
+.nvtooltip .footer {
+  padding: 3px;
+  text-align: center;
+}
+
+.nvtooltip-pending-removal {
+  position: absolute;
+  pointer-events: none;
+}

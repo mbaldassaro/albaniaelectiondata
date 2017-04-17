@@ -1,0 +1,12 @@
+.navbar {
+  position: absolute;
+  opacity: 0.6;
+  z-index: 5;
+}
+
+#map {
+  position: absolute;
+  top: 4em;
+  bottom: 0em;
+  width: 100%;
+}

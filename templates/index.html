@@ -1,9 +1,59 @@
 {% extends "base.html" %}
 
-{% block title %}Test{% endblock %}
+{% block title %}Albania Election Data{% endblock %}
 
 {% block page_content %}
-<div class="page-header">
-    <p>Hello World!</p>
-</div>
+    <div class="jumbotron" id="map"></div>
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/albQarkData.geojson') }}"></script>
+<script>
+var mapboxAccessToken = 'pk.eyJ1IjoibWJhbGRhc3Nhcm8iLCJhIjoiSWh6TTB1TSJ9.RABYWZRRJIe4h9E6lqgfKQ';
+var map = L.map('map').setView([41.2, 20.1], 8);
+var geojson;
+
+L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=' + mapboxAccessToken, {
+    id: 'mapbox.dark',
+    attribution: ""
+}).addTo(map);
+//L.geoJson(qarkData).addTo(map);
+
+L.geoJson(qarkData, {style: style}).addTo(map);
+
+function highlightFeature(e) {
+  var layer = e.target;
+  layer.setStyle({
+    weight: 2,
+    color: '#FFFFFF',
+    dashArray: '',
+    fillOpacity: 0.7
+  });
+  if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+       layer.bringToFront();
+   }
+}
+
+function resetHighlight(e) {
+    geojson.resetStyle(e.target);
+}
+
+function zoomToFeature(e) {
+    map.fitBounds(e.target.getBounds());
+}
+
+function onEachFeature(feature, layer) {
+    layer.on({
+        mouseover: highlightFeature,
+        mouseout: resetHighlight,
+        click: zoomToFeature
+    });
+}
+
+geojson = L.geoJson(qarkData, {
+    style: style,
+    onEachFeature: onEachFeature
+}).addTo(map);
+
+
+</script>
+{% endblock %}
 {% endblock %}
