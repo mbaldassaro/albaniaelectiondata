@@ -2,6 +2,10 @@
 
 {% block scripts %}
 <script>
+var title = "2013 ASE Vote Percentage";
+var label = function(props) {
+  this._div.innerHTML = (props ? '<h3>' + props.name + '</h3><h3>' + props.prevpercentAleancaPerShqiperineEuropiane + "%" + '</h3>' : '')
+};
 
 function getColor(d) {
     return d > 70 ? '#54278f' :
@@ -19,7 +23,7 @@ function style(feature) {
     opacity: 1,
     color: '#FFFFFF',
     dashArray: '0',
-    fillOpacity: 0.4
+    fillOpacity: 0.5
   };
 }
 

@@ -10,14 +10,27 @@
 var mapboxAccessToken = 'pk.eyJ1IjoibWJhbGRhc3Nhcm8iLCJhIjoiSWh6TTB1TSJ9.RABYWZRRJIe4h9E6lqgfKQ';
 var map = L.map('map').setView([41.2, 20.1], 8);
 var geojson;
+var info = L.control();
 
-L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=' + mapboxAccessToken, {
-    id: 'mapbox.dark',
+info.onAdd = function(map) {
+  this._div = L.DomUtil.create('div', 'info');
+  this.update();
+  return this._div;
+};
+
+info.update = label;
+
+/*L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=' + mapboxAccessToken, {
+    id: 'mapbox.dark',   //.satellite, .dark, .light
     attribution: ""
-}).addTo(map);
-//L.geoJson(qarkData).addTo(map);
+}).addTo(map);*/
 
-L.geoJson(qarkData, {style: style}).addTo(map);
+L.tileLayer('https://api.mapbox.com/styles/v1/mbaldassaro/cj1mjs3qs00172rmorb7yngef/tiles/256/{z}/{x}/{y}?access_token=' + mapboxAccessToken, {
+//L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/dark-v9/tiles/256/{z}/{x}/{y}?access_token=' + mapboxAccessToken, {
+  id: 'mapbox.dark',
+  attribution: "Mapbox | OpenStreetMap"
+}).addTo(map);
+//L.geoJson(qarkData, {style: style}).addTo(map);
 
 function highlightFeature(e) {
   var layer = e.target;
@@ -25,15 +38,17 @@ function highlightFeature(e) {
     weight: 2,
     color: '#FFFFFF',
     dashArray: '',
-    fillOpacity: 0.7
+    fillOpacity: 0.8
   });
   if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
        layer.bringToFront();
    }
+   info.update(layer.feature.properties);
 }
 
 function resetHighlight(e) {
     geojson.resetStyle(e.target);
+    info.update();
 }
 
 function zoomToFeature(e) {
@@ -53,6 +68,7 @@ geojson = L.geoJson(qarkData, {
     onEachFeature: onEachFeature
 }).addTo(map);
 
+info.addTo(map);
 
 </script>
 {% endblock %}
