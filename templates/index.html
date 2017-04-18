@@ -7,9 +7,6 @@
 {% block scripts %}
 <script src="{{ url_for('static', filename='js/albQarkData.geojson') }}"></script>
 <script>
-$(function () {
-  $("#menu").metisMenu();
-});
 
 var mapboxAccessToken = 'pk.eyJ1IjoibWJhbGRhc3Nhcm8iLCJhIjoiSWh6TTB1TSJ9.RABYWZRRJIe4h9E6lqgfKQ';
 var map = L.map('map').setView([41.2, 20.1], 8);
@@ -39,7 +36,7 @@ function highlightFeature(e) {
     weight: 2,
     color: '#FFFFFF',
     dashArray: '',
-    fillOpacity: 0.8
+    fillOpacity: 1.0
   });
   if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
        layer.bringToFront();
