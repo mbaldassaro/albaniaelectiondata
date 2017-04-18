@@ -7,6 +7,10 @@
 {% block scripts %}
 <script src="{{ url_for('static', filename='js/albQarkData.geojson') }}"></script>
 <script>
+$(function () {
+  $("#menu").metisMenu();
+});
+
 var mapboxAccessToken = 'pk.eyJ1IjoibWJhbGRhc3Nhcm8iLCJhIjoiSWh6TTB1TSJ9.RABYWZRRJIe4h9E6lqgfKQ';
 var map = L.map('map').setView([41.2, 20.1], 8);
 var geojson;
@@ -20,14 +24,11 @@ info.onAdd = function(map) {
 
 info.update = label;
 
-/*L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=' + mapboxAccessToken, {
-    id: 'mapbox.dark',   //.satellite, .dark, .light
-    attribution: ""
-}).addTo(map);*/
-
-L.tileLayer('https://api.mapbox.com/styles/v1/mbaldassaro/cj1mjs3qs00172rmorb7yngef/tiles/256/{z}/{x}/{y}?access_token=' + mapboxAccessToken, {
+L.tileLayer('https://api.mapbox.com/styles/v1/mbaldassaro/cj1nrn7p8001q2rterv5gv0xq/tiles/256/{z}/{x}/{y}?access_token=' + mapboxAccessToken, {
+//L.tileLayer('https://api.mapbox.com/styles/v1/mbaldassaro/cj1mjs3qs00172rmorb7yngef/tiles/256/{z}/{x}/{y}?access_token=' + mapboxAccessToken, {
+//L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=' + mapboxAccessToken, {
 //L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/dark-v9/tiles/256/{z}/{x}/{y}?access_token=' + mapboxAccessToken, {
-  id: 'mapbox.dark',
+  id: 'mapbox.light',  //.satellite, .dark, .light
   attribution: "Mapbox | OpenStreetMap"
 }).addTo(map);
 //L.geoJson(qarkData, {style: style}).addTo(map);

@@ -3,15 +3,35 @@
 {% block title %}Albania Election Data{% endblock %}
 
 {% block head %}
+   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/metisMenu/2.7.0/metisMenu.min.css">
    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lato">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   <script src="//cdnjs.cloudflare.com/ajax/libs/metisMenu/2.7.0/metisMenu.min.js"></script>
    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
  {{super()}}
    <style>
    .navbar {
      position: absolute;
-     opacity: 0.6;
+     background-color: #000000;
+     opacity: 0.5;
      margin-left: 8em;
      z-index: 5;
+     font-family: 'Lato';
+     border: none;
+     border-radius: 3px 3px 3px 0px;
+   }
+
+   .sidebar {
+     position: absolute;
+     background-color: #000000;
+     opacity: 0.5;
+     width: 14em;
+     margin-top: 3.6em;
+     margin-left: 8em;
+     border-radius: 0px 0px 3px 3px;
+     z-index: 5;
+     font-family: 'Lato';
    }
 
    #map {
@@ -23,9 +43,12 @@
    }
 
    .info {
-     padding: 10em;
-     font: 14px/16px Helvetica;
-     color: white;
+     position: relative;
+     padding-top: 20em;
+     padding-right: 2em;
+     font-family: 'Lato';
+     font: 14px/16px;
+     color: rgba(0,0,0, 0.5);
    }
  </style>
 
@@ -45,10 +68,30 @@
 	</div>
 	<div class="navbar-collapse collapse">
 	    <ul class="nav navbar-nav">
-		<li><a href="/test">About</a></li>
+		<li><a href="#">About</a></li>
 	    </ul>
 	</div>
     </div>
+</div>
+<div class="navbar-default sidebar" role="navigation">
+  <div class="sidebar-nav navbar-collapse">
+    <ul class="metismenu" id="menu">
+      <li class="active">
+        <a href='#' aria-expanded="false">Menu 1</a>
+        <ul aria-expanded="true">
+          <li><a href="/test">ASE Vote Percentage</a></li>
+          <li>dummy</li>
+        </ul>
+      </li>
+      <li>
+        <a href="#" aria-expanded="false">Menu 2</a>
+        <ul aria-expanded="false">
+          <li>dummy</li>
+          <li>dummy</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
 </div>
 {% endblock %}
 

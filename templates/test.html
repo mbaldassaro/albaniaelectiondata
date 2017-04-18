@@ -2,18 +2,18 @@
 
 {% block scripts %}
 <script>
-var title = "2013 ASE Vote Percentage";
+var title = "Aleanca per Shqiperine Europiane 2013";
 var label = function(props) {
-  this._div.innerHTML = (props ? '<h3>' + props.name + '</h3><h3>' + props.prevpercentAleancaPerShqiperineEuropiane + "%" + '</h3>' : '')
+  this._div.innerHTML = (props ? '<h3>' + title + '</h3>' + '<h4>' + props.name + '</h4><h4>Vote Percentage: ' + props.prevpercentAleancaPerShqiperineEuropiane + "%" + '</h4>' : '')
 };
 
 function getColor(d) {
     return d > 70 ? '#54278f' :
            d > 60 ? '#756bb1' :
            d > 50 ? '#9e9ac8' :
-           d > 40 ? '#bcbddc' :
-           d > 30 ? '#dadaeb' :
-                    'red';
+           d > 40 ? '#cbc9e2' :
+           d > 30 ? '#f2f0f7' :
+                    'gray';
         }
 
 function style(feature) {
@@ -23,7 +23,7 @@ function style(feature) {
     opacity: 1,
     color: '#FFFFFF',
     dashArray: '0',
-    fillOpacity: 0.5
+    fillOpacity: 0.7
   };
 }
 
