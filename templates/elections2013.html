@@ -1,0 +1,82 @@
+{% extends "index.html" %}
+
+{% block menu_content %}
+<div id="menu">
+  <a onclick="toggle1()">ASE 2013</a>
+  <a onclick="toggle2()">APMI 2013</a>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/albQarkData.geojson') }}"></script>
+<script>
+function toggle1() {
+var title = "Aleanca per Shqiperine Europiane";
+info.update = function(props) {
+  this._div.innerHTML = (props ? '<h3>' + title + '</h3>' + '<h4>' + props.name + '</h4><h4>Vote Percentage: ' + props.prevpercentAleancaPerShqiperineEuropiane + "%" + '</h4>' : '')
+};
+
+function getColor(d) {
+    return d > 70 ? '#4a1486' :
+           d > 60 ? '#6a51a3' :
+           d > 50 ? '#807dba' :
+           d > 40 ? '#9e9ac8' :
+           d > 30 ? '#bcbddc' :
+                    'gray';
+        }
+
+function style(feature) {
+  return {
+    fillColor: getColor(feature.properties.prevpercentAleancaPerShqiperineEuropiane),
+    weight: 0.5,
+    opacity: 1,
+    color: '#FFFFFF',
+    dashArray: '0',
+    fillOpacity: 0.9
+  };
+}
+
+geojson = L.geoJson(qarkData, {
+    style: style,
+    onEachFeature: onEachFeature
+}).addTo(map);
+
+info.addTo(map);
+}
+
+function toggle2() {
+var title = "Aleanca per Punesim Mireqenie Dhe Integrim";
+info.update = function(props) {
+  this._div.innerHTML = (props ? '<h3>' + title + '</h3>' + '<h4>' + props.name + '</h4><h4>Vote Percentage: ' + props.prevpercentAleancaPerPunesimMireqenieDheIntegrim + "%" + '</h4>' : '')
+};
+
+function getColor(d) {
+    return d > 60 ? '#084594' :
+           d > 50 ? '#2171b5' :
+           d > 40 ? '#4292c6' :
+           d > 30 ? '#6baed6' :
+           d > 20 ? '#9ecae1' :
+                    'gray';
+        }
+
+function style(feature) {
+  return {
+    fillColor: getColor(feature.properties.prevpercentAleancaPerPunesimMireqenieDheIntegrim),
+    weight: 0.5,
+    opacity: 1,
+    color: '#FFFFFF',
+    dashArray: '0',
+    fillOpacity: 0.9
+  };
+}
+
+geojson = L.geoJson(qarkData, {
+    style: style,
+    onEachFeature: onEachFeature
+}).addTo(map);
+
+info.addTo(map);
+}
+
+</script>
+{{super()}}
+{% endblock %}

@@ -10,9 +10,13 @@ manager = Manager(app)
 def index():
     return render_template('index.html')
 
-@app.route('/test')
-def test():
-    return render_template('test.html')
+@app.route('/elections2013')
+def elections2013():
+    return render_template('elections2013.html')
+
+@app.route('/elex2013')
+def elex2013():
+    return render_template('elex2013.html')
 
 if __name__ == '__main__':
     manager.run()

@@ -3,16 +3,13 @@
 {% block title %}Albania Election Data{% endblock %}
 
 {% block head %}
-   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/metisMenu/2.7.0/metisMenu.min.css">
+   <!--<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/metisMenu/2.7.0/metisMenu.min.css">-->
    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
-   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lato">
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-   <script src="//cdnjs.cloudflare.com/ajax/libs/metisMenu/2.7.0/metisMenu.min.js"></script>
-   <script>
-   $(function () {
-     $("#menu").metisMenu();
-   });
-   </script>
+   <!--<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.36.0/mapbox-gl.js'></script>
+   <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.36.0/mapbox-gl.css' rel='stylesheet' />-->
+   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lato">
+
    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
  {{super()}}
    <style>
@@ -23,49 +20,8 @@
      margin-left: 8em;
      z-index: 5;
      font-family: 'Lato';
-     border: none;
-     border-radius: 3px 3px 3px 0px;
-   }
-
-   .sidebar {
-     position: absolute;
-     color: inherit;
-     background-color: #000000;
-     opacity: 0.5;
-     width: 14em;
-     margin-top: 3.6em;
-     margin-left: 8em;
-     border-radius: 0px 0px 3px 3px;
-     z-index: 5;
-     font-family: 'Lato';
-     list-style-type: none;
-   }
-
-   .sidebar li {
-     list-style-type: none;
-     margin-left: -3em;
-     margin-right: -2.5em;
-     padding: 0.5em;
-     font-size: 16px;
-   }
-
-   .sidebar li>a {
-     display: block;
-     text-decoration: none;
-     color: #9d9d9d;
-     font-family: 'Lato';
-   }
-   .sidebar li>a:focus, .sidebar li>a:hover {
-     display: block;
-     text-decoration: none;
-     /*background-color: #efefef;*/
-     color: #afafaf;
-   }
-
-   .sidebar ul li a:hover, .sidebar ul li a:active {
-      display: block;
-      color: #efefef;
-      text-decoration: none;
+     border: 3px;
+     border-radius: 5px 5px 5px 5px;
    }
 
    #map {
@@ -74,6 +30,48 @@
      bottom: -2.5em;
      z-index: 3;
      width: 100%;
+   }
+
+   #menu {
+       background: #fff;
+       position: absolute;
+       z-index: 3;
+       top: 6em;
+       left: 9em;
+       border-radius: 3px;
+       width: 12em;
+       border: 1px solid rgba(0,0,0,0.4);
+       font-family: 'Lato';
+   }
+
+   #menu a {
+       font-size: 13px;
+       color: #696969;
+       display: block;
+       margin: 0;
+       padding: 0;
+       padding: 12px;
+       text-decoration: none;
+       border-bottom: 1px solid rgba(0,0,0,0.25);
+       text-align: center;
+   }
+
+   #menu a:last-child {
+       border: none;
+   }
+
+   #menu a:hover {
+       background-color: #f8f8f8;
+       color: #404040;
+   }
+
+   #menu a.active {
+       background-color: #3887be;
+       color: #ffffff;
+   }
+
+   #menu a.active:hover {
+       background: #3074a4;
    }
 
    .info {
@@ -103,32 +101,16 @@
 	<div class="navbar-collapse collapse">
 	    <ul class="nav navbar-nav">
 		<li><a href="#">About</a></li>
+    <li><a href="/elections2013">2013 Elections</a></li>
+    <li><a href="#">2017 Elections</a></li>
 	    </ul>
 	</div>
     </div>
 </div>
-<div class="navbar-default sidebar" role="navigation">
-  <div class="sidebar-nav navbar-collapse">
-    <ul class="metisMenu" id="menu">
-      <li class="active">
-        <a href='#' aria-expanded="false">2013 Parliamentary Elections</a>
-        <ul aria-expanded="true">
-          <li><a href="/test">ASE Vote Percentage</a></li>
-          <li><a href="#">APMI Vote Percentage</a></li>
-        </ul>
-      </li>
-      <li class="active">
-        <a href="#" aria-expanded="false">Menu 2</a>
-        <ul aria-expanded="false">
-          <li>dummy</li>
-          <li>dummy</li>
-        </ul>
-      </li>
-    </ul>
-  </div>
-</div>
+
 {% endblock %}
 
 {% block content %}
 {% block page_content %}{% endblock %}
+{% block menu_content %}{% endblock %}
 {% endblock %}
