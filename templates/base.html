@@ -3,13 +3,9 @@
 {% block title %}Albania Election Data{% endblock %}
 
 {% block head %}
-   <!--<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/metisMenu/2.7.0/metisMenu.min.css">-->
    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-   <!--<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.36.0/mapbox-gl.js'></script>
-   <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.36.0/mapbox-gl.css' rel='stylesheet' />-->
    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lato">
-
    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
    <script src="http://leaflet.github.io/Leaflet.heat/dist/leaflet-heat.js"></script>
  {{super()}}
@@ -31,6 +27,7 @@
      bottom: -2.5em;
      z-index: 3;
      width: 100%;
+     height: 100%;
    }
 
    .info {
