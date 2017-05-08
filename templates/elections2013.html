@@ -7,6 +7,8 @@
 <script src="{{ url_for('static', filename='js/heatmaptest.json' )}}"></script>
 //to convert csv to json array: http://www.convertcsv.com/csv-to-json.htm
 <script>
+
+
 var mapboxAccessToken = 'pk.eyJ1IjoibWJhbGRhc3Nhcm8iLCJhIjoiSWh6TTB1TSJ9.RABYWZRRJIe4h9E6lqgfKQ';
 var map = L.map('map').setView([41.2, 20.1], 8);
 var mapbox = L.tileLayer('https://api.mapbox.com/styles/v1/mbaldassaro/cj1nrn7p8001q2rterv5gv0xq/tiles/256/{z}/{x}/{y}?access_token=' + mapboxAccessToken, {
@@ -14,11 +16,9 @@ var mapbox = L.tileLayer('https://api.mapbox.com/styles/v1/mbaldassaro/cj1nrn7p8
 //L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=' + mapboxAccessToken, {
 //L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/dark-v9/tiles/256/{z}/{x}/{y}?access_token=' + mapboxAccessToken, {
   id: 'mapbox.light',  //.satellite, .dark, .light
-  attribution: "Mapbox | OpenStreetMap"
+  attribution: "<a href='https://www.mapbox.com/about/maps/'>Mapbox</a> | <a href='http://www.openstreetmap.org/about/'>OpenStreetMap</a>"
 }).addTo(map);
 
-/*var ase2013layer = L.layerGroup([L.geoJson(ase2013)]),
-    apmi2013layer = L.layerGroup([L.geoJson(apmi2013)]);*/
 
 var ase2013geojson;
 var apmi2013geojson;
@@ -189,7 +189,8 @@ var overlayMaps = {
   "Heat": heat
 };
 
-L.control.layers(overlayMaps).addTo(map);
+map.addLayer(ase2013geojson);
+L.control.layers(overlayMaps, null, {collapsed:false, position: 'bottomleft'}).addTo(map);
 info.addTo(map);
 
 </script>
