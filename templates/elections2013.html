@@ -1,81 +1,196 @@
 {% extends "index.html" %}
 
-{% block menu_content %}
-<div id="menu">
-  <a onclick="toggle1()">ASE 2013</a>
-  <a onclick="toggle2()">APMI 2013</a>
-</div>
-{% endblock %}
 {% block scripts %}
-<script src="{{ url_for('static', filename='js/albQarkData.geojson') }}"></script>
+<script src="{{ url_for('static', filename='js/ase2013.geojson') }}"></script>
+<script src="{{ url_for('static', filename='js/apmi2013.geojson') }}"></script>
+<script src="{{ url_for('static', filename='js/others2013.geojson' )}}"></script>
+<script src="{{ url_for('static', filename='js/heatmaptest.json' )}}"></script>
+//to convert csv to json array: http://www.convertcsv.com/csv-to-json.htm
 <script>
-function toggle1() {
-var title = "Aleanca per Shqiperine Europiane";
-info.update = function(props) {
-  this._div.innerHTML = (props ? '<h3>' + title + '</h3>' + '<h4>' + props.name + '</h4><h4>Vote Percentage: ' + props.prevpercentAleancaPerShqiperineEuropiane + "%" + '</h4>' : '')
+var mapboxAccessToken = 'pk.eyJ1IjoibWJhbGRhc3Nhcm8iLCJhIjoiSWh6TTB1TSJ9.RABYWZRRJIe4h9E6lqgfKQ';
+var map = L.map('map').setView([41.2, 20.1], 8);
+var mapbox = L.tileLayer('https://api.mapbox.com/styles/v1/mbaldassaro/cj1nrn7p8001q2rterv5gv0xq/tiles/256/{z}/{x}/{y}?access_token=' + mapboxAccessToken, {
+//L.tileLayer('https://api.mapbox.com/styles/v1/mbaldassaro/cj1mjs3qs00172rmorb7yngef/tiles/256/{z}/{x}/{y}?access_token=' + mapboxAccessToken, {
+//L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=' + mapboxAccessToken, {
+//L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/dark-v9/tiles/256/{z}/{x}/{y}?access_token=' + mapboxAccessToken, {
+  id: 'mapbox.light',  //.satellite, .dark, .light
+  attribution: "Mapbox | OpenStreetMap"
+}).addTo(map);
+
+/*var ase2013layer = L.layerGroup([L.geoJson(ase2013)]),
+    apmi2013layer = L.layerGroup([L.geoJson(apmi2013)]);*/
+
+var ase2013geojson;
+var apmi2013geojson;
+var others2013geojson;
+var info = L.control();
+info.onAdd = function(map) {
+  this._div = L.DomUtil.create('div', 'info');
+  this.update();
+  return this._div;
 };
 
-function getColor(d) {
-    return d > 70 ? '#4a1486' :
-           d > 60 ? '#6a51a3' :
-           d > 50 ? '#807dba' :
-           d > 40 ? '#9e9ac8' :
-           d > 30 ? '#bcbddc' :
-                    'gray';
-        }
+info.update = function(props) {
+  this._div.innerHTML = (props ? '<h3>' + props.name + '</h3>' + '<h4>Total Votes: ' + props.totalVotes + '</h4>' + '<h4>Total Seats: ' + props.totalSeats + '</h4>' + '<h3>' + props.party + '</h3>' + '<h4>Vote Percentage: ' + props.percent + '%</h4><h4>Votes Received: ' + props.votes + '</h4><h4>Seats Won: ' + props.seats + '</h4>' + '' : '')
+};
 
-function style(feature) {
+info.addTo(map)
+
+function highlightFeature(e) {
+  var layer = e.target;
+  layer.setStyle({
+    weight: 2,
+    color: '#FFFFFF',
+    dashArray: '',
+    fillOpacity: 0.7
+  });
+  if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+       layer.bringToFront();
+   }
+   info.update(layer.feature.properties);
+}
+
+function zoomToFeature(e) {
+    map.fitBounds(e.target.getBounds());
+}
+
+function asestyle(feature) {
   return {
-    fillColor: getColor(feature.properties.prevpercentAleancaPerShqiperineEuropiane),
+    fillColor: getColor(feature.properties.percent),
     weight: 0.5,
     opacity: 1,
     color: '#FFFFFF',
     dashArray: '0',
-    fillOpacity: 0.9
-  };
-}
-
-geojson = L.geoJson(qarkData, {
-    style: style,
-    onEachFeature: onEachFeature
-}).addTo(map);
-
-info.addTo(map);
-}
-
-function toggle2() {
-var title = "Aleanca per Punesim Mireqenie Dhe Integrim";
-info.update = function(props) {
-  this._div.innerHTML = (props ? '<h3>' + title + '</h3>' + '<h4>' + props.name + '</h4><h4>Vote Percentage: ' + props.prevpercentAleancaPerPunesimMireqenieDheIntegrim + "%" + '</h4>' : '')
-};
+    fillOpacity: 0.5
+  }
 
 function getColor(d) {
-    return d > 60 ? '#084594' :
-           d > 50 ? '#2171b5' :
-           d > 40 ? '#4292c6' :
-           d > 30 ? '#6baed6' :
-           d > 20 ? '#9ecae1' :
-                    'gray';
-        }
+  return d > 70 ? '#4a1486' :
+         d > 60 ? '#6a51a3' :
+         d > 50 ? '#807dba' :
+         d > 40 ? '#9e9ac8' :
+         d > 30 ? '#bcbddc' :
+                  'gray';
+      }
+  }
 
-function style(feature) {
+function ase2013resetHighlight(e) {
+      ase2013geojson.resetStyle(e.target);
+      info.update();
+  }
+
+function ase2013EachFeature(feature, layer) {
+      layer.on({
+          mouseover: highlightFeature,
+          mouseout: ase2013resetHighlight,
+          click: zoomToFeature
+      });
+    }
+
+function apmistyle(feature) {
   return {
-    fillColor: getColor(feature.properties.prevpercentAleancaPerPunesimMireqenieDheIntegrim),
+    fillColor: getColor(feature.properties.percent),
     weight: 0.5,
     opacity: 1,
     color: '#FFFFFF',
     dashArray: '0',
-    fillOpacity: 0.9
-  };
-}
+    fillOpacity: 0.5
+    }
 
-geojson = L.geoJson(qarkData, {
-    style: style,
-    onEachFeature: onEachFeature
-}).addTo(map);
+  function getColor(d) {
+    return d > 50 ? '#084594' :
+           d > 40 ? '#2171b5' :
+           d > 30 ? '#4292c6' :
+           d > 20 ? '#6baed6' :
+           d > 10 ? '#9ecae1' :
+                      'gray';
+      }
+  }
 
+function apmi2013resetHighlight(e) {
+      apmi2013geojson.resetStyle(e.target);
+      info.update();
+  }
+
+function apmi2013EachFeature(feature, layer) {
+      layer.on({
+        mouseover: highlightFeature,
+        mouseout: apmi2013resetHighlight,
+        click: zoomToFeature
+    });
+  }
+
+function otherstyle(feature) {
+    return {
+      fillColor: getColor(feature.properties.percent),
+      weight: 0.5,
+      opacity: 1,
+      color: '#FFFFFF',
+      dashArray: '0',
+      fillOpacity: 0.5
+    }
+
+  function getColor(d) {
+    return d > 4 ? '#74c476' :
+           d > 3 ? '#a1d99b' :
+           d > 2 ? '#c7e9c0' :
+           d > 1 ? '#e5f5e0' :
+           d > 0 ? '#f7fcf5' :
+                    'gray';
+        }
+    }
+
+  function other2013resetHighlight(e) {
+        other2013geojson.resetStyle(e.target);
+        info.update();
+    }
+
+  function other2013EachFeature(feature, layer) {
+        layer.on({
+            mouseover: highlightFeature,
+            mouseout: other2013resetHighlight,
+            click: zoomToFeature
+        });
+      }
+
+var ase2013geojson = L.geoJson(ase2013, {
+    style: asestyle,
+    onEachFeature: ase2013EachFeature
+});
+
+var apmi2013geojson = L.geoJson(apmi2013, {
+    style: apmistyle,
+    onEachFeature: apmi2013EachFeature
+});
+
+var other2013geojson = L.geoJson(others2013, {
+    style: otherstyle,
+    onEachFeature: other2013EachFeature
+});
+
+//heatmap - json array
+var heat = L.heatLayer(heatData, {
+  radius: 10,
+  maxZoom: 10
+  /*
+  minOpacity - the minimum opacity the heat will start at
+  maxZoom - zoom level where the points reach maximum intensity (as intensity scales with zoom), equals maxZoom of the map by default
+  max - maximum point intensity, 1.0 by default
+  radius - radius of each "point" of the heatmap, 25 by default
+  blur - amount of blur, 15 by default
+  gradient - color gradient config, e.g. {0.4: 'blue', 0.65: 'lime', 1: 'red'}
+  */
+});
+
+var overlayMaps = {
+  "ASE": ase2013geojson,
+  "APMI": apmi2013geojson,
+  "Other": other2013geojson,
+  "Heat": heat
+};
+
+L.control.layers(overlayMaps).addTo(map);
 info.addTo(map);
-}
 
 </script>
 {{super()}}
