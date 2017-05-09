@@ -3,11 +3,9 @@
 {% block title %}Albania Election Data{% endblock %}
 
 {% block head %}
-   <!--<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/metisMenu/2.7.0/metisMenu.min.css">-->
+   <link rel="shortcut icon" href ="{{ url_for('static', filename='img/favicon.ico' )}}">
    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-   <!--<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.36.0/mapbox-gl.js'></script>
-   <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.36.0/mapbox-gl.css' rel='stylesheet' />-->
    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lato">
 
    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
@@ -22,7 +20,27 @@
      z-index: 5;
      font-family: 'Lato';
      border: 3px;
-     border-radius: 5px 5px 5px 5px;
+     border-radius: .3em;
+   }
+
+   #brand {
+     width: 3em;
+     height: 2em;
+     margin-top: .75em;
+     margin-left: -.5em;
+     margin-right: .5em;
+     z-index: 5;
+   }
+
+   #logo {
+     width: 8em;
+     height: 1.75em;
+     margin-top: .8em;
+     z-index: 5;
+   }
+
+   #logoholder {
+     margin-left: 23.5em;
    }
 
    #map {
@@ -39,8 +57,7 @@
      padding-top: 20em;
      padding-right: 2em;
      font-family: 'Lato';
-     font: 14px/16px;
-     color: rgba(0,0,0, 0.5);
+     color: rgba(0,0,0, 0.6);
    }
  </style>
 
@@ -56,13 +73,17 @@
 		    <span class="icon-bar"></span>
 		    <span class="icon-bar"></span>
 	    </button>
-	    <a class="navbar-brand" href="/">Albania Election Data</a>
+	    <a class="navbar-brand" href="#">Albania Election Data</a>
+      <img id="brand" src="{{ url_for('static', filename='img/albflag.png' )}}">
 	</div>
 	<div class="navbar-collapse collapse">
 	    <ul class="nav navbar-nav">
 		<li><a href="#">About</a></li>
     <li><a href="/elections2013">Zgjedhjet 2013</a></li>
-    <li><a href="#">Zgjedhjet 2017</a></li>
+    <li><a href="/">Zgjedhjet 2017</a></li>
+    <li><a href="#">Turnout</a></li>
+    <li><a href="#">Data</a></li>
+    <a id="logoholder" href="http://democracyinternational.com" target="_blank"><img id="logo" src="{{ url_for('static', filename='img/dilogo.png' )}}"></a>
 	    </ul>
 	</div>
     </div>
@@ -72,5 +93,4 @@
 
 {% block content %}
 {% block page_content %}{% endblock %}
-{% block menu_content %}{% endblock %}
 {% endblock %}
