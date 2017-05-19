@@ -6,13 +6,13 @@ app = Flask(__name__)
 bootstrap = Bootstrap(app)
 manager = Manager(app)
 
-@app.route('/')
+"""@app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html')"""
 
-@app.route('/elections2013')
-def elections2013():
-    return render_template('elections2013.html')
+@app.route('/')
+def map():
+    return render_template('map.html')
 
 if __name__ == '__main__':
     manager.run()
