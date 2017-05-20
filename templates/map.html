@@ -552,19 +552,19 @@ var pd2013geojson = L.geoJson(pd2013, {
 });
 
 //LSI
-var lsi2013geojson = L.geoJson(lsiData, {    //temporary: change to lsi2013
+var lsi2013geojson = L.geoJson(lsi2013, {    
     style: lsistyle,
     onEachFeature: lsi2013EachFeature
 });
 
 //PDIU
-var pdiu2013geojson = L.geoJson(pdiu2013, {    //temporary: change to lsi2013
+var pdiu2013geojson = L.geoJson(pdiu2013, {
     style: pdiustyle,
     onEachFeature: pdiu2013EachFeature
 });
 
 //PR
-var pr2013geojson = L.geoJson(pr2013, {    //temporary: change to lsi2013
+var pr2013geojson = L.geoJson(pr2013, {
     style: prstyle,
     onEachFeature: pr2013EachFeature
 });
@@ -592,12 +592,12 @@ var heat = L.heatLayer(heatData, {
 var overlayMaps = {
   "2013 ASHE": ase2013geojson,
   "2013 APPD": apmi2013geojson,
-  "2013 PS": ps2013geojson,
-  "2013 PD": pd2013geojson,
-  "2013 LSI": lsi2013geojson,
-	"2013 PDIU": pdiu2013geojson,
-	"2013 PR": pr2013geojson,
-  "2013 Turnout (Komune)": turnout2013Komgeojson,
+  "2013 PS - Qark": ps2013geojson,
+  "2013 PD - Qark": pd2013geojson,
+  "2013 LSI - Qark": lsi2013geojson,
+	"2013 PDIU - Qark": pdiu2013geojson,
+	"2013 PR - Qark": pr2013geojson,
+  "2013 Turnout - Komune": turnout2013Komgeojson,
   "Heat": heat
 };
 
