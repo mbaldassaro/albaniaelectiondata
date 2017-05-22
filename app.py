@@ -11,8 +11,12 @@ def index():
     return render_template('index.html')"""
 
 @app.route('/')
-def map():
-    return render_template('map.html')
+def map2013():
+    return render_template('map2013.html')
+
+@app.route('/map2015')
+def map2015():
+    return render_template('map2015.html')
 
 if __name__ == '__main__':
     manager.run()

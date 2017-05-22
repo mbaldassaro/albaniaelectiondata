@@ -1,0 +1,965 @@
+{% extends "base.html" %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/ase2013.geojson') }}"></script>
+<script src="{{ url_for('static', filename='js/apmi2013.geojson') }}"></script>
+<script src="{{ url_for('static', filename='js/ps2013.geojson') }}"></script>
+<script src="{{ url_for('static', filename='js/pd2013.geojson') }}"></script>
+<script src="{{ url_for('static', filename='js/lsi2013.geojson') }}"></script>
+<script src="{{ url_for('static', filename='js/pdiu2013.geojson') }}"></script>
+<script src="{{ url_for('static', filename='js/pr2013.geojson') }}"></script>
+<script src="{{ url_for('static', filename='js/turnout2015bas.geojson') }}"></script>
+<script src="{{ url_for('static', filename='js/mvfTurnout2015bas.geojson') }}"></script>
+<script src="{{ url_for('static', filename='js/maleTurnout2015bas.geojson')}}"></script>
+<script src="{{ url_for('static', filename='js/femaleTurnout2015bas.geojson') }}"></script>
+<script src="{{ url_for('static', filename='js/invalidMayor2015bas.geojson') }}"></script>
+<script src="{{ url_for('static', filename='js/invalidCouncil2015bas.geojson') }}"></script>
+<script src="{{ url_for('static', filename='js/heatmaptest.json' )}}"></script>
+<script>
+
+var ase2013geojson;
+var apmi2013geojson;
+var ps2013geojson;
+var pd2013geojson;
+var lsi2013geojson;
+var pdiu2013geojson;
+var pr2013geojson;
+var turnout2015basgeojson;
+var mvfTurnout2015basgeojson;
+var maleTurnout2015basgeojson;
+var femaleTurnout2015basgeojson;
+var invalidMayor2015basgeojson;
+var invalidCouncil2015basgeojson;
+var infoASE = L.control({position: 'bottomright'});
+var infoAPMI = L.control({position: 'bottomright'});
+var infoPS = L.control({position: 'bottomright'});
+var infoPD = L.control({position: 'bottomright'});
+var infoLSI = L.control({position: 'bottomright'});
+var infoPDIU = L.control({position: 'bottomright'});
+var infoPR = L.control({position: 'bottomright'});
+var infoBasVT15 = L.control({position: 'bottomright'});
+var infoMVF = L.control({position: 'bottomright'});
+var infoMVT = L.control({position: 'bottomright'});
+var infoFVT = L.control({position: 'bottomright'});
+var infoBasMINV = L.control({position: 'bottomright'});
+var infoBasCINV = L.control({position: 'bottomright'});
+
+//ASE 2013 /////////////////
+function asestyle(feature) {
+  return {
+    fillColor: getColor(feature.properties.percent),
+    weight: 0.5,
+    opacity: 1,
+    color: '#FFFFFF',
+    dashArray: '0',
+    fillOpacity: 0.5
+  }
+
+function getColor(d) {
+  return d > 70 ? '#4a1486' :
+         d > 60 ? '#6a51a3' :
+         d > 50 ? '#807dba' :
+         d > 40 ? '#9e9ac8' :
+         d > 30 ? '#bcbddc' :
+                  'gray';
+      }
+  }
+
+function ase2013highlightFeature(e) {
+    var layer = e.target;
+    layer.setStyle({
+      weight: 2,
+      color: '#FFFFFF',
+      dashArray: '',
+      fillOpacity: 0.7
+    });
+    if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+         layer.bringToFront();
+     }
+     infoASE.update(layer.feature.properties);
+  }
+
+function ase2013resetHighlight(e) {
+      ase2013geojson.resetStyle(e.target);
+      infoASE.update();
+  }
+
+function ase2013EachFeature(feature, layer) {
+      layer.on({
+          mouseover: ase2013highlightFeature,
+          mouseout: ase2013resetHighlight
+      });
+    }
+
+infoASE.onAdd = function(map) {
+    this._div = L.DomUtil.create('div', 'info');
+    this.update();
+    return this._div;
+  };
+
+infoASE.update = function(props) {
+    this._div.innerHTML = (props ? '<h3>' + props.name + '</h3>' + '<h4>Total Votes: ' + props.totalVotes + '</h4>' + '<h4>Total Seats: ' + props.totalSeats + '</h4>' + '<h3>' + props.party + '</h3>' + '<h4>Vote Percentage: ' + props.percent + '%</h4><h4>Votes Received: ' + props.votes + '</h4><h4>Seats Won: ' + props.seats + '</h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
+  };
+
+infoASE.addTo(map)
+//END ASE 2013 /////////////////////////////////////
+
+//APMI 2013 ////////////////////////////
+function apmistyle(feature) {
+  return {
+    fillColor: getColor(feature.properties.percent),
+    weight: 0.5,
+    opacity: 1,
+    color: '#FFFFFF',
+    dashArray: '0',
+    fillOpacity: 0.5
+    }
+
+  function getColor(d) {
+    return d > 50 ? '#084594' :
+           d > 40 ? '#2171b5' :
+           d > 30 ? '#4292c6' :
+           d > 20 ? '#6baed6' :
+           d > 10 ? '#9ecae1' :
+                      'gray';
+      }
+  }
+
+function apmi2013highlightFeature(e) {
+    var layer = e.target;
+    layer.setStyle({
+      weight: 2,
+      color: '#FFFFFF',
+      dashArray: '',
+      fillOpacity: 0.7
+    });
+    if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+         layer.bringToFront();
+     }
+     infoAPMI.update(layer.feature.properties);
+  }
+
+function apmi2013resetHighlight(e) {
+      apmi2013geojson.resetStyle(e.target);
+      infoAPMI.update();
+  }
+
+function apmi2013EachFeature(feature, layer) {
+      layer.on({
+        mouseover: apmi2013highlightFeature,
+        mouseout: apmi2013resetHighlight
+    });
+  }
+
+  infoAPMI.onAdd = function(map) {
+    this._div = L.DomUtil.create('div', 'info');
+    this.update();
+    return this._div;
+  };
+
+  infoAPMI.update = function(props) {
+    this._div.innerHTML = (props ? '<h3>' + props.name + '</h3>' + '<h4>Total Votes: ' + props.totalVotes + '</h4>' + '<h4>Total Seats: ' + props.totalSeats + '</h4>' + '<h3>' + props.party + '</h3>' + '<h4>Vote Percentage: ' + props.percent + '%</h4><h4>Votes Received: ' + props.votes + '</h4><h4>Seats Won: ' + props.seats + '</h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
+  };
+
+  infoAPMI.addTo(map)
+//END APMI 2013 /////////////////////////////////////
+
+//PS 2013 ////////////////////////////////////////////
+function psstyle(feature) {
+  return {
+    fillColor: getColor(feature.properties.percent),
+    weight: 0.5,
+    opacity: 1,
+    color: '#FFFFFF',
+    dashArray: '0',
+    fillOpacity: 0.5
+  }
+
+function getColor(d) {
+  return d > 50 ? '#4a1486' :
+         d > 40 ? '#6a51a3' :
+         //d > 40 ? '#807dba' :
+         d > 30 ? '#9e9ac8' :
+         d > 20 ? '#bcbddc' :
+                  '#dadaeb';
+      }
+  }
+
+function ps2013highlightFeature(e) {
+    var layer = e.target;
+    layer.setStyle({
+      weight: 2,
+      color: '#FFFFFF',
+      dashArray: '',
+      fillOpacity: 0.7
+    });
+    if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+         layer.bringToFront();
+     }
+     infoPS.update(layer.feature.properties);
+  }
+
+function ps2013resetHighlight(e) {
+      ps2013geojson.resetStyle(e.target);
+      infoPS.update();
+  }
+
+function ps2013EachFeature(feature, layer) {
+      layer.on({
+          mouseover: ps2013highlightFeature,
+          mouseout: ps2013resetHighlight//,
+          //click: zoomToFeature
+      });
+    }
+
+infoPS.onAdd = function(map) {
+    this._div = L.DomUtil.create('div', 'info');
+    this.update();
+    return this._div;
+  };
+
+infoPS.update = function(props) {
+    this._div.innerHTML = (props ? '<h3>' + props.name + '</h3>' + '<h4>Total Votes: ' + props.totalVotes + '</h4>' + '<h4>Total Seats: ' + props.totalSeats + '</h4>' + '<h3>' + props.party + '</h3>' + '<h4>Vote Percentage: ' + props.percent + '%</h4><h4>Votes Received: ' + props.votes + '</h4><h4>Seats Won: ' + props.seats + '</h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
+  };
+
+infoPS.addTo(map)
+//END PS 2013 /////////////////////////////////////
+
+//PD 2013 ////////////////////////////////////////////
+function pdstyle(feature) {
+  return {
+    fillColor: getColor(feature.properties.percent),
+    weight: 0.5,
+    opacity: 1,
+    color: '#FFFFFF',
+    dashArray: '0',
+    fillOpacity: 0.5
+  }
+
+function getColor(d) {
+    return d > 50 ? '#2171b5' :
+           d > 40 ? '#4292c6' :
+           d > 30 ? '#6baed6' :
+           d > 20 ? '#9ecae1' :
+                    '#c6dbef';
+      }
+  }
+
+function pd2013highlightFeature(e) {
+    var layer = e.target;
+    layer.setStyle({
+      weight: 2,
+      color: '#FFFFFF',
+      dashArray: '',
+      fillOpacity: 0.7
+    });
+    if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+         layer.bringToFront();
+     }
+     infoPD.update(layer.feature.properties);
+  }
+
+function pd2013resetHighlight(e) {
+      pd2013geojson.resetStyle(e.target);
+      infoPD.update();
+  }
+
+function pd2013EachFeature(feature, layer) {
+      layer.on({
+          mouseover: pd2013highlightFeature,
+          mouseout: pd2013resetHighlight
+      });
+    }
+
+infoPD.onAdd = function(map) {
+    this._div = L.DomUtil.create('div', 'info');
+    this.update();
+    return this._div;
+  };
+
+infoPD.update = function(props) {
+    this._div.innerHTML = (props ? '<h3>' + props.name + '</h3>' + '<h4>Total Votes: ' + props.totalVotes + '</h4>' + '<h4>Total Seats: ' + props.totalSeats + '</h4>' + '<h3>' + props.party + '</h3>' + '<h4>Vote Percentage: ' + props.percent + '%</h4><h4>Votes Received: ' + props.votes + '</h4><h4>Seats Won: ' + props.seats + '</h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
+  };
+
+infoPD.addTo(map)
+//END PD 2013 /////////////////////////////////////
+
+//LSI 2013 ////////////////////////////////////////////
+function lsistyle(feature) {
+  return {
+    fillColor: getColor(feature.properties.percent),
+    weight: 0.5,
+    opacity: 1,
+    color: '#FFFFFF',
+    dashArray: '0',
+    fillOpacity: 0.5
+  }
+
+function getColor(d) {
+    return d > 20 ? '#cb181d' :
+				   d > 15 ? '#ef3b2c' :
+           //d > 10 ? '#fb6a4a' :
+           d > 10 ? '#fc9272' :
+           d > 5 ? '#fcbba1' :
+                    '#fee5d9';
+      }
+  }
+
+function lsi2013highlightFeature(e) {
+    var layer = e.target;
+    layer.setStyle({
+      weight: 2,
+      color: '#FFFFFF',
+      dashArray: '',
+      fillOpacity: 0.7
+    });
+    if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+         layer.bringToFront();
+     }
+     infoLSI.update(layer.feature.properties);
+  }
+
+function lsi2013resetHighlight(e) {
+      lsi2013geojson.resetStyle(e.target);
+      infoLSI.update();
+  }
+
+function lsi2013EachFeature(feature, layer) {
+      layer.on({
+          mouseover: lsi2013highlightFeature,
+          mouseout: lsi2013resetHighlight
+      });
+    }
+
+infoLSI.onAdd = function(map) {
+    this._div = L.DomUtil.create('div', 'info');
+    this.update();
+    return this._div;
+  };
+
+infoLSI.update = function(props) {
+    this._div.innerHTML = (props ? '<h3>' + props.name + '</h3>' + '<h4>Total Votes: ' + props.totalVotes + '</h4>' + '<h4>Total Seats: ' + props.totalSeats + '</h4>' + '<h3>' + props.party + '</h3>' + '<h4>Vote Percentage: ' + props.percent + '%</h4><h4>Votes Received: ' + props.votes + '</h4><h4>Seats Won: ' + props.seats + '</h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
+  };
+
+infoLSI.addTo(map)
+//END LSI 2013 /////////////////////////////////////
+
+//PDIU 2013 ////////////////////////////////////////////
+function pdiustyle(feature) {
+  return {
+    fillColor: getColor(feature.properties.percent),
+    weight: 0.5,
+    opacity: 1,
+    color: '#FFFFFF',
+    dashArray: '0',
+    fillOpacity: 0.5
+  }
+
+function getColor(d) {
+    return d > 5 ? '#9ecae1' :
+           d > 2 ? '#deebf7' :
+           d > 0 ? '#f7fbff' :
+                    '#ffffff';
+      }
+  }
+
+function pdiu2013highlightFeature(e) {
+    var layer = e.target;
+    layer.setStyle({
+      weight: 2,
+      color: '#FFFFFF',
+      dashArray: '',
+      fillOpacity: 0.7
+    });
+    if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+         layer.bringToFront();
+     }
+     infoPDIU.update(layer.feature.properties);
+  }
+
+function pdiu2013resetHighlight(e) {
+      pdiu2013geojson.resetStyle(e.target);
+      infoPDIU.update();
+  }
+
+function pdiu2013EachFeature(feature, layer) {
+      layer.on({
+          mouseover: pdiu2013highlightFeature,
+          mouseout: pdiu2013resetHighlight
+      });
+    }
+
+infoPDIU.onAdd = function(map) {
+    this._div = L.DomUtil.create('div', 'info');
+    this.update();
+    return this._div;
+  };
+
+infoPDIU.update = function(props) {
+    this._div.innerHTML = (props ? '<h3>' + props.name + '</h3>' + '<h4>Total Votes: ' + props.totalVotes + '</h4>' + '<h4>Total Seats: ' + props.totalSeats + '</h4>' + '<h3>' + props.party + '</h3>' + '<h4>Vote Percentage: ' + props.percent + '%</h4><h4>Votes Received: ' + props.votes + '</h4><h4>Seats Won: ' + props.seats + '</h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
+  };
+
+infoPDIU.addTo(map)
+//END PDIU 2013 /////////////////////////////////////
+
+//PR 2013 ////////////////////////////////////////////
+function prstyle(feature) {
+  return {
+    fillColor: getColor(feature.properties.percent),
+    weight: 0.5,
+    opacity: 1,
+    color: '#FFFFFF',
+    dashArray: '0',
+    fillOpacity: 0.5
+  }
+
+function getColor(d) {
+    return d > 5 ? '#3660b2' :
+           d > 2 ? '#c6dbef' :
+           d > 0 ? '#eff3ff' :
+                    '#fee5d9';
+      }
+  }
+
+function pr2013highlightFeature(e) {
+    var layer = e.target;
+    layer.setStyle({
+      weight: 2,
+      color: '#FFFFFF',
+      dashArray: '',
+      fillOpacity: 0.7
+    });
+    if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+         layer.bringToFront();
+     }
+     infoPR.update(layer.feature.properties);
+  }
+
+function pr2013resetHighlight(e) {
+      pr2013geojson.resetStyle(e.target);
+      infoPR.update();
+  }
+
+function pr2013EachFeature(feature, layer) {
+      layer.on({
+          mouseover: pr2013highlightFeature,
+          mouseout: pr2013resetHighlight
+      });
+    }
+
+infoPR.onAdd = function(map) {
+    this._div = L.DomUtil.create('div', 'info');
+    this.update();
+    return this._div;
+  };
+
+infoPR.update = function(props) {
+    this._div.innerHTML = (props ? '<h3>' + props.name + '</h3>' + '<h4>Total Votes: ' + props.totalVotes + '</h4>' + '<h4>Total Seats: ' + props.totalSeats + '</h4>' + '<h3>' + props.party + '</h3>' + '<h4>Vote Percentage: ' + props.percent + '%</h4><h4>Votes Received: ' + props.votes + '</h4><h4>Seats Won: ' + props.seats + '</h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
+  };
+
+infoPR.addTo(map)
+//END PR 2013 /////////////////////////////////////
+
+//BAS VT 2015 /////////////////////////////////////
+function basvt15style(feature) {
+  return {
+    fillColor: getColor(feature.properties.percent),
+    weight: 0.5,
+    opacity: 1,
+    color: '#FFFFFF',
+    dashArray: '0',
+    fillOpacity: 0.5
+  }
+
+function getColor(d) {
+  return d > 70 ? '#8c2d04' :
+         d > 60 ? '#cc4c02' :
+         d > 50 ? '#ec7014' :
+         d > 40 ? '#fe9929' :
+         d > 30 ? '#fec44f' :
+         d > 20 ? '#fee391' :
+                  '#ffffd4';
+      }
+  }
+
+function basvt2015highlightFeature(e) {
+    var layer = e.target;
+    layer.setStyle({
+      weight: 2,
+      color: '#FFFFFF',
+      dashArray: '',
+      fillOpacity: 0.7
+    });
+    if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+         layer.bringToFront();
+     }
+     infoBasVT15.update(layer.feature.properties);
+  }
+
+function basvt2015resetHighlight(e) {
+      turnout2015basgeojson.resetStyle(e.target);
+      infoBasVT15.update();
+  }
+
+function basvt2015EachFeature(feature, layer) {
+      layer.on({
+          mouseover: basvt2015highlightFeature,
+          mouseout: basvt2015resetHighlight,
+          click: zoomToFeature
+      });
+    }
+
+infoBasVT15.onAdd = function(map) {
+    this._div = L.DomUtil.create('div', 'info');
+    this.update();
+    return this._div;
+  };
+
+infoBasVT15.update = function(props) {
+    this._div.innerHTML = (props ? '<h3>' + props.bashkia + '</h3>' + '<h4>Registered Voters: ' + props.registeredVoters + '</h4>' + '<h4>Total Voters: ' + props.totalVoters + '</h4>' + '<h4>Turnout Percentage: ' + props.percent + '%</h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
+  };
+
+infoBasVT15.addTo(map)
+//END BAS VT 2015
+
+//BAS MALE vs Female VT 2015 /////////////////////////////////////
+function basmvfstyle(feature) {
+  return {
+    fillColor: getColor(feature.properties.percent),
+    weight: 0.5,
+    opacity: 1,
+    color: '#FFFFFF',
+    dashArray: '0',
+    fillOpacity: 0.5
+  }
+
+function getColor(d) {
+  return d > 10 ? '#034e7b' :
+         d > 8 ? '#0570b0' :
+         d > 6 ? '#3690c0' :
+         d > 4 ? '#74a9cf' :
+         d > 2 ? '#a6bddb' :
+         d > 0 ? '#d0d1e6' :
+         d > -1 ? '#eff3ff' :
+         d > -2 ? '#feebe2' :
+         d > -4 ? '#fcc5c0' :
+         d > -6 ? '#fa9fb5' :
+         d > -8 ? '#f768a1' :
+         d > -10 ? '#dd3497' :
+                  'gray';
+      }
+  }
+
+function basMVFhighlightFeature(e) {
+    var layer = e.target;
+    layer.setStyle({
+      weight: 2,
+      color: '#FFFFFF',
+      dashArray: '',
+      fillOpacity: 0.7
+    });
+    if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+         layer.bringToFront();
+     }
+     infoMVF.update(layer.feature.properties);
+  }
+
+function basMVFresetHighlight(e) {
+      mvfTurnout2015basgeojson.resetStyle(e.target);
+      infoMVF.update();
+  }
+
+function basMVFeachFeature(feature, layer) {
+      layer.on({
+          mouseover: basMVFhighlightFeature,
+          mouseout: basMVFresetHighlight,
+          click: zoomToFeature
+      });
+    }
+
+infoMVF.onAdd = function(map) {
+    this._div = L.DomUtil.create('div', 'info');
+    this.update();
+    return this._div;
+  };
+
+infoMVF.update = function(props) {
+    this._div.innerHTML = (props ? '<h3>' + props.bashkia + '</h3>' + '<h4>Male Turnout: ' + props.percentM + '%</h4>' + '<h4>Female Turnout: ' + props.percentF + '%</h4>' + '<h4>Difference (+/-): ' + props.percent + '%</h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
+  };
+
+infoMVF.addTo(map)
+//END MVF bas 2015
+
+
+//BAS MALE VT 2015 /////////////////////////////////////
+function basmvtstyle(feature) {
+  return {
+    fillColor: getColor(feature.properties.percent),
+    weight: 0.5,
+    opacity: 1,
+    color: '#FFFFFF',
+    dashArray: '0',
+    fillOpacity: 0.5
+  }
+
+function getColor(d) {
+  return d > 70 ? '#034e7b' :
+         d > 60 ? '#0570b0' :
+         d > 50 ? '#3690c0' :
+         d > 40 ? '#74a9cf' :
+         d > 30 ? '#a6bddb' :
+         d > 20 ? '#d0d1e6' :
+                  '#f1eef6';
+      }
+  }
+
+function basMVThighlightFeature(e) {
+    var layer = e.target;
+    layer.setStyle({
+      weight: 2,
+      color: '#FFFFFF',
+      dashArray: '',
+      fillOpacity: 0.7
+    });
+    if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+         layer.bringToFront();
+     }
+     infoMVT.update(layer.feature.properties);
+  }
+
+function basMVTresetHighlight(e) {
+      maleTurnout2015basgeojson.resetStyle(e.target);
+      infoMVT.update();
+  }
+
+function basMVTeachFeature(feature, layer) {
+      layer.on({
+          mouseover: basMVThighlightFeature,
+          mouseout: basMVTresetHighlight,
+          click: zoomToFeature
+      });
+    }
+
+infoMVT.onAdd = function(map) {
+    this._div = L.DomUtil.create('div', 'info');
+    this.update();
+    return this._div;
+  };
+
+infoMVT.update = function(props) {
+    this._div.innerHTML = (props ? '<h3>' + props.bashkia + '</h3>' + '<h4>Registered Male Voters: ' + props.registeredM + '</h4>' + '<h4>Total Male Voters: ' + props.turnoutM + '</h4>' + '<h4>Male Turnout Percentage: ' + props.percent + '%</h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
+  };
+
+infoMVT.addTo(map)
+//END MVT bas 2015
+
+//BAS Female VT 2015 /////////////////////////////////////
+function basfvtstyle(feature) {
+  return {
+    fillColor: getColor(feature.properties.percent),
+    weight: 0.5,
+    opacity: 1,
+    color: '#FFFFFF',
+    dashArray: '0',
+    fillOpacity: 0.5
+  }
+
+function getColor(d) {
+  return d > 70 ? '#7a0177' :
+         d > 60 ? '#ae017e' :
+         d > 50 ? '#dd3497' :
+         d > 40 ? '#f768a1' :
+         d > 30 ? '#fa9fb5' :
+         d > 20 ? '#fcc5c0' :
+                  '#feebe2';
+      }
+  }
+
+function basFVThighlightFeature(e) {
+    var layer = e.target;
+    layer.setStyle({
+      weight: 2,
+      color: '#FFFFFF',
+      dashArray: '',
+      fillOpacity: 0.7
+    });
+    if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+         layer.bringToFront();
+     }
+     infoFVT.update(layer.feature.properties);
+  }
+
+function basFVTresetHighlight(e) {
+      femaleTurnout2015basgeojson.resetStyle(e.target);
+      infoFVT.update();
+  }
+
+function basFVTeachFeature(feature, layer) {
+      layer.on({
+          mouseover: basFVThighlightFeature,
+          mouseout: basFVTresetHighlight,
+          click: zoomToFeature
+      });
+    }
+
+infoFVT.onAdd = function(map) {
+    this._div = L.DomUtil.create('div', 'info');
+    this.update();
+    return this._div;
+  };
+
+infoFVT.update = function(props) {
+    this._div.innerHTML = (props ? '<h3>' + props.bashkia + '</h3>' + '<h4>Registered Female Voters: ' + props.registeredF + '</h4>' + '<h4>Total Female Voters: ' + props.turnoutF + '</h4>' + '<h4>Female Turnout Percentage: ' + props.percent + '%</h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
+  };
+
+infoFVT.addTo(map)
+//END FVT bas 2015
+
+//BAS Mayor INV 2015 /////////////////////////////////////
+function basminv15style(feature) {
+  return {
+    fillColor: getColor(feature.properties.percent),
+    weight: 0.5,
+    opacity: 1,
+    color: '#FFFFFF',
+    dashArray: '0',
+    fillOpacity: 0.5
+  }
+
+function getColor(d) {
+  return d > 5 ? '#000000' :
+				 d > 4 ? '#252525' :
+				 d > 3 ? '#525252' :
+         d > 2 ? '#737373' :
+         d > 1 ? '#969696' :
+         d > 0 ? '#bdbdbd' :
+         //d > 1 ? '#d9d9d9' :
+         //d > 0 ? '#f0f0f0' :
+                  '#ffffff';
+      }
+  }
+
+function basminv2015highlightFeature(e) {
+    var layer = e.target;
+    layer.setStyle({
+      weight: 2,
+      color: '#FFFFFF',
+      dashArray: '',
+      fillOpacity: 0.7
+    });
+    if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+         layer.bringToFront();
+     }
+     infoBasMINV.update(layer.feature.properties);
+  }
+
+function basminv2015resetHighlight(e) {
+      invalidMayor2015basgeojson.resetStyle(e.target);
+      infoBasMINV.update();
+  }
+
+function basminv2015EachFeature(feature, layer) {
+      layer.on({
+          mouseover: basminv2015highlightFeature,
+          mouseout: basminv2015resetHighlight,
+          click: zoomToFeature
+      });
+    }
+
+infoBasMINV.onAdd = function(map) {
+    this._div = L.DomUtil.create('div', 'info');
+    this.update();
+    return this._div;
+  };
+
+infoBasMINV.update = function(props) {
+    this._div.innerHTML = (props ? '<h3>' + props.bashkia + '</h3>' + '<h4>Ballots Cast: ' + props.mayorTurnout + '</h4>' + '<h4>Invalid Votes: ' + props.mayorInvalid + '</h4>' + '<h4>Invalid Percentage: ' + props.percent + '%</h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
+  };
+
+infoBasMINV.addTo(map)
+//END Mayor BAS INV 2015
+
+//BAS Council INV 2015 /////////////////////////////////////
+function bascinv15style(feature) {
+  return {
+    fillColor: getColor(feature.properties.percent),
+    weight: 0.5,
+    opacity: 1,
+    color: '#FFFFFF',
+    dashArray: '0',
+    fillOpacity: 0.5
+  }
+
+function getColor(d) {
+  return d > 5 ? '#000000' :
+				 d > 4 ? '#252525' :
+				 d > 3 ? '#525252' :
+         d > 2 ? '#737373' :
+         d > 1 ? '#969696' :
+         d > 0 ? '#bdbdbd' :
+         //d > 1 ? '#d9d9d9' :
+         //d > 0 ? '#f0f0f0' :
+                  '#ffffff';
+      }
+  }
+
+function bascinv2015highlightFeature(e) {
+    var layer = e.target;
+    layer.setStyle({
+      weight: 2,
+      color: '#FFFFFF',
+      dashArray: '',
+      fillOpacity: 0.7
+    });
+    if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+         layer.bringToFront();
+     }
+     infoBasCINV.update(layer.feature.properties);
+  }
+
+function bascinv2015resetHighlight(e) {
+      invalidCouncil2015basgeojson.resetStyle(e.target);
+      infoBasCINV.update();
+  }
+
+function bascinv2015EachFeature(feature, layer) {
+      layer.on({
+          mouseover: bascinv2015highlightFeature,
+          mouseout: bascinv2015resetHighlight,
+          click: zoomToFeature
+      });
+    }
+
+infoBasCINV.onAdd = function(map) {
+    this._div = L.DomUtil.create('div', 'info');
+    this.update();
+    return this._div;
+  };
+
+infoBasCINV.update = function(props) {
+    this._div.innerHTML = (props ? '<h3>' + props.bashkia + '</h3>' + '<h4>Ballots Cast: ' + props.councilTurnout + '</h4>' + '<h4>Invalid Votes: ' + props.councilInvalid + '</h4>' + '<h4>Invalid Percentage: ' + props.percent + '%</h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
+  };
+
+infoBasCINV.addTo(map)
+//END BAS CINV 2015
+
+//ALL  /////////////
+function zoomToFeature(e) {
+    map.fitBounds(e.target.getBounds());
+  }
+
+//ASE
+var ase2013geojson = L.geoJson(ase2013, {
+    style: asestyle,
+    onEachFeature: ase2013EachFeature
+});
+
+//APMI
+var apmi2013geojson = L.geoJson(apmi2013, {
+    style: apmistyle,
+    onEachFeature: apmi2013EachFeature
+});
+
+//PS
+var ps2013geojson = L.geoJson(ps2013, {
+    style: psstyle,
+    onEachFeature: ps2013EachFeature
+});
+
+//PD
+var pd2013geojson = L.geoJson(pd2013, {
+    style: pdstyle,
+    onEachFeature: pd2013EachFeature
+});
+
+//LSI
+var lsi2013geojson = L.geoJson(lsi2013, {
+    style: lsistyle,
+    onEachFeature: lsi2013EachFeature
+});
+
+//PDIU
+var pdiu2013geojson = L.geoJson(pdiu2013, {
+    style: pdiustyle,
+    onEachFeature: pdiu2013EachFeature
+});
+
+//PR
+var pr2013geojson = L.geoJson(pr2013, {
+    style: prstyle,
+    onEachFeature: pr2013EachFeature
+});
+
+//VTBas
+var turnout2015basgeojson = L.geoJson(turnout2015bas, {
+    style: basvt15style,
+    onEachFeature: basvt2015EachFeature
+});
+
+//VTM vs F
+var mvfTurnout2015basgeojson = L.geoJson(mvfTurnout2015bas, {
+    style: basmvfstyle,
+    onEachFeature: basMVFeachFeature
+});
+
+//VTMale
+var maleTurnout2015basgeojson = L.geoJson(maleTurnout2015bas, {
+    style: basmvtstyle,
+    onEachFeature: basMVTeachFeature
+});
+
+//VTFemale
+var femaleTurnout2015basgeojson = L.geoJson(femaleTurnout2015bas, {
+    style: basfvtstyle,
+    onEachFeature: basFVTeachFeature
+});
+
+//MINVBas
+var invalidMayor2015basgeojson = L.geoJson(invalidMayor2015bas, {
+    style: basminv15style,
+    onEachFeature: basminv2015EachFeature
+});
+
+//CINVBas
+var invalidCouncil2015basgeojson = L.geoJson(invalidCouncil2015bas, {
+    style: bascinv15style,
+    onEachFeature: bascinv2015EachFeature
+});
+
+//heatmap - json array
+var heat = L.heatLayer(heatData, {
+  radius: 10,
+  maxZoom: 10
+  /*
+  minOpacity - the minimum opacity the heat will start at
+  maxZoom - zoom level where the points reach maximum intensity (as intensity scales with zoom), equals maxZoom of the map by default
+  max - maximum point intensity, 1.0 by default
+  radius - radius of each "point" of the heatmap, 25 by default
+  blur - amount of blur, 15 by default
+  gradient - color gradient config, e.g. {0.4: 'blue', 0.65: 'lime', 1: 'red'}
+  */
+});
+
+var overlayMaps = {
+  "2015 Turnout - Bashkia": turnout2015basgeojson,
+  "2015 Turnout - Bashkia (Mashkull)": maleTurnout2015basgeojson,
+  "2015 Turnout - Bashkia (Femër)": femaleTurnout2015basgeojson,
+  "2015 Turnout - Bashkia (M vs F)": mvfTurnout2015basgeojson,
+	"2015 Invalid - Bashkia (Kryetar)": invalidMayor2015basgeojson,
+	"2015 Invalid - Bashkia (Këshill)": invalidCouncil2015basgeojson
+  /*"2013 ASHE": ase2013geojson,
+  "2013 APMI": apmi2013geojson,
+  "2013 PS": ps2013geojson,
+  "2013 PD": pd2013geojson,
+  "2013 LSI": lsi2013geojson,
+	"2013 PDIU": pdiu2013geojson,
+	"2013 PR": pr2013geojson*/
+  //"Heat": heat
+};
+
+map.addLayer(turnout2015basgeojson);
+L.control.layers(overlayMaps, null, {collapsed:false, position: 'bottomleft'}).addTo(map);
+
+</script>
+{{super()}}
+{% endblock %}

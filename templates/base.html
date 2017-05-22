@@ -32,15 +32,22 @@
      z-index: 5;
    }
 
+   #cdo {
+     width: 10.5em;
+     height: 3.5em;
+     margin-left: 8em;
+
+   }
+
    #logo {
      width: 8em;
-     height: 1.75em;
-     margin-top: .8em;
+     height: 2em;
+     /*margin-top: .8em;*/
      z-index: 5;
    }
 
-   #logoholder {
-     margin-left: 23.5em;
+   .logoholder {
+     margin-left: 1.5em;
    }
 
    #map {
@@ -52,12 +59,21 @@
      height: 100%;
    }
 
+  /*.leaflet-right .leaflet-control {
+     margin-right: 10px;
+     margin-bottom: 20px;
+   }
+
+   .leaflet-left .leaflet-control {
+     margin-left: 5em;
+     margin-bottom: 15em;
+   }*/
+
    .info {
-     /*position: relative;
-     padding-top: 20em;
-     padding-right: 2em;*/
      font-family: 'Lato';
-     color: rgba(0,0,0, 0.6);
+     color: rgba(0,0,0, 0.7);
+     padding-right: 2em;
+      /*color: rgba(0,0,0, 0.6);*/
    }
  </style>
 
@@ -78,10 +94,13 @@
 	</div>
 	<div class="navbar-collapse collapse">
 	    <ul class="nav navbar-nav">
-		<li><a href="#">About</a></li>
-    <li><a href="/">Harta</a></li>
-    <li><a href="#">Data</a></li>
-    <a id="logoholder" href="http://democracyinternational.com" target="_blank"><img id="logo" src="{{ url_for('static', filename='img/dilogo.png' )}}"></a>
+		<li><a href="#">Rreth</a></li>
+    <li><a href="/">Harta 2013</a></li>
+    <li><a href="/map2015">Harta 2015</a></li>
+    <li><a href="#">Harta 2017</a></li>
+    <li><a href="#">Të Dhëna</a></li>
+    <a class="logoholder" href="http://www.zgjedhje.al/" target="_blank"><img id="cdo" src="{{ url_for('static', filename='img/cdologo2.png' )}}"></a>
+    <a class="logoholder" href="http://democracyinternational.com" target="_blank"><img id="logo" src="{{ url_for('static', filename='img/dilogo.png' )}}"></a>
 	    </ul>
 	</div>
     </div>
@@ -90,5 +109,11 @@
 {% endblock %}
 
 {% block content %}
-{% block page_content %}{% endblock %}
+<div class="jumbotron" id="map"></div>
+<script>
+var map = L.map('map').setView([41.2, 20.1], 8);
+L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
+    }).addTo(map);
+</script>
 {% endblock %}
