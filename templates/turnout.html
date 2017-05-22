@@ -1,42 +1,36 @@
 {% extends "base.html" %}
 
 {% block scripts %}
-<script src="{{ url_for('static', filename='js/ase2013.geojson') }}"></script>
-<script src="{{ url_for('static', filename='js/apmi2013.geojson') }}"></script>
-<script src="{{ url_for('static', filename='js/ps2013.geojson') }}"></script>
-<script src="{{ url_for('static', filename='js/pd2013.geojson') }}"></script>
-<script src="{{ url_for('static', filename='js/lsi2013.geojson') }}"></script>
-<script src="{{ url_for('static', filename='js/pdiu2013.geojson') }}"></script>
-<script src="{{ url_for('static', filename='js/pr2013.geojson') }}"></script>
+
 <script src="{{ url_for('static', filename='js/turnout2015bas.geojson') }}"></script>
 <script src="{{ url_for('static', filename='js/mvfTurnout2015bas.geojson') }}"></script>
 <script src="{{ url_for('static', filename='js/maleTurnout2015bas.geojson')}}"></script>
 <script src="{{ url_for('static', filename='js/femaleTurnout2015bas.geojson') }}"></script>
 <script src="{{ url_for('static', filename='js/invalidMayor2015bas.geojson') }}"></script>
 <script src="{{ url_for('static', filename='js/invalidCouncil2015bas.geojson') }}"></script>
-<script src="{{ url_for('static', filename='js/heatmaptest.json' )}}"></script>
+<script src="{{ url_for('static', filename='js/turnout2013qark.geojson')}}"></script>
+<script src="{{ url_for('static', filename='js/turnout2013bas.geojson') }}"></script>
+<script src="{{ url_for('static', filename='js/turnout2013Kom.geojson') }}"></script>
+<script src="{{ url_for('static', filename='js/invalid2013bas.geojson') }}"></script>
+<script src="{{ url_for('static', filename='js/invalid2013kom.geojson') }}"></script>
 <script>
 
-var ase2013geojson;
-var apmi2013geojson;
-var ps2013geojson;
-var pd2013geojson;
-var lsi2013geojson;
-var pdiu2013geojson;
-var pr2013geojson;
+var turnout2013qarkgeojson;
+var turnout2013basgeojson;
+var turnout2013Komgeojson;
+var invalid2013basgeojson;
+var invalid2013komgeojson;
 var turnout2015basgeojson;
 var mvfTurnout2015basgeojson;
 var maleTurnout2015basgeojson;
 var femaleTurnout2015basgeojson;
 var invalidMayor2015basgeojson;
 var invalidCouncil2015basgeojson;
-var infoASE = L.control({position: 'bottomright'});
-var infoAPMI = L.control({position: 'bottomright'});
-var infoPS = L.control({position: 'bottomright'});
-var infoPD = L.control({position: 'bottomright'});
-var infoLSI = L.control({position: 'bottomright'});
-var infoPDIU = L.control({position: 'bottomright'});
-var infoPR = L.control({position: 'bottomright'});
+var infoQarkVT = L.control({position: 'bottomright'});
+var infoBasVT = L.control({position: 'bottomright'});
+var infoKomVT = L.control({position: 'bottomright'});
+var infoBasINV = L.control({position: 'bottomright'});
+var infoKomINV = L.control({position: 'bottomright'});
 var infoBasVT15 = L.control({position: 'bottomright'});
 var infoMVF = L.control({position: 'bottomright'});
 var infoMVT = L.control({position: 'bottomright'});
@@ -44,8 +38,8 @@ var infoFVT = L.control({position: 'bottomright'});
 var infoBasMINV = L.control({position: 'bottomright'});
 var infoBasCINV = L.control({position: 'bottomright'});
 
-//ASE 2013 /////////////////
-function asestyle(feature) {
+//QARK VT 2013 /////////////////////////////////////
+function qarkvtstyle(feature) {
   return {
     fillColor: getColor(feature.properties.percent),
     weight: 0.5,
@@ -56,16 +50,17 @@ function asestyle(feature) {
   }
 
 function getColor(d) {
-  return d > 70 ? '#4a1486' :
-         d > 60 ? '#6a51a3' :
-         d > 50 ? '#807dba' :
-         d > 40 ? '#9e9ac8' :
-         d > 30 ? '#bcbddc' :
-                  'gray';
+  return d > 70 ? '#8c2d04' :
+         d > 60 ? '#cc4c02' :
+         d > 50 ? '#ec7014' :
+         d > 40 ? '#fe9929' :
+         d > 30 ? '#fec44f' :
+         d > 20 ? '#fee391' :
+                  '#ffffd4';
       }
   }
 
-function ase2013highlightFeature(e) {
+function qarkvt2013highlightFeature(e) {
     var layer = e.target;
     layer.setStyle({
       weight: 2,
@@ -76,157 +71,40 @@ function ase2013highlightFeature(e) {
     if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
          layer.bringToFront();
      }
-     infoASE.update(layer.feature.properties);
+     infoQarkVT.update(layer.feature.properties);
   }
 
-function ase2013resetHighlight(e) {
-      ase2013geojson.resetStyle(e.target);
-      infoASE.update();
+function qarkvt2013resetHighlight(e) {
+      turnout2013qarkgeojson.resetStyle(e.target);
+      infoQarkVT.update();
   }
 
-function ase2013EachFeature(feature, layer) {
+function qarkvt2013EachFeature(feature, layer) {
       layer.on({
-          mouseover: ase2013highlightFeature,
-          mouseout: ase2013resetHighlight
-      });
-    }
-
-infoASE.onAdd = function(map) {
-    this._div = L.DomUtil.create('div', 'info');
-    this.update();
-    return this._div;
-  };
-
-infoASE.update = function(props) {
-    this._div.innerHTML = (props ? '<h3>' + props.name + '</h3>' + '<h4>Total Votes: ' + props.totalVotes + '</h4>' + '<h4>Total Seats: ' + props.totalSeats + '</h4>' + '<h3>' + props.party + '</h3>' + '<h4>Vote Percentage: ' + props.percent + '%</h4><h4>Votes Received: ' + props.votes + '</h4><h4>Seats Won: ' + props.seats + '</h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
-  };
-
-infoASE.addTo(map)
-//END ASE 2013 /////////////////////////////////////
-
-//APMI 2013 ////////////////////////////
-function apmistyle(feature) {
-  return {
-    fillColor: getColor(feature.properties.percent),
-    weight: 0.5,
-    opacity: 1,
-    color: '#FFFFFF',
-    dashArray: '0',
-    fillOpacity: 0.5
-    }
-
-  function getColor(d) {
-    return d > 50 ? '#084594' :
-           d > 40 ? '#2171b5' :
-           d > 30 ? '#4292c6' :
-           d > 20 ? '#6baed6' :
-           d > 10 ? '#9ecae1' :
-                      'gray';
-      }
-  }
-
-function apmi2013highlightFeature(e) {
-    var layer = e.target;
-    layer.setStyle({
-      weight: 2,
-      color: '#FFFFFF',
-      dashArray: '',
-      fillOpacity: 0.7
-    });
-    if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
-         layer.bringToFront();
-     }
-     infoAPMI.update(layer.feature.properties);
-  }
-
-function apmi2013resetHighlight(e) {
-      apmi2013geojson.resetStyle(e.target);
-      infoAPMI.update();
-  }
-
-function apmi2013EachFeature(feature, layer) {
-      layer.on({
-        mouseover: apmi2013highlightFeature,
-        mouseout: apmi2013resetHighlight
-    });
-  }
-
-  infoAPMI.onAdd = function(map) {
-    this._div = L.DomUtil.create('div', 'info');
-    this.update();
-    return this._div;
-  };
-
-  infoAPMI.update = function(props) {
-    this._div.innerHTML = (props ? '<h3>' + props.name + '</h3>' + '<h4>Total Votes: ' + props.totalVotes + '</h4>' + '<h4>Total Seats: ' + props.totalSeats + '</h4>' + '<h3>' + props.party + '</h3>' + '<h4>Vote Percentage: ' + props.percent + '%</h4><h4>Votes Received: ' + props.votes + '</h4><h4>Seats Won: ' + props.seats + '</h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
-  };
-
-  infoAPMI.addTo(map)
-//END APMI 2013 /////////////////////////////////////
-
-//PS 2013 ////////////////////////////////////////////
-function psstyle(feature) {
-  return {
-    fillColor: getColor(feature.properties.percent),
-    weight: 0.5,
-    opacity: 1,
-    color: '#FFFFFF',
-    dashArray: '0',
-    fillOpacity: 0.5
-  }
-
-function getColor(d) {
-  return d > 50 ? '#4a1486' :
-         d > 40 ? '#6a51a3' :
-         //d > 40 ? '#807dba' :
-         d > 30 ? '#9e9ac8' :
-         d > 20 ? '#bcbddc' :
-                  '#dadaeb';
-      }
-  }
-
-function ps2013highlightFeature(e) {
-    var layer = e.target;
-    layer.setStyle({
-      weight: 2,
-      color: '#FFFFFF',
-      dashArray: '',
-      fillOpacity: 0.7
-    });
-    if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
-         layer.bringToFront();
-     }
-     infoPS.update(layer.feature.properties);
-  }
-
-function ps2013resetHighlight(e) {
-      ps2013geojson.resetStyle(e.target);
-      infoPS.update();
-  }
-
-function ps2013EachFeature(feature, layer) {
-      layer.on({
-          mouseover: ps2013highlightFeature,
-          mouseout: ps2013resetHighlight//,
+          mouseover: qarkvt2013highlightFeature,
+          mouseout: qarkvt2013resetHighlight
           //click: zoomToFeature
       });
     }
 
-infoPS.onAdd = function(map) {
+infoQarkVT.onAdd = function(map) {
     this._div = L.DomUtil.create('div', 'info');
     this.update();
     return this._div;
   };
 
-infoPS.update = function(props) {
-    this._div.innerHTML = (props ? '<h3>' + props.name + '</h3>' + '<h4>Total Votes: ' + props.totalVotes + '</h4>' + '<h4>Total Seats: ' + props.totalSeats + '</h4>' + '<h3>' + props.party + '</h3>' + '<h4>Vote Percentage: ' + props.percent + '%</h4><h4>Votes Received: ' + props.votes + '</h4><h4>Seats Won: ' + props.seats + '</h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
+infoQarkVT.update = function(props) {
+    this._div.innerHTML = (props ? '<h3>' + props.name + '</h3>'
+    + '<h4>Registered Voters: ' + props.registeredVoters + '</h4>'
+    + '<h4>Total Voters: ' + props.totalVoters + '</h4>'
+    + '<h4>Turnout Percentage: ' + props.percent + '%</h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
   };
 
-infoPS.addTo(map)
-//END PS 2013 /////////////////////////////////////
+infoQarkVT.addTo(map)
+//END QARK VT 2013
 
-//PD 2013 ////////////////////////////////////////////
-function pdstyle(feature) {
+//BAS VT 2013 /////////////////////////////////////
+function basvtstyle(feature) {
   return {
     fillColor: getColor(feature.properties.percent),
     weight: 0.5,
@@ -237,15 +115,17 @@ function pdstyle(feature) {
   }
 
 function getColor(d) {
-    return d > 50 ? '#2171b5' :
-           d > 40 ? '#4292c6' :
-           d > 30 ? '#6baed6' :
-           d > 20 ? '#9ecae1' :
-                    '#c6dbef';
+  return d > 70 ? '#8c2d04' :
+         d > 60 ? '#cc4c02' :
+         d > 50 ? '#ec7014' :
+         d > 40 ? '#fe9929' :
+         d > 30 ? '#fec44f' :
+         d > 20 ? '#fee391' :
+                  '#ffffd4';
       }
   }
 
-function pd2013highlightFeature(e) {
+function basvt2013highlightFeature(e) {
     var layer = e.target;
     layer.setStyle({
       weight: 2,
@@ -256,36 +136,40 @@ function pd2013highlightFeature(e) {
     if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
          layer.bringToFront();
      }
-     infoPD.update(layer.feature.properties);
+     infoBasVT.update(layer.feature.properties);
   }
 
-function pd2013resetHighlight(e) {
-      pd2013geojson.resetStyle(e.target);
-      infoPD.update();
+function basvt2013resetHighlight(e) {
+      turnout2013basgeojson.resetStyle(e.target);
+      infoBasVT.update();
   }
 
-function pd2013EachFeature(feature, layer) {
+function basvt2013EachFeature(feature, layer) {
       layer.on({
-          mouseover: pd2013highlightFeature,
-          mouseout: pd2013resetHighlight
+          mouseover: basvt2013highlightFeature,
+          mouseout: basvt2013resetHighlight,
+          click: zoomToFeature
       });
     }
 
-infoPD.onAdd = function(map) {
+infoBasVT.onAdd = function(map) {
     this._div = L.DomUtil.create('div', 'info');
     this.update();
     return this._div;
   };
 
-infoPD.update = function(props) {
-    this._div.innerHTML = (props ? '<h3>' + props.name + '</h3>' + '<h4>Total Votes: ' + props.totalVotes + '</h4>' + '<h4>Total Seats: ' + props.totalSeats + '</h4>' + '<h3>' + props.party + '</h3>' + '<h4>Vote Percentage: ' + props.percent + '%</h4><h4>Votes Received: ' + props.votes + '</h4><h4>Seats Won: ' + props.seats + '</h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
+infoBasVT.update = function(props) {
+    this._div.innerHTML = (props ? '<h3>' + props.bashkia + '</h3>'
+    + '<h4>Registered Voters: ' + props.registeredVoters + '</h4>'
+    + '<h4>Total Voters: ' + props.totalVoters + '</h4>'
+    + '<h4>Turnout Percentage: ' + props.percent + '%</h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
   };
 
-infoPD.addTo(map)
-//END PD 2013 /////////////////////////////////////
+infoBasVT.addTo(map)
+//END BAS VT 2013
 
-//LSI 2013 ////////////////////////////////////////////
-function lsistyle(feature) {
+//KOM VT 2013 /////////////////////////////////////
+function komvtstyle(feature) {
   return {
     fillColor: getColor(feature.properties.percent),
     weight: 0.5,
@@ -296,16 +180,17 @@ function lsistyle(feature) {
   }
 
 function getColor(d) {
-    return d > 20 ? '#cb181d' :
-				   d > 15 ? '#ef3b2c' :
-           //d > 10 ? '#fb6a4a' :
-           d > 10 ? '#fc9272' :
-           d > 5 ? '#fcbba1' :
-                    '#fee5d9';
+  return d > 70 ? '#8c2d04' :
+         d > 60 ? '#cc4c02' :
+         d > 50 ? '#ec7014' :
+         d > 40 ? '#fe9929' :
+         d > 30 ? '#fec44f' :
+         d > 20 ? '#fee391' :
+                  '#ffffd4';
       }
   }
 
-function lsi2013highlightFeature(e) {
+function komvt2013highlightFeature(e) {
     var layer = e.target;
     layer.setStyle({
       weight: 2,
@@ -316,36 +201,40 @@ function lsi2013highlightFeature(e) {
     if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
          layer.bringToFront();
      }
-     infoLSI.update(layer.feature.properties);
+     infoKomVT.update(layer.feature.properties);
   }
 
-function lsi2013resetHighlight(e) {
-      lsi2013geojson.resetStyle(e.target);
-      infoLSI.update();
+function komvt2013resetHighlight(e) {
+      turnout2013Komgeojson.resetStyle(e.target);
+      infoKomVT.update();
   }
 
-function lsi2013EachFeature(feature, layer) {
+function komvt2013EachFeature(feature, layer) {
       layer.on({
-          mouseover: lsi2013highlightFeature,
-          mouseout: lsi2013resetHighlight
+          mouseover: komvt2013highlightFeature,
+          mouseout: komvt2013resetHighlight,
+          click: zoomToFeature
       });
     }
 
-infoLSI.onAdd = function(map) {
+infoKomVT.onAdd = function(map) {
     this._div = L.DomUtil.create('div', 'info');
     this.update();
     return this._div;
   };
 
-infoLSI.update = function(props) {
-    this._div.innerHTML = (props ? '<h3>' + props.name + '</h3>' + '<h4>Total Votes: ' + props.totalVotes + '</h4>' + '<h4>Total Seats: ' + props.totalSeats + '</h4>' + '<h3>' + props.party + '</h3>' + '<h4>Vote Percentage: ' + props.percent + '%</h4><h4>Votes Received: ' + props.votes + '</h4><h4>Seats Won: ' + props.seats + '</h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
+infoKomVT.update = function(props) {
+    this._div.innerHTML = (props ? '<h3>' + props.komune + '</h3>'
+    + '<h4>Registered Voters: ' + props.registerVoters + '</h4>'
+    + '<h4>Total Voters: ' + props.totalVoters + '</h4>'
+    + '<h4>Turnout Percentage: ' + props.percent + '%</h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
   };
 
-infoLSI.addTo(map)
-//END LSI 2013 /////////////////////////////////////
+infoKomVT.addTo(map)
+//END KOM VT 2013
 
-//PDIU 2013 ////////////////////////////////////////////
-function pdiustyle(feature) {
+//BAS INV 2013 /////////////////////////////////////
+function basinvstyle(feature) {
   return {
     fillColor: getColor(feature.properties.percent),
     weight: 0.5,
@@ -356,14 +245,19 @@ function pdiustyle(feature) {
   }
 
 function getColor(d) {
-    return d > 5 ? '#9ecae1' :
-           d > 2 ? '#deebf7' :
-           d > 0 ? '#f7fbff' :
-                    '#ffffff';
+  return d > 5 ? '#000000' :
+				 d > 4 ? '#252525' :
+				 d > 3 ? '#525252' :
+         d > 2 ? '#737373' :
+         d > 1 ? '#969696' :
+         d > 0 ? '#bdbdbd' :
+         //d > 1 ? '#d9d9d9' :
+         //d > 0 ? '#f0f0f0' :
+                  '#ffffff';
       }
   }
 
-function pdiu2013highlightFeature(e) {
+function basinv2013highlightFeature(e) {
     var layer = e.target;
     layer.setStyle({
       weight: 2,
@@ -374,36 +268,40 @@ function pdiu2013highlightFeature(e) {
     if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
          layer.bringToFront();
      }
-     infoPDIU.update(layer.feature.properties);
+     infoBasINV.update(layer.feature.properties);
   }
 
-function pdiu2013resetHighlight(e) {
-      pdiu2013geojson.resetStyle(e.target);
-      infoPDIU.update();
+function basinv2013resetHighlight(e) {
+      invalid2013basgeojson.resetStyle(e.target);
+      infoBasINV.update();
   }
 
-function pdiu2013EachFeature(feature, layer) {
+function basinv2013EachFeature(feature, layer) {
       layer.on({
-          mouseover: pdiu2013highlightFeature,
-          mouseout: pdiu2013resetHighlight
+          mouseover: basinv2013highlightFeature,
+          mouseout: basinv2013resetHighlight,
+          click: zoomToFeature
       });
     }
 
-infoPDIU.onAdd = function(map) {
+infoBasINV.onAdd = function(map) {
     this._div = L.DomUtil.create('div', 'info');
     this.update();
     return this._div;
   };
 
-infoPDIU.update = function(props) {
-    this._div.innerHTML = (props ? '<h3>' + props.name + '</h3>' + '<h4>Total Votes: ' + props.totalVotes + '</h4>' + '<h4>Total Seats: ' + props.totalSeats + '</h4>' + '<h3>' + props.party + '</h3>' + '<h4>Vote Percentage: ' + props.percent + '%</h4><h4>Votes Received: ' + props.votes + '</h4><h4>Seats Won: ' + props.seats + '</h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
+infoBasINV.update = function(props) {
+    this._div.innerHTML = (props ? '<h3>' + props.bashkia + '</h3>'
+    + '<h4>Ballots Cast: ' + props.ballotsCast + '</h4>'
+    + '<h4>Invalid Votes: ' + props.invalidBallots + '</h4>'
+    + '<h4>Invalid Percentage: ' + props.percent + '%</h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
   };
 
-infoPDIU.addTo(map)
-//END PDIU 2013 /////////////////////////////////////
+infoBasINV.addTo(map)
+//END BAS INV 2013
 
-//PR 2013 ////////////////////////////////////////////
-function prstyle(feature) {
+//KOM INV 2013 /////////////////////////////////////
+function kominvstyle(feature) {
   return {
     fillColor: getColor(feature.properties.percent),
     weight: 0.5,
@@ -414,14 +312,19 @@ function prstyle(feature) {
   }
 
 function getColor(d) {
-    return d > 5 ? '#3660b2' :
-           d > 2 ? '#c6dbef' :
-           d > 0 ? '#eff3ff' :
-                    '#fee5d9';
+  return d > 5 ? '#000000' :
+				 d > 4 ? '#252525' :
+				 d > 3 ? '#525252' :
+         d > 2 ? '#737373' :
+         d > 1 ? '#969696' :
+         d > 0 ? '#bdbdbd' :
+         //d > 1 ? '#d9d9d9' :
+         //d > 0 ? '#f0f0f0' :
+                  '#ffffff';
       }
   }
 
-function pr2013highlightFeature(e) {
+function kominv2013highlightFeature(e) {
     var layer = e.target;
     layer.setStyle({
       weight: 2,
@@ -432,33 +335,37 @@ function pr2013highlightFeature(e) {
     if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
          layer.bringToFront();
      }
-     infoPR.update(layer.feature.properties);
+     infoKomINV.update(layer.feature.properties);
   }
 
-function pr2013resetHighlight(e) {
-      pr2013geojson.resetStyle(e.target);
-      infoPR.update();
+function kominv2013resetHighlight(e) {
+      invalid2013komgeojson.resetStyle(e.target);
+      infoKomINV.update();
   }
 
-function pr2013EachFeature(feature, layer) {
+function kominv2013EachFeature(feature, layer) {
       layer.on({
-          mouseover: pr2013highlightFeature,
-          mouseout: pr2013resetHighlight
+          mouseover: kominv2013highlightFeature,
+          mouseout: kominv2013resetHighlight,
+          click: zoomToFeature
       });
     }
 
-infoPR.onAdd = function(map) {
+infoKomINV.onAdd = function(map) {
     this._div = L.DomUtil.create('div', 'info');
     this.update();
     return this._div;
   };
 
-infoPR.update = function(props) {
-    this._div.innerHTML = (props ? '<h3>' + props.name + '</h3>' + '<h4>Total Votes: ' + props.totalVotes + '</h4>' + '<h4>Total Seats: ' + props.totalSeats + '</h4>' + '<h3>' + props.party + '</h3>' + '<h4>Vote Percentage: ' + props.percent + '%</h4><h4>Votes Received: ' + props.votes + '</h4><h4>Seats Won: ' + props.seats + '</h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
+infoKomINV.update = function(props) {
+    this._div.innerHTML = (props ? '<h3>' + props.komune + '</h3>'
+    + '<h4>Ballots Cast: ' + props.ballotsCast + '</h4>'
+    + '<h4>Invalid Votes: ' + props.invalidVotes + '</h4>'
+    + '<h4>Invalid Percentage: ' + props.percent + '%</h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
   };
 
-infoPR.addTo(map)
-//END PR 2013 /////////////////////////////////////
+infoKomINV.addTo(map)
+//END KOM INV 2013
 
 //BAS VT 2015 /////////////////////////////////////
 function basvt15style(feature) {
@@ -516,7 +423,10 @@ infoBasVT15.onAdd = function(map) {
   };
 
 infoBasVT15.update = function(props) {
-    this._div.innerHTML = (props ? '<h3>' + props.bashkia + '</h3>' + '<h4>Registered Voters: ' + props.registeredVoters + '</h4>' + '<h4>Total Voters: ' + props.totalVoters + '</h4>' + '<h4>Turnout Percentage: ' + props.percent + '%</h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
+    this._div.innerHTML = (props ? '<h3>' + props.bashkia + '</h3>'
+    + '<h4>Registered Voters: ' + props.registeredVoters + '</h4>'
+    + '<h4>Total Voters: ' + props.totalVoters + '</h4>'
+    + '<h4>Turnout Percentage: ' + props.percent + '%</h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
   };
 
 infoBasVT15.addTo(map)
@@ -584,12 +494,18 @@ infoMVF.onAdd = function(map) {
   };
 
 infoMVF.update = function(props) {
-    this._div.innerHTML = (props ? '<h3>' + props.bashkia + '</h3>' + '<h4>Male Turnout: ' + props.percentM + '%</h4>' + '<h4>Female Turnout: ' + props.percentF + '%</h4>' + '<h4>Difference (+/-): ' + props.percent + '%</h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
+    this._div.innerHTML = (props ? '<h3>' + props.bashkia + '</h3>'
+    + '<h4>Registered Male Voters: ' + props.registeredM + '</h4>'
+    + '<h4>Male Voter Turnout: ' + props.turnoutM + '</h4>'
+    + '<h4>Male Turnout Percentage: ' + props.percentM + '%</h4>'
+    + '<h4>Registered Female Voters: ' + props.registeredF + '</h4>'
+    + '<h4>Female Voter Turnout: ' + props.turnoutF + '</h4>'
+    + '<h4>Female Turnout Percentage: ' + props.percentF + '%</h4>'
+    + '<h4>Difference (+/-): ' + props.percent + '%</h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
   };
 
 infoMVF.addTo(map)
 //END MVF bas 2015
-
 
 //BAS MALE VT 2015 /////////////////////////////////////
 function basmvtstyle(feature) {
@@ -647,7 +563,10 @@ infoMVT.onAdd = function(map) {
   };
 
 infoMVT.update = function(props) {
-    this._div.innerHTML = (props ? '<h3>' + props.bashkia + '</h3>' + '<h4>Registered Male Voters: ' + props.registeredM + '</h4>' + '<h4>Total Male Voters: ' + props.turnoutM + '</h4>' + '<h4>Male Turnout Percentage: ' + props.percent + '%</h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
+    this._div.innerHTML = (props ? '<h3>' + props.bashkia + '</h3>'
+    + '<h4>Registered Male Voters: ' + props.registeredM + '</h4>'
+    + '<h4>Male Voter Turnout: ' + props.turnoutM + '</h4>'
+    + '<h4>Male Turnout Percentage: ' + props.percent + '%</h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
   };
 
 infoMVT.addTo(map)
@@ -709,7 +628,10 @@ infoFVT.onAdd = function(map) {
   };
 
 infoFVT.update = function(props) {
-    this._div.innerHTML = (props ? '<h3>' + props.bashkia + '</h3>' + '<h4>Registered Female Voters: ' + props.registeredF + '</h4>' + '<h4>Total Female Voters: ' + props.turnoutF + '</h4>' + '<h4>Female Turnout Percentage: ' + props.percent + '%</h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
+    this._div.innerHTML = (props ? '<h3>' + props.bashkia + '</h3>'
+    + '<h4>Registered Female Voters: ' + props.registeredF + '</h4>'
+    + '<h4>Female Voter Turnout: ' + props.turnoutF + '</h4>'
+    + '<h4>Female Turnout Percentage: ' + props.percent + '%</h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
   };
 
 infoFVT.addTo(map)
@@ -773,7 +695,10 @@ infoBasMINV.onAdd = function(map) {
   };
 
 infoBasMINV.update = function(props) {
-    this._div.innerHTML = (props ? '<h3>' + props.bashkia + '</h3>' + '<h4>Ballots Cast: ' + props.mayorTurnout + '</h4>' + '<h4>Invalid Votes: ' + props.mayorInvalid + '</h4>' + '<h4>Invalid Percentage: ' + props.percent + '%</h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
+    this._div.innerHTML = (props ? '<h3>' + props.bashkia + '</h3>'
+    + '<h4>Ballots Cast: ' + props.mayorTurnout + '</h4>'
+    + '<h4>Invalid Votes: ' + props.mayorInvalid + '</h4>'
+    + '<h4>Invalid Percentage: ' + props.percent + '%</h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
   };
 
 infoBasMINV.addTo(map)
@@ -837,7 +762,10 @@ infoBasCINV.onAdd = function(map) {
   };
 
 infoBasCINV.update = function(props) {
-    this._div.innerHTML = (props ? '<h3>' + props.bashkia + '</h3>' + '<h4>Ballots Cast: ' + props.councilTurnout + '</h4>' + '<h4>Invalid Votes: ' + props.councilInvalid + '</h4>' + '<h4>Invalid Percentage: ' + props.percent + '%</h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
+    this._div.innerHTML = (props ? '<h3>' + props.bashkia + '</h3>'
+    + '<h4>Ballots Cast: ' + props.councilTurnout + '</h4>'
+    + '<h4>Invalid Votes: ' + props.councilInvalid + '</h4>'
+    + '<h4>Invalid Percentage: ' + props.percent + '%</h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
   };
 
 infoBasCINV.addTo(map)
@@ -848,46 +776,34 @@ function zoomToFeature(e) {
     map.fitBounds(e.target.getBounds());
   }
 
-//ASE
-var ase2013geojson = L.geoJson(ase2013, {
-    style: asestyle,
-    onEachFeature: ase2013EachFeature
+//VTQark
+var turnout2013qarkgeojson = L.geoJson(turnout2013qark, {
+    style: qarkvtstyle,
+    onEachFeature: qarkvt2013EachFeature
 });
 
-//APMI
-var apmi2013geojson = L.geoJson(apmi2013, {
-    style: apmistyle,
-    onEachFeature: apmi2013EachFeature
+  //VTBas
+var turnout2013basgeojson = L.geoJson(turnout2013bas, {
+    style: basvtstyle,
+    onEachFeature: basvt2013EachFeature
 });
 
-//PS
-var ps2013geojson = L.geoJson(ps2013, {
-    style: psstyle,
-    onEachFeature: ps2013EachFeature
+//VTKom
+var turnout2013Komgeojson = L.geoJson(turnout2013Kom, {
+    style: komvtstyle,
+    onEachFeature: komvt2013EachFeature
 });
 
-//PD
-var pd2013geojson = L.geoJson(pd2013, {
-    style: pdstyle,
-    onEachFeature: pd2013EachFeature
+  //INVBas
+var invalid2013basgeojson = L.geoJson(invalid2013bas, {
+    style: basinvstyle,
+    onEachFeature: basinv2013EachFeature
 });
 
-//LSI
-var lsi2013geojson = L.geoJson(lsi2013, {
-    style: lsistyle,
-    onEachFeature: lsi2013EachFeature
-});
-
-//PDIU
-var pdiu2013geojson = L.geoJson(pdiu2013, {
-    style: pdiustyle,
-    onEachFeature: pdiu2013EachFeature
-});
-
-//PR
-var pr2013geojson = L.geoJson(pr2013, {
-    style: prstyle,
-    onEachFeature: pr2013EachFeature
+  //INVKom
+var invalid2013komgeojson = L.geoJson(invalid2013kom, {
+    style: kominvstyle,
+    onEachFeature: kominv2013EachFeature
 });
 
 //VTBas
@@ -926,35 +842,18 @@ var invalidCouncil2015basgeojson = L.geoJson(invalidCouncil2015bas, {
     onEachFeature: bascinv2015EachFeature
 });
 
-//heatmap - json array
-var heat = L.heatLayer(heatData, {
-  radius: 10,
-  maxZoom: 10
-  /*
-  minOpacity - the minimum opacity the heat will start at
-  maxZoom - zoom level where the points reach maximum intensity (as intensity scales with zoom), equals maxZoom of the map by default
-  max - maximum point intensity, 1.0 by default
-  radius - radius of each "point" of the heatmap, 25 by default
-  blur - amount of blur, 15 by default
-  gradient - color gradient config, e.g. {0.4: 'blue', 0.65: 'lime', 1: 'red'}
-  */
-});
-
 var overlayMaps = {
   "2015 Turnout - Bashkia": turnout2015basgeojson,
   "2015 Turnout - Bashkia (Mashkull)": maleTurnout2015basgeojson,
   "2015 Turnout - Bashkia (Femër)": femaleTurnout2015basgeojson,
   "2015 Turnout - Bashkia (M vs F)": mvfTurnout2015basgeojson,
+  "2013 Turnout - Qark": turnout2013qarkgeojson,
+  "2013 Turnout - Bashkia": turnout2013basgeojson,
+  "2013 Turnout - Komune": turnout2013Komgeojson,
 	"2015 Invalid - Bashkia (Kryetar)": invalidMayor2015basgeojson,
-	"2015 Invalid - Bashkia (Këshill)": invalidCouncil2015basgeojson
-  /*"2013 ASHE": ase2013geojson,
-  "2013 APMI": apmi2013geojson,
-  "2013 PS": ps2013geojson,
-  "2013 PD": pd2013geojson,
-  "2013 LSI": lsi2013geojson,
-	"2013 PDIU": pdiu2013geojson,
-	"2013 PR": pr2013geojson*/
-  //"Heat": heat
+	"2015 Invalid - Bashkia (Këshill)": invalidCouncil2015basgeojson,
+  "2013 Invalid - Bashkia": invalid2013basgeojson,
+	"2013 Invalid - Komune": invalid2013komgeojson
 };
 
 map.addLayer(turnout2015basgeojson);
