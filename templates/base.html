@@ -178,17 +178,19 @@ var baseLayers = {
 
 ///
 var cartoLink = '<a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>';
-//var mountLink = '<a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>';
-
 var cartoUrl = 'http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png';
 var cartoAttr = '&copy; ' + cartoLink;
 //var mountUrl = 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Shaded_Relief/MapServer/tile/{z}/{y}/{x}';
-var mountUrl = 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Terrain_Base/MapServer/tile/{z}/{y}/{x}';
 //var mountAttr = 'Tiles &copy; Esri &mdash; Source: Esri';
+var mountUrl = 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Terrain_Base/MapServer/tile/{z}/{y}/{x}';
 var mountAttr = 'Tiles &copy; Esri &mdash; Source: USGS, Esri, TANA, DeLorme, and NPS';
+var satUrl = 'https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
+var satAttr = 'Tiles &copy; Esri &mdash; Sources: Esri, DigitalGlobe, Earthstar Geographics, CNES/Airbus DS, GeoEye, USDA FSA, USGS, Getmapping, Aerogrid, IGN, IGP, and the GIS User Community';
 
 var cartoMap = L.tileLayer(cartoUrl, {attribution: cartoAttr});
 var mountMap = L.tileLayer(mountUrl, {attribution: mountAttr});
+var satMap = L.tileLayer(satUrl, {attribution: satAttr});
+
 
 var map = L.map('map', {
   layers: [cartoMap]}).setView([41.2, 20.1], 8);
@@ -197,8 +199,9 @@ var map = L.map('map', {
     }).addTo(map);*/
 
 var baseLayers = {
-  "Basic": cartoMap,
-  "Mountain": mountMap
+  "Road": cartoMap,
+  "Terrain": mountMap,
+  "Satellite": satMap
 };
 
 //L.control.layers(baseLayers).addTo(map);
