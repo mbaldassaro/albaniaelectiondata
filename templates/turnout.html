@@ -2,17 +2,17 @@
 
 {% block scripts %}
 
-<script src="{{ url_for('static', filename='js/turnout2015bas.geojson') }}"></script>
-<script src="{{ url_for('static', filename='js/mvfTurnout2015bas.geojson') }}"></script>
-<script src="{{ url_for('static', filename='js/maleTurnout2015bas.geojson')}}"></script>
-<script src="{{ url_for('static', filename='js/femaleTurnout2015bas.geojson') }}"></script>
-<script src="{{ url_for('static', filename='js/invalidMayor2015bas.geojson') }}"></script>
-<script src="{{ url_for('static', filename='js/invalidCouncil2015bas.geojson') }}"></script>
-<script src="{{ url_for('static', filename='js/turnout2013qark.geojson')}}"></script>
-<script src="{{ url_for('static', filename='js/turnout2013bas.geojson') }}"></script>
-<script src="{{ url_for('static', filename='js/turnout2013Kom.geojson') }}"></script>
-<script src="{{ url_for('static', filename='js/invalid2013bas.geojson') }}"></script>
-<script src="{{ url_for('static', filename='js/invalid2013kom.geojson') }}"></script>
+<script src="{{ url_for('static', filename='js/turnout/turnout2015bas.geojson') }}"></script>
+<script src="{{ url_for('static', filename='js/turnout/mvfTurnout2015bas.geojson') }}"></script>
+<script src="{{ url_for('static', filename='js/turnout/maleTurnout2015bas.geojson')}}"></script>
+<script src="{{ url_for('static', filename='js/turnout/femaleTurnout2015bas.geojson') }}"></script>
+<script src="{{ url_for('static', filename='js/turnout/invalidMayor2015bas.geojson') }}"></script>
+<script src="{{ url_for('static', filename='js/turnout/invalidCouncil2015bas.geojson') }}"></script>
+<script src="{{ url_for('static', filename='js/turnout/turnout2013qark.geojson')}}"></script>
+<script src="{{ url_for('static', filename='js/turnout/turnout2013bas.geojson') }}"></script>
+<script src="{{ url_for('static', filename='js/turnout/turnout2013Kom.geojson') }}"></script>
+<script src="{{ url_for('static', filename='js/turnout/invalid2013bas.geojson') }}"></script>
+<script src="{{ url_for('static', filename='js/turnout/invalid2013kom.geojson') }}"></script>
 <script>
 
 var turnout2013qarkgeojson;
@@ -97,7 +97,8 @@ infoQarkVT.update = function(props) {
     this._div.innerHTML = (props ? '<h3>' + props.name + '</h3>'
     + '<h4>Registered Voters: ' + props.registeredVoters + '</h4>'
     + '<h4>Total Voters: ' + props.totalVoters + '</h4>'
-    + '<h4>Turnout Percentage: ' + props.percent + '%</h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
+    + '<h4>Turnout Percentage: ' + props.percent + '%</h4>'
+    + '<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
   };
 
 infoQarkVT.addTo(map)
@@ -162,7 +163,8 @@ infoBasVT.update = function(props) {
     this._div.innerHTML = (props ? '<h3>' + props.bashkia + '</h3>'
     + '<h4>Registered Voters: ' + props.registeredVoters + '</h4>'
     + '<h4>Total Voters: ' + props.totalVoters + '</h4>'
-    + '<h4>Turnout Percentage: ' + props.percent + '%</h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
+    + '<h4>Turnout Percentage: ' + props.percent + '%</h4>'
+    + '<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
   };
 
 infoBasVT.addTo(map)
@@ -227,7 +229,8 @@ infoKomVT.update = function(props) {
     this._div.innerHTML = (props ? '<h3>' + props.komune + '</h3>'
     + '<h4>Registered Voters: ' + props.registerVoters + '</h4>'
     + '<h4>Total Voters: ' + props.totalVoters + '</h4>'
-    + '<h4>Turnout Percentage: ' + props.percent + '%</h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
+    + '<h4>Turnout Percentage: ' + props.percent + '%</h4>'
+    + '<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
   };
 
 infoKomVT.addTo(map)
@@ -294,7 +297,8 @@ infoBasINV.update = function(props) {
     this._div.innerHTML = (props ? '<h3>' + props.bashkia + '</h3>'
     + '<h4>Ballots Cast: ' + props.ballotsCast + '</h4>'
     + '<h4>Invalid Votes: ' + props.invalidBallots + '</h4>'
-    + '<h4>Invalid Percentage: ' + props.percent + '%</h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
+    + '<h4>Invalid Percentage: ' + props.percent + '%</h4>'
+    + '<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
   };
 
 infoBasINV.addTo(map)
@@ -361,7 +365,8 @@ infoKomINV.update = function(props) {
     this._div.innerHTML = (props ? '<h3>' + props.komune + '</h3>'
     + '<h4>Ballots Cast: ' + props.ballotsCast + '</h4>'
     + '<h4>Invalid Votes: ' + props.invalidVotes + '</h4>'
-    + '<h4>Invalid Percentage: ' + props.percent + '%</h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
+    + '<h4>Invalid Percentage: ' + props.percent + '%</h4>'
+    + '<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
   };
 
 infoKomINV.addTo(map)
@@ -426,7 +431,8 @@ infoBasVT15.update = function(props) {
     this._div.innerHTML = (props ? '<h3>' + props.bashkia + '</h3>'
     + '<h4>Registered Voters: ' + props.registeredVoters + '</h4>'
     + '<h4>Total Voters: ' + props.totalVoters + '</h4>'
-    + '<h4>Turnout Percentage: ' + props.percent + '%</h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
+    + '<h4>Turnout Percentage: ' + props.percent + '%</h4>'
+    + '<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
   };
 
 infoBasVT15.addTo(map)
@@ -501,7 +507,8 @@ infoMVF.update = function(props) {
     + '<h4>Registered Female Voters: ' + props.registeredF + '</h4>'
     + '<h4>Female Voter Turnout: ' + props.turnoutF + '</h4>'
     + '<h4>Female Turnout Percentage: ' + props.percentF + '%</h4>'
-    + '<h4>Difference (+/-): ' + props.percent + '%</h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
+    + '<h4>Difference (+/-): ' + props.percent + '%</h4>'
+    + '<br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
   };
 
 infoMVF.addTo(map)
@@ -857,6 +864,7 @@ var overlayMaps = {
 };
 
 map.addLayer(turnout2015basgeojson);
+L.control.layers(baseLayers, null, {collapsed: true, position: 'topright'}).addTo(map);
 L.control.layers(overlayMaps, null, {collapsed:false, position: 'bottomleft'}).addTo(map);
 
 </script>

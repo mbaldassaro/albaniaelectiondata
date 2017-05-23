@@ -7,7 +7,6 @@
    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lato">
-
    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
    <script src="http://leaflet.github.io/Leaflet.heat/dist/leaflet-heat.js"></script>
  {{super()}}
@@ -69,6 +68,11 @@
      margin-bottom: 15em;
    }*/
 
+   .modal-content {
+     font-family: 'Lato';
+     color: rgba(0,0,0, 0.7);
+   }
+
    .info {
      font-family: 'Lato';
      color: rgba(0,0,0, 0.7);
@@ -94,11 +98,11 @@
 	</div>
 	<div class="navbar-collapse collapse">
 	    <ul class="nav navbar-nav">
-		<li><a href="#">Rreth</a></li>
     <li><a href="/results">Rezultate</a></li>
     <li><a href="/">Pjesëmarrje</a></li>
-    <li><a href="#">Observation</a></li>
-    <li><a href="#">Të Dhëna</a></li>
+    <li><a href="#">Zgjedhjet 2017</a></li>
+    <li><a href='#' data-toggle="modal" data-target="#aboutModal">Rreth</a></li>
+    <li><a href="#" data-toggle="modal" data-target="#dataModal">Të Dhëna</a></li>
     <a class="logoholder" href="http://www.zgjedhje.al/" target="_blank"><img id="cdo" src="{{ url_for('static', filename='img/cdologo2.png' )}}"></a>
     <a class="logoholder" href="http://democracyinternational.com" target="_blank"><img id="logo" src="{{ url_for('static', filename='img/dilogo.png' )}}"></a>
 	    </ul>
@@ -109,11 +113,95 @@
 {% endblock %}
 
 {% block content %}
+<!--about modal -->
+<div class="modal fade" id="aboutModal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Rreth / About</h4>
+        </div>
+        <div class="modal-body">
+          <p>Some text in the modal.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--data modal -->
+<div class="modal fade" id="dataModal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Të Dhëna / Data</h4>
+        </div>
+        <div class="modal-body">
+          <p>Some text in the modal.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--map-->
 <div class="jumbotron" id="map"></div>
 <script>
-var map = L.map('map').setView([41.2, 20.1], 8);
-L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+/*var osmLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>',
+    thunLink = '<a href="http://thunderforest.com/">Thunderforest</a>';
+
+var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+    osmAttrib = '&copy; ' + osmLink + ' Contributors',
+    landUrl = 'http://{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png',
+    thunAttrib = '&copy; '+osmLink+' Contributors & '+thunLink;
+
+var osmMap = L.tileLayer(osmUrl, {attribution: osmAttrib}),
+    landMap = L.tileLayer(landUrl, {attribution: thunAttrib});
+
+var map = L.map('map', {
+	    layers: [osmMap] // only add one!
+    })
+    .setView([-41.2858, 174.78682], 14);
+
+var baseLayers = {
+	"OSM Mapnik": osmMap,
+	"Landscape": landMap
+};*/
+
+///
+var cartoLink = '<a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>';
+//var mountLink = '<a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>';
+
+var cartoUrl = 'http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png';
+var cartoAttr = '&copy; ' + cartoLink;
+//var mountUrl = 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Shaded_Relief/MapServer/tile/{z}/{y}/{x}';
+var mountUrl = 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Terrain_Base/MapServer/tile/{z}/{y}/{x}';
+//var mountAttr = 'Tiles &copy; Esri &mdash; Source: Esri';
+var mountAttr = 'Tiles &copy; Esri &mdash; Source: USGS, Esri, TANA, DeLorme, and NPS';
+
+var cartoMap = L.tileLayer(cartoUrl, {attribution: cartoAttr});
+var mountMap = L.tileLayer(mountUrl, {attribution: mountAttr});
+
+var map = L.map('map', {
+  layers: [cartoMap]}).setView([41.2, 20.1], 8);
+/*L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
-    }).addTo(map);
+    }).addTo(map);*/
+
+var baseLayers = {
+  "Basic": cartoMap,
+  "Mountain": mountMap
+};
+
+//L.control.layers(baseLayers).addTo(map);
+
 </script>
 {% endblock %}

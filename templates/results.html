@@ -1,18 +1,18 @@
 {% extends "base.html" %}
 
 {% block scripts %}
-<script src="{{ url_for('static', filename='js/diffMayor2015bas.geojson') }}"></script>
-<script src="{{ url_for('static', filename='js/diffCouncil2015bas.geojson') }}"></script>
-<script src="{{ url_for('static', filename='js/qarkDiff2013.geojson') }}"></script>
-<script src="{{ url_for('static', filename='js/ase2013.geojson') }}"></script>
-<script src="{{ url_for('static', filename='js/apmi2013.geojson') }}"></script>
-<script src="{{ url_for('static', filename='js/ps2013.geojson') }}"></script>
-<script src="{{ url_for('static', filename='js/ps2013bas.geojson') }}"></script>
-<script src="{{ url_for('static', filename='js/pd2013.geojson') }}"></script>
-<script src="{{ url_for('static', filename='js/pd2013bas.geojson') }}"></script>
-<script src="{{ url_for('static', filename='js/lsi2013.geojson') }}"></script>
-<script src="{{ url_for('static', filename='js/pdiu2013.geojson') }}"></script>
-<script src="{{ url_for('static', filename='js/pr2013.geojson') }}"></script>
+<!--<script src="{{ url_for('static', filename='js/results/diffMayor2015bas.geojson') }}"></script>-->
+<script src="{{ url_for('static', filename='js/results/diffCouncil2015bas.geojson') }}"></script>
+<script src="{{ url_for('static', filename='js/results/qarkDiff2013.geojson') }}"></script>
+<script src="{{ url_for('static', filename='js/results/ase2013.geojson') }}"></script>
+<script src="{{ url_for('static', filename='js/results/apmi2013.geojson') }}"></script>
+<script src="{{ url_for('static', filename='js/results/ps2013.geojson') }}"></script>
+<script src="{{ url_for('static', filename='js/results/ps2013bas.geojson') }}"></script>
+<script src="{{ url_for('static', filename='js/results/pd2013.geojson') }}"></script>
+<script src="{{ url_for('static', filename='js/results/pd2013bas.geojson') }}"></script>
+<script src="{{ url_for('static', filename='js/results/lsi2013.geojson') }}"></script>
+<script src="{{ url_for('static', filename='js/results/pdiu2013.geojson') }}"></script>
+<script src="{{ url_for('static', filename='js/results/pr2013.geojson') }}"></script>
 <script src="{{ url_for('static', filename='js/heatmaptest.json' )}}"></script>
 <script>
 
@@ -98,9 +98,20 @@ infoDiff.onAdd = function(map) {
 
 infoDiff.update = function(props) {
     this._div.innerHTML = (props ? '<h3>' + props.name + '</h3>'
-    + '<h4>ASHE Percentage: ' + props.ashePCT + '%</h4>'
-    + '<h4>APMI Percentage: ' + props.apmiPCT + '%</h4>'
-    + '<h4>Difference (+/-): ' + props.percent + '%</h4>' + '<br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
+    + '<h4>Total Votes: ' + props.totalVotes + '</h4>'
+    + '<h4>Total Seats: ' + props.totalSeats + '</h4>'
+    + '<h3>' + props.partyASE + '</h3>'
+    + '<h4>Votes Received: ' + props.votesASE + '</h4>'
+    + '<h4>Percentage: ' + props.ashePCT + '%</h4>'
+    + '<h4>Seats Won: ' + props.seatsASE + '</h4>'
+    + '<h3>' + props.partyAPMI + '</h3>'
+    + '<h4>Votes Received: ' + props.votesAPMI + '</h4>'
+    + '<h4>Percentage: ' + props.apmiPCT + '%</h4>'
+    + '<h4>Seats Won: ' + props.seatsAPMI + '</h4><br>'
+    + '<h4>Difference (+/-): ' + props.percent + '%</h4><br>'
+    + '<h4>Votes Other: ' + props.votesOther + '</h4>'
+    + '<h4>Percentage: ' + props.otherPCT + '%</h4>'
+    + '<br><br><br><br><br><br>' + '' : '')
   };
 
 infoDiff.addTo(map)
@@ -892,10 +903,10 @@ var pr2013geojson = L.geoJson(pr2013, {
 });
 
 //Diff Bas Mayor
-  var diffMayor2015basgeojson = L.geoJson(diffMayor2015bas, {
+/*  var diffMayor2015basgeojson = L.geoJson(diffMayor2015bas, {
       style: diffM15style,
       onEachFeature: diffM15EachFeature
-  });
+  });*/
 
 //Diff Bas Council
 var diffCouncil2015basgeojson = L.geoJson(diffCouncil2013bas, { //diffCouncil2015bas
@@ -918,9 +929,9 @@ var diffCouncil2015basgeojson = L.geoJson(diffCouncil2013bas, { //diffCouncil201
 // });
 
 var overlayMaps = {
-  "2015 ASHE vs APPD (Kryetar)": diffMayor2015basgeojson,
+  //"2015 ASHE vs APPD (Kryetar)": diffMayor2015basgeojson,
   "2015 ASHE vs APPD (Këshill)": diffCouncil2015basgeojson,
-  "2013 ASHE v APMI": qarkdiff2013geojson,
+  "2013 ASHE vs APMI - Qark": qarkdiff2013geojson,
   "2013 ASHE - Qark": ase2013geojson,
   "2013 APMI - Qark": apmi2013geojson,
   "2013 PS - Qark": ps2013geojson,
@@ -933,7 +944,8 @@ var overlayMaps = {
   //"Heat": heat
 };
 
-map.addLayer(diffMayor2015basgeojson);
+map.addLayer(qarkdiff2013geojson);
+L.control.layers(baseLayers, null, {collapsed: true, position: 'topright'}).addTo(map);
 L.control.layers(overlayMaps, null, {collapsed:false, position: 'bottomleft'}).addTo(map);
 
 </script>
