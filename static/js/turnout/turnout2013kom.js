@@ -57,9 +57,9 @@ infoKomVT.onAdd = function(map) {
 
 infoKomVT.update = function(props) {
     this._div.innerHTML = (props ? '<h3>' + props.komune + '</h3>'
-    + '<h4>Registered Voters: ' + props.registerVoters + '</h4>'
-    + '<h4>Total Voters: ' + props.totalVoters + '</h4>'
-    + '<h4>Turnout Percentage: ' + props.percent + '%</h4>'
+    + '<h4>' + voterReg + props.registeredVoters + '</h4>'
+    + '<h4>' + voterTot + props.totalVoters + '</h4>'
+    + '<h4>' + turnout + props.percent + '%</h4>'
     + '<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
   };
 

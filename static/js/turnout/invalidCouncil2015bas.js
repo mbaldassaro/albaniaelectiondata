@@ -66,9 +66,10 @@ infoBasCINV.onAdd = function(map) {
 
 infoBasCINV.update = function(props) {
     this._div.innerHTML = (props ? '<h3>' + props.bashkia + '</h3>'
-    + '<h4>Ballots Cast: ' + props.councilTurnout + '</h4>'
-    + '<h4>Invalid Votes: ' + props.councilInvalid + '</h4>'
-    + '<h4>Invalid Percentage: ' + props.percent + '%</h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
+      + '<h4>' + castBallot + props.councilTurnout + '</h4>'
+      + '<h4>' + votesInv + props.councilInvalid + '</h4>'
+      + '<h4>' + pctInv + props.percent + '%</h4>'
+      + '<br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
   };
 
 infoBasCINV.addTo(map);

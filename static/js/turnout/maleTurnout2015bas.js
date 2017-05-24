@@ -57,9 +57,9 @@ infoMVT.onAdd = function(map) {
 
 infoMVT.update = function(props) {
     this._div.innerHTML = (props ? '<h3>' + props.bashkia + '</h3>'
-    + '<h4>Registered Male Voters: ' + props.registeredM + '</h4>'
-    + '<h4>Male Voter Turnout: ' + props.turnoutM + '</h4>'
-    + '<h4>Male Turnout Percentage: ' + props.percent + '%</h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
+    + '<h4>' + voterRegM + props.registeredM + '</h4>'
+    + '<h4>'+ voterTotM + props.turnoutM + '</h4>'
+    + '<h4>' + voterPctM + props.percent + '%</h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
   };
 
 infoMVT.addTo(map);

@@ -34,7 +34,7 @@
    #cdo {
      width: 10.5em;
      height: 3.5em;
-     margin-left: 8em;
+     margin-left: 2em;
 
    }
 
@@ -103,6 +103,8 @@
     <li><a href="#">{{ _('Election') }} 2017</a></li>
     <li><a href='#' data-toggle="modal" data-target="#aboutModal">{{ _('About') }}</a></li>
     <li><a href="#" data-toggle="modal" data-target="#dataModal">{{ _('Data') }}</a></li>
+    <!--<li><button class="toggleLang" id="toggleEN">EN</button></li>
+    <li><button class="toggleLang" id="toggleAL">SQ</button></li>-->
     <a class="logoholder" href="http://www.zgjedhje.al/" target="_blank"><img id="cdo" src="{{ url_for('static', filename='img/cdologo2.png' )}}"></a>
     <a class="logoholder" href="http://democracyinternational.com" target="_blank"><img id="logo" src="{{ url_for('static', filename='img/dilogo.png' )}}"></a>
 	    </ul>
@@ -123,7 +125,16 @@
           <h4 class="modal-title">{{ _('About') }}</h4>
         </div>
         <div class="modal-body">
-          <p>{{ _('Some text in the modal') }}</p>
+          {{ _('Albania Election Data is a project to collect, open, visualize and analyze election data on an ongoing basis.
+          The project is managed by the Coalition of Domestic Observers (CDO) with support from Democracy International (DI).
+          <br>
+          <br>The goal of Albania Election Data is to strengthen Albanian democracy through greater transparency, accountability, and inclusivity. CDO and DI aim to achieve this goal by:
+          <br>
+          <br>1. Creating a centralized hub of election-related data and maps that facilitate evidence-based, data-driven decision-making to improve the electoral process
+          <br>
+          <br>2. Presenting information in a highly accessible way so that stakeholders can measure progress and identify trends from one election cycle to the next
+          <br>
+          <br>3. Providing a meaningful lens through which electoral developments or election observation findings can be contextualized and understood') }}
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">{{ _('Close') }}</button>
@@ -142,8 +153,11 @@
           <h4 class="modal-title">{{ _('Data') }}</h4>
         </div>
         <div class="modal-body">
-          <p>{{ _('Some text in the modal') }}</p>
-        </div>
+          {{ _('The Albania Election Data platform utilizes official election data published the ') }}<a href="http://cec.org.al/sq-al/elections" target="_blank">{{ _('Central Election Commission') }}</a>.
+                <br><br>{{ _('Platform data and maps are available for download by the Coalition of Domestic Observers and') }} Democracy International {{ _('via') }} <a href="https://github.com/mbaldassaro/albaniaelectiondata/tree/master/static/js/data" target="_blank">Github</a>.
+                {{ _('The data is licensed under ') }}<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">CC By S.A. 4.0</a>.
+                <br><br>{{ _('The map layers are available via ') }}<a href="http://www.openstreetmap.org/about" target="_blank">OpenStreetMap</a>, <a href="https://www.cartodb.com/" target="_blank">Carto</a>, and <a href="https://www.mapbox.com/" target="_blank">Mapbox</a>
+              </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">{{ _('Close') }}</button>
         </div>

@@ -1,4 +1,4 @@
-# Albanian translations for PROJECT.
+# Translations template for PROJECT.
 # Copyright (C) 2017 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
@@ -7,27 +7,30 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-05-24 10:56+0200\n"
-"PO-Revision-Date: 2017-05-24 11:39+0200\n"
-"Language-Team: sq <LL@li.org>\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"POT-Creation-Date: 2017-05-24 19:54+0200\n"
+"PO-Revision-Date: 2017-05-24 20:05+0200\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.4.0\n"
 "X-Generator: Poedit 2.0.2\n"
 "Last-Translator: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Language: sq_AL\n"
 
 #: templates/base.html:96
 msgid "Albania Election Data"
-msgstr "Albania Election Data"
+msgstr "Dhënat Zgjedhjeve Shqipëri"
 
 #: templates/base.html:101
 msgid "Results"
 msgstr "Rezultatet"
 
-#: templates/base.html:102
+#: templates/base.html:102 templates/turnout.html:56 templates/turnout.html:57
+#: templates/turnout.html:58 templates/turnout.html:59
+#: templates/turnout.html:60 templates/turnout.html:61
+#: templates/turnout.html:62
 msgid "Turnout"
 msgstr "Pjesëmarrja"
 
@@ -35,18 +38,208 @@ msgstr "Pjesëmarrja"
 msgid "Election"
 msgstr "Zgjedhjet"
 
-#: templates/base.html:104 templates/base.html:123
+#: templates/base.html:104 templates/base.html:125
 msgid "About"
 msgstr "Rreth"
 
-#: templates/base.html:105 templates/base.html:142
+#: templates/base.html:105 templates/base.html:153
 msgid "Data"
 msgstr "Të Dhëna"
 
-#: templates/base.html:126 templates/base.html:145
-msgid "Some text in the modal"
-msgstr "Disa tekst në modale"
+#: templates/base.html:128
+msgid ""
+"Albania Election Data is a project to collect, open, visualize and analyze "
+"election data on an ongoing basis.\n"
+"          The project is managed by the Coalition of Domestic Observers "
+"(CDO) with support from Democracy International (DI).\n"
+"          <br>\n"
+"          <br>The goal of Albania Election Data is to strengthen Albanian "
+"democracy through greater transparency, accountability, and inclusivity. CDO "
+"and DI aim to achieve this goal by:\n"
+"          <br>\n"
+"          <br>1. Creating a centralized hub of election-related data and "
+"maps that facilitate evidence-based, data-driven decision-making to improve "
+"the electoral process\n"
+"          <br>\n"
+"          <br>2. Presenting information in a highly accessible way so that "
+"stakeholders can measure progress and identify trends from one election "
+"cycle to the next\n"
+"          <br>\n"
+"          <br>3. Providing a meaningful lens through which electoral "
+"developments or election observation findings can be contextualized and "
+"understood"
+msgstr ""
+"Dhënat Zgjedhjeve Shqipëri janë një projekt për mbledhjen, hapjen, "
+"vizualizimin dhe analizimin e të dhënave zgjedhore në baza të vazhdueshme. "
+"Projekti menaxhohet nga Koalicioni i Vëzhguesve Vendorë (KVV) me "
+"mbështetjen e Democracy International (DI).\n"
+"           <br>\n"
+"           <br> Qëllimi i të Dhënave Zgjedhore të Shqipërisë është të "
+"forcojë demokracinë shqiptare nëpërmjet një transparence më të madhe, "
+"llogaridhënie dhe përfshirje. CDO dhe DI synojnë të arrijnë këtë qëllim "
+"duke:\n"
+"           <br>\n"
+"           <br> 1. Krijimi i një qendre të centralizuar të të dhënave dhe "
+"hartave të lidhura me zgjedhjet që lehtësojnë vendimmarrjen e bazuar në "
+"fakte dhe të bazuara në të dhëna për të përmirësuar procesin zgjedhor\n"
+"           <br>\n"
+"           <br> 2. Paraqitja e informacionit në një mënyrë shumë të qasshme "
+"në mënyrë që palët e interesuara të mund të matin progresin dhe të "
+"identifikojnë trendet nga një cikël zgjedhor në tjetrin\n"
+"           <br>\n"
+"           <br> 3. Sigurimi i një lente kuptimplote përmes së cilës "
+"zhvillimet zgjedhore ose gjetjet e vëzhgimit të zgjedhjeve mund të "
+"kontekstualizohen dhe të kuptohen"
 
-#: templates/base.html:129 templates/base.html:148
+#: templates/base.html:140 templates/base.html:162
 msgid "Close"
 msgstr "Mbyll"
+
+#: templates/base.html:156
+msgid ""
+"The Albania Election Data platform utilizes official election data published "
+"the "
+msgstr ""
+"Platforma e Dhënat Zgjedhjeve Shqipëri përdor të dhënat zyrtare të "
+"zgjedhjeve të botuara nga "
+
+#: templates/base.html:156
+msgid "Central Election Commission"
+msgstr "Komisioni Qendror Zgjedhor"
+
+#: templates/base.html:157
+msgid ""
+"Platform data and maps are available for download by the Coalition of "
+"Domestic Observers and"
+msgstr ""
+"Të dhënat dhe hartat e platformës janë në dispozicion për shkarkim nga "
+"Koalicioni i Vëzhguesve Vendorë dhe"
+
+#: templates/base.html:157
+msgid "via"
+msgstr "nga"
+
+#: templates/base.html:158
+msgid "The data is licensed under "
+msgstr "Të dhënat janë të licencuara nën "
+
+#: templates/base.html:159
+msgid "The map layers are available via "
+msgstr "Shtresat e hartë janë në dispozicion nga "
+
+#: templates/base.html:189
+msgid "Road"
+msgstr "Rrugë"
+
+#: templates/base.html:190
+msgid "Terrain"
+msgstr "Tokë"
+
+#: templates/base.html:191
+msgid "Satellite"
+msgstr "Satelit"
+
+#: templates/results.html:65
+msgid "Total Votes"
+msgstr "Votimi total"
+
+#: templates/results.html:66
+msgid "Total Seats"
+msgstr "Mandatet totale"
+
+#: templates/results.html:67
+msgid "Vote Percentage"
+msgstr "Përqindja e votimit"
+
+#: templates/results.html:68
+msgid "Votes Received"
+msgstr "Vota e marrë"
+
+#: templates/results.html:69
+msgid "Seats Won"
+msgstr "Mandatet"
+
+#: templates/results.html:70 templates/turnout.html:50
+msgid "Difference"
+msgstr "Diferencë"
+
+#: templates/results.html:71
+msgid "Other Votes"
+msgstr "Vota të tjera"
+
+#: templates/results.html:72
+msgid "Other Seats"
+msgstr "Mandate të tjera"
+
+#: templates/results.html:73
+msgid "Other Percentage"
+msgstr "Përqindje të tjera"
+
+#: templates/results.html:90 templates/turnout.html:63
+msgid "Mayor"
+msgstr "Kryetar"
+
+#: templates/results.html:91 templates/turnout.html:64
+msgid "Council"
+msgstr "Këshill"
+
+#: templates/turnout.html:41
+msgid "Registered Voters"
+msgstr "Votuesit e regjistruar"
+
+#: templates/turnout.html:42
+msgid "Total Voters"
+msgstr "Votimi total"
+
+#: templates/turnout.html:43
+msgid "Turnout Percentage"
+msgstr "Pjesëmarrja"
+
+#: templates/turnout.html:44
+msgid "Registered Female Voters"
+msgstr "Votuesit femra regjistruar"
+
+#: templates/turnout.html:45
+msgid "Female Voter Turnout"
+msgstr "Pjesëmarrja e votuesve femra"
+
+#: templates/turnout.html:46
+msgid "Female Turnout Percentage"
+msgstr "Përqindja e pjesëmarrjes së femrave"
+
+#: templates/turnout.html:47
+msgid "Registered Male Voters"
+msgstr "Votuesit meshkuj të regjistruar"
+
+#: templates/turnout.html:48
+msgid "Male Voter Turnout"
+msgstr "Pjesëmarrja e votuesve meshkuj"
+
+#: templates/turnout.html:49
+msgid "Male Turnout Percentage"
+msgstr "Përqindja e pjesëmarrjes së meshkujve"
+
+#: templates/turnout.html:51
+msgid "Ballots Cast"
+msgstr "Votimet e hedhura"
+
+#: templates/turnout.html:52
+msgid "Invalid Votes"
+msgstr "Vota të pavlefshme"
+
+#: templates/turnout.html:53
+msgid "Invalid Percentage"
+msgstr "Përqindje e pavlefshme e votimit"
+
+#: templates/turnout.html:57
+msgid "Male"
+msgstr "Mashkull"
+
+#: templates/turnout.html:58
+msgid "Female"
+msgstr "Femër"
+
+#: templates/turnout.html:63 templates/turnout.html:64
+#: templates/turnout.html:65 templates/turnout.html:66
+msgid "Invalid"
+msgstr "Vota të pavlefshme"

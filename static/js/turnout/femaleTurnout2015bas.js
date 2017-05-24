@@ -58,9 +58,9 @@ infoFVT.onAdd = function(map) {
 
 infoFVT.update = function(props) {
     this._div.innerHTML = (props ? '<h3>' + props.bashkia + '</h3>'
-    + '<h4>Registered Female Voters: ' + props.registeredF + '</h4>'
-    + '<h4>Female Voter Turnout: ' + props.turnoutF + '</h4>'
-    + '<h4>Female Turnout Percentage: ' + props.percent + '%</h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
+    + '<h4>' + voterRegF + props.registeredF + '</h4>'
+    + '<h4>' + voterTotF + props.turnoutF + '</h4>'
+    + '<h4>' + voterPctF + props.percent + '%</h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
   };
 
 infoFVT.addTo(map);

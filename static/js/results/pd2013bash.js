@@ -56,9 +56,10 @@ infoBasPD.onAdd = function(map) {
 infoBasPD.update = function(props) {
     this._div.innerHTML = (props ? '<h3>' + props.bashkia + '</h3>'
     + '<h3>' + props.party + '</h3>'
-    + '<h4>Total Votes: ' + props.totalVotes + '</h4>'
-    + '<h4>Votes Received: ' + props.votes + '</h4>'
-    + '<h4>Percentage: ' + props.percent + '%</h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
+    + '<h4>' + totalVotes + props.validVotes + '</h4>'
+    + '<h4>' + recVotes + props.votes + '</h4>'
+    + '<h4>' + pctVote + props.percent + '%</h4>'
+    + '<br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
   };
 
 infoBasPD.addTo(map);

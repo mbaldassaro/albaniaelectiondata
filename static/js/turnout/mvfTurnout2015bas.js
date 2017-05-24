@@ -65,13 +65,13 @@ infoMVF.onAdd = function(map) {
 
 infoMVF.update = function(props) {
     this._div.innerHTML = (props ? '<h3>' + props.bashkia + '</h3>'
-    + '<h4>Registered Male Voters: ' + props.registeredM + '</h4>'
-    + '<h4>Male Voter Turnout: ' + props.turnoutM + '</h4>'
-    + '<h4>Male Turnout Percentage: ' + props.percentM + '%</h4>'
-    + '<h4>Registered Female Voters: ' + props.registeredF + '</h4>'
-    + '<h4>Female Voter Turnout: ' + props.turnoutF + '</h4>'
-    + '<h4>Female Turnout Percentage: ' + props.percentF + '%</h4>'
-    + '<h4>Difference (+/-): ' + props.percent + '%</h4>'
+    + '<h4>' + voterRegM + props.registeredM + '</h4>'
+    + '<h4>' + voterTotM + props.turnoutM + '</h4>'
+    + '<h4>' + voterPctM + props.percentM + '%</h4>'
+    + '<h4>' + voterRegF + props.registeredF + '</h4>'
+    + '<h4>' + voterTotF + props.turnoutF + '</h4>'
+    + '<h4>' + voterPctF + props.percentF + '%</h4>'
+    + '<h4>' + difference + props.percent + '%</h4>'
     + '<br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
   };
 

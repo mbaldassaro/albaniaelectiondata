@@ -38,6 +38,20 @@ var femaleTurnout2015basgeojson;
 var invalidMayor2015basgeojson;
 var invalidCouncil2015basgeojson;
 
+var voterReg = "{{gettext('Registered Voters')}}: ";
+var voterTot = "{{gettext('Total Voters')}}: ";
+var turnout = "{{gettext('Turnout Percentage')}}: ";
+var voterRegF = "{{gettext('Registered Female Voters')}}: ";
+var voterTotF = "{{gettext('Female Voter Turnout')}}: ";
+var voterPctF = "{{gettext('Female Turnout Percentage')}}: ";
+var voterRegM = "{{gettext('Registered Male Voters')}}: ";
+var voterTotM = "{{gettext('Male Voter Turnout')}}: ";
+var voterPctM = "{{gettext('Male Turnout Percentage')}}: ";
+var difference = "{{gettext('Difference')}} (+/-): ";
+var castBallot = "{{gettext('Ballots Cast')}}: ";
+var votesInv = "{{gettext('Invalid Votes')}}: ";
+var pctInv = "{{gettext('Invalid Percentage')}}: ";
+
 var overlayMaps = {
   "2015 {{gettext('Turnout')}} - Bashkia": turnout2015basgeojson,
   "2015 {{gettext('Turnout')}} - Bashkia ({{gettext('Male')}})": maleTurnout2015basgeojson,
@@ -46,8 +60,8 @@ var overlayMaps = {
   "2013 {{gettext('Turnout')}} - Qark": turnout2013qarkgeojson,
   "2013 {{gettext('Turnout')}} - Bashkia": turnout2013basgeojson,
   "2013 {{gettext('Turnout')}} - Komune": turnout2013Komgeojson,
-	"2015 {{gettext('Invalid')}} - Bashkia ({{gettext('Kryetar')}})": invalidMayor2015basgeojson,
-	"2015 {{gettext('Invalid')}} - Bashkia ({{gettext('Këshill')}}))": invalidCouncil2015basgeojson,
+	"2015 {{gettext('Invalid')}} - Bashkia ({{gettext('Mayor')}})": invalidMayor2015basgeojson,
+	"2015 {{gettext('Invalid')}} - Bashkia ({{gettext('Council')}})": invalidCouncil2015basgeojson,
   "2013 {{gettext('Invalid')}} - Bashkia": invalid2013basgeojson,
 	"2013 {{gettext('Invalid')}} - Komune": invalid2013komgeojson
 };

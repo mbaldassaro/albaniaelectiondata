@@ -59,9 +59,9 @@ infoBasINV.onAdd = function(map) {
 
 infoBasINV.update = function(props) {
     this._div.innerHTML = (props ? '<h3>' + props.bashkia + '</h3>'
-    + '<h4>Ballots Cast: ' + props.ballotsCast + '</h4>'
-    + '<h4>Invalid Votes: ' + props.invalidBallots + '</h4>'
-    + '<h4>Invalid Percentage: ' + props.percent + '%</h4>'
+    + '<h4>' + castBallot + props.ballotsCast + '</h4>'
+    + '<h4>' + votesInv + props.invalidBallots + '</h4>'
+    + '<h4>' + pctInv + props.percent + '%</h4>'
     + '<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
   };
 

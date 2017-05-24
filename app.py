@@ -1,7 +1,9 @@
 from flask import Flask, request, render_template
+from flask_admin import Admin
 from flask_script import Manager
 from flask_bootstrap import Bootstrap
 from flask_babel import Babel, gettext
+from flask_babelex import Babel, gettext
 
 app = Flask(__name__)
 app.config.from_object('config')

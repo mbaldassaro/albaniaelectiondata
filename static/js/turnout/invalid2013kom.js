@@ -59,9 +59,9 @@ infoKomINV.onAdd = function(map) {
 
 infoKomINV.update = function(props) {
     this._div.innerHTML = (props ? '<h3>' + props.komune + '</h3>'
-    + '<h4>Ballots Cast: ' + props.ballotsCast + '</h4>'
-    + '<h4>Invalid Votes: ' + props.invalidVotes + '</h4>'
-    + '<h4>Invalid Percentage: ' + props.percent + '%</h4>'
+    + '<h4>' + castBallot + props.ballotsCast + '</h4>'
+    + '<h4>' + votesInv + props.invalidVotes + '</h4>'
+    + '<h4>' + pctInv + props.percent + '%</h4>'
     + '<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
   };
 

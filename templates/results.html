@@ -62,6 +62,16 @@ var pkdsh2013basgeojson;
 var pbdnj2013geojson;
 var pbdnj2013basgeojson;
 
+var totalVotes = "{{gettext('Total Votes')}}: ";
+var totalSeats = "{{gettext('Total Seats')}}: ";
+var pctVote = "{{gettext('Vote Percentage')}}: ";
+var recVotes = "{{gettext('Votes Received')}}: ";
+var wonSeats = "{{gettext('Seats Won')}}: ";
+var diff = "{{gettext('Difference')}} (+/-): ";
+var otherVotes = "{{gettext('Other Votes')}}: ";
+var otherSeats = "{{gettext('Other Seats')}}: ";
+var otherPct = "{{gettext('Other Percentage')}}: ";
+
 //heatmap - json array
 //var heat = L.heatLayer(heatData, {
 //  radius: 10,
@@ -77,8 +87,8 @@ var pbdnj2013basgeojson;
 // });
 
 var overlayMaps = {
-  "2015 ASHE vs APPD ({{gettext('Kryetar')}})": diffMayor2015basgeojson,
-  "2015 ASHE vs APPD ({{gettext('Këshill')}})": diffCouncil2015basgeojson,
+  "2015 ASHE vs APPD ({{gettext('Mayor')}})": diffMayor2015basgeojson,
+  "2015 ASHE vs APPD ({{gettext('Council')}})": diffCouncil2015basgeojson,
   "2013 ASHE vs APMI - Qark": qarkdiff2013geojson,
   "2013 ASHE - Qark": ase2013geojson,
   "2013 APMI - Qark": apmi2013geojson,

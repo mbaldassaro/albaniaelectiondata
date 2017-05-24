@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-05-24 10:56+0200\n"
+"POT-Creation-Date: 2017-05-24 19:53+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,7 +25,10 @@ msgstr ""
 msgid "Results"
 msgstr ""
 
-#: templates/base.html:102
+#: templates/base.html:102 templates/turnout.html:56 templates/turnout.html:57
+#: templates/turnout.html:58 templates/turnout.html:59
+#: templates/turnout.html:60 templates/turnout.html:61
+#: templates/turnout.html:62
 msgid "Turnout"
 msgstr ""
 
@@ -33,19 +36,184 @@ msgstr ""
 msgid "Election"
 msgstr ""
 
-#: templates/base.html:104 templates/base.html:123
+#: templates/base.html:104 templates/base.html:125
 msgid "About"
 msgstr ""
 
-#: templates/base.html:105 templates/base.html:142
+#: templates/base.html:105 templates/base.html:153
 msgid "Data"
 msgstr ""
 
-#: templates/base.html:126 templates/base.html:145
-msgid "Some text in the modal"
+#: templates/base.html:128
+msgid ""
+"Albania Election Data is a project to collect, open, visualize and "
+"analyze election data on an ongoing basis.\n"
+"          The project is managed by the Coalition of Domestic Observers "
+"(CDO) with support from Democracy International (DI).\n"
+"          <br>\n"
+"          <br>The goal of Albania Election Data is to strengthen Albanian"
+" democracy through greater transparency, accountability, and inclusivity."
+" CDO and DI aim to achieve this goal by:\n"
+"          <br>\n"
+"          <br>1. Creating a centralized hub of election-related data and "
+"maps that facilitate evidence-based, data-driven decision-making to "
+"improve the electoral process\n"
+"          <br>\n"
+"          <br>2. Presenting information in a highly accessible way so "
+"that stakeholders can measure progress and identify trends from one "
+"election cycle to the next\n"
+"          <br>\n"
+"          <br>3. Providing a meaningful lens through which electoral "
+"developments or election observation findings can be contextualized and "
+"understood"
 msgstr ""
 
-#: templates/base.html:129 templates/base.html:148
+#: templates/base.html:140 templates/base.html:162
 msgid "Close"
+msgstr ""
+
+#: templates/base.html:156
+msgid ""
+"The Albania Election Data platform utilizes official election data "
+"published the "
+msgstr ""
+
+#: templates/base.html:156
+msgid "Central Election Commission"
+msgstr ""
+
+#: templates/base.html:157
+msgid ""
+"Platform data and maps are available for download by the Coalition of "
+"Domestic Observers and"
+msgstr ""
+
+#: templates/base.html:157
+msgid "via"
+msgstr ""
+
+#: templates/base.html:158
+msgid "The data is licensed under "
+msgstr ""
+
+#: templates/base.html:159
+msgid "The map layers are available via "
+msgstr ""
+
+#: templates/base.html:189
+msgid "Road"
+msgstr ""
+
+#: templates/base.html:190
+msgid "Terrain"
+msgstr ""
+
+#: templates/base.html:191
+msgid "Satellite"
+msgstr ""
+
+#: templates/results.html:65
+msgid "Total Votes"
+msgstr ""
+
+#: templates/results.html:66
+msgid "Total Seats"
+msgstr ""
+
+#: templates/results.html:67
+msgid "Vote Percentage"
+msgstr ""
+
+#: templates/results.html:68
+msgid "Votes Received"
+msgstr ""
+
+#: templates/results.html:69
+msgid "Seats Won"
+msgstr ""
+
+#: templates/results.html:70 templates/turnout.html:50
+msgid "Difference"
+msgstr ""
+
+#: templates/results.html:71
+msgid "Other Votes"
+msgstr ""
+
+#: templates/results.html:72
+msgid "Other Seats"
+msgstr ""
+
+#: templates/results.html:73
+msgid "Other Percentage"
+msgstr ""
+
+#: templates/results.html:90 templates/turnout.html:63
+msgid "Mayor"
+msgstr ""
+
+#: templates/results.html:91 templates/turnout.html:64
+msgid "Council"
+msgstr ""
+
+#: templates/turnout.html:41
+msgid "Registered Voters"
+msgstr ""
+
+#: templates/turnout.html:42
+msgid "Total Voters"
+msgstr ""
+
+#: templates/turnout.html:43
+msgid "Turnout Percentage"
+msgstr ""
+
+#: templates/turnout.html:44
+msgid "Registered Female Voters"
+msgstr ""
+
+#: templates/turnout.html:45
+msgid "Female Voter Turnout"
+msgstr ""
+
+#: templates/turnout.html:46
+msgid "Female Turnout Percentage"
+msgstr ""
+
+#: templates/turnout.html:47
+msgid "Registered Male Voters"
+msgstr ""
+
+#: templates/turnout.html:48
+msgid "Male Voter Turnout"
+msgstr ""
+
+#: templates/turnout.html:49
+msgid "Male Turnout Percentage"
+msgstr ""
+
+#: templates/turnout.html:51
+msgid "Ballots Cast"
+msgstr ""
+
+#: templates/turnout.html:52
+msgid "Invalid Votes"
+msgstr ""
+
+#: templates/turnout.html:53
+msgid "Invalid Percentage"
+msgstr ""
+
+#: templates/turnout.html:57
+msgid "Male"
+msgstr ""
+
+#: templates/turnout.html:58
+msgid "Female"
+msgstr ""
+
+#: templates/turnout.html:63 templates/turnout.html:64
+#: templates/turnout.html:65 templates/turnout.html:66
+msgid "Invalid"
 msgstr ""
 

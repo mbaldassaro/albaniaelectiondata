@@ -55,12 +55,13 @@ infoPDIU.onAdd = function(map) {
 
 infoPDIU.update = function(props) {
     this._div.innerHTML = (props ? '<h3>' + props.name + '</h3>'
-    + '<h4>Total Votes: ' + props.totalVotes + '</h4>'
-    + '<h4>Total Seats: ' + props.totalSeats + '</h4>'
+    + '<h4>' + totalVotes + props.totalVotes + '</h4>'
+    + '<h4>' + totalSeats + props.totalSeats + '</h4>'
     + '<h3>' + props.party + '</h3>'
-    + '<h4>Vote Percentage: ' + props.percent + '%</h4>'
-    + '<h4>Votes Received: ' + props.votes + '</h4>'
-    + '<h4>Seats Won: ' + props.seats + '</h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
+    + '<h4>' + pctVote + props.percent + '%</h4>'
+    + '<h4>' + recVotes + props.votes + '</h4>'
+    + '<h4>' + wonSeats + props.seats + '</h4>'
+    + '</h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
   };
 
 infoPDIU.addTo(map);

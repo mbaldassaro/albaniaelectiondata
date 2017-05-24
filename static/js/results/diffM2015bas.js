@@ -60,16 +60,16 @@ infoDiffM15.onAdd = function(map) {
 infoDiffM15.update = function(props) {
     this._div.innerHTML = (props ? '<h3>' + props.bashkia + '</h3>'
     //+ '<h4>Registered Voters: ' + props.registeredVoters + '</h4>'
-    + '<h4>Valid Votes: ' + props.totalMayor + '</h4><br>'
+    + '<h4>' + totalVotes + props.totalMayor + '</h4><br>'
     + '<h3>' + props.partyASE + '</h3>'
-    + '<h4>Votes Received: ' + props.aseMayor + '</h4>'
-    + '<h4>Percentage: ' + props.asePCT + '%</h4><br>'
+    + '<h4>' + recVotes + props.aseMayor + '</h4>'
+    + '<h4>' + pctVote + props.asePCT + '%</h4><br>'
     + '<h3>' + props.partyAPPD + '</h3>'
-    + '<h4>Votes Received: ' + props.appdMayor + '</h4>'
-    + '<h4>Percentage: ' + props.appdPCT + '%</h4><br>'
-    + '<h4>Difference (+/-): ' + props.percent + '%</h4><br>'
-    + '<h4>Other Votes: ' + props.otherMayor + '</h4>'
-    + '<h4>Other Percentage: ' + props.otherPCT + '%</h4>'
+    + '<h4>' + recVotes + props.appdMayor + '</h4>'
+    + '<h4>' + pctVote + props.appdPCT + '%</h4><br>'
+    + '<h4>' + diff + props.percent + '%</h4><br>'
+    + '<h4>' + otherVotes + props.otherMayor + '</h4>'
+    + '<h4>' + otherPct + props.otherPCT + '%</h4>'
     + '<br><br><br><br><br>' + '' : '')
   };
 
