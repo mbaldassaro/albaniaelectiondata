@@ -12,10 +12,12 @@ function pbdnjstyle(feature) {
   }
 
 function getColor(d) {
-    return d > 5 ? '#6baed6' :
-           d > 2 ? '#bdd7e7' :
-           d > 0 ? '#eff3ff' :
-                   '#fee5d9';
+  return d > 20 ? '#08519c' :
+         d > 10 ? '#3182bd' :
+         d > 5 ? '#6baed6' :
+         d > 2 ? '#bdd7e7' :
+         d > 0 ? '#eff3ff' :
+                  '#fee5d9';
       }
   }
 

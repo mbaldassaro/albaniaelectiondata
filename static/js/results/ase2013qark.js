@@ -55,12 +55,12 @@ infoASE.onAdd = function(map) {
 
 infoASE.update = function(props) {
     this._div.innerHTML = (props ? '<h3>' + props.name + '</h3>'
-    + '<h4>Total Votes: ' + props.totalVotes + '</h4>'
-    + '<h4>Total Seats: ' + props.totalSeats + '</h4>'
+    + '<h4>{{gettext('Total Votes')}}: ' + props.totalVotes + '</h4>'
+    + '<h4>{{gettext('Total Seats')}}: ' + props.totalSeats + '</h4>'
     + '<h3>' + props.party + '</h3>'
-    + '<h4>Vote Percentage: ' + props.percent + '%</h4>'
-    + '<h4>Votes Received: ' + props.votes + '</h4>'
-    + '<h4>Seats Won: ' + props.seats + '</h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
+    + '<h4>{{gettext('Vote Percentage')}}: ' + props.percent + '%</h4>'
+    + '<h4>{{gettext('Votes Received')}}: ' + props.votes + '</h4>'
+    + '<h4>{{gettext('Seats Won')}}: ' + props.seats + '</h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
   };
 
 infoASE.addTo(map);

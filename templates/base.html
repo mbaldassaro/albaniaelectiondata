@@ -93,16 +93,16 @@
 		    <span class="icon-bar"></span>
 		    <span class="icon-bar"></span>
 	    </button>
-	    <a class="navbar-brand" href="#">Albania Election Data</a>
+	    <a class="navbar-brand" href="#">{{ _('Albania Election Data') }}</a>
       <img id="brand" src="{{ url_for('static', filename='img/albflag.png' )}}">
 	</div>
 	<div class="navbar-collapse collapse">
 	    <ul class="nav navbar-nav">
-    <li><a href="/results">Rezultate</a></li>
-    <li><a href="/">Pjesëmarrje</a></li>
-    <li><a href="#">Zgjedhjet 2017</a></li>
-    <li><a href='#' data-toggle="modal" data-target="#aboutModal">Rreth</a></li>
-    <li><a href="#" data-toggle="modal" data-target="#dataModal">Të Dhëna</a></li>
+    <li><a href="/results">{{ _('Results') }}</a></li>
+    <li><a href="/">{{ _('Turnout') }}</a></li>
+    <li><a href="#">{{ _('Election') }} 2017</a></li>
+    <li><a href='#' data-toggle="modal" data-target="#aboutModal">{{ _('About') }}</a></li>
+    <li><a href="#" data-toggle="modal" data-target="#dataModal">{{ _('Data') }}</a></li>
     <a class="logoholder" href="http://www.zgjedhje.al/" target="_blank"><img id="cdo" src="{{ url_for('static', filename='img/cdologo2.png' )}}"></a>
     <a class="logoholder" href="http://democracyinternational.com" target="_blank"><img id="logo" src="{{ url_for('static', filename='img/dilogo.png' )}}"></a>
 	    </ul>
@@ -120,13 +120,13 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Rreth / About</h4>
+          <h4 class="modal-title">{{ _('About') }}</h4>
         </div>
         <div class="modal-body">
-          <p>Some text in the modal.</p>
+          <p>{{ _('Some text in the modal') }}</p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">{{ _('Close') }}</button>
         </div>
       </div>
     </div>
@@ -139,13 +139,13 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Të Dhëna / Data</h4>
+          <h4 class="modal-title">{{ _('Data') }}</h4>
         </div>
         <div class="modal-body">
-          <p>Some text in the modal.</p>
+          <p>{{ _('Some text in the modal') }}</p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">{{ _('Close') }}</button>
         </div>
       </div>
     </div>
@@ -155,35 +155,13 @@
 <!--map-->
 <div class="jumbotron" id="map"></div>
 <script>
-/*var osmLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>',
-    thunLink = '<a href="http://thunderforest.com/">Thunderforest</a>';
-
-var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-    osmAttrib = '&copy; ' + osmLink + ' Contributors',
-    landUrl = 'http://{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png',
-    thunAttrib = '&copy; '+osmLink+' Contributors & '+thunLink;
-
-var osmMap = L.tileLayer(osmUrl, {attribution: osmAttrib}),
-    landMap = L.tileLayer(landUrl, {attribution: thunAttrib});
-
-var map = L.map('map', {
-	    layers: [osmMap] // only add one!
-    })
-    .setView([-41.2858, 174.78682], 14);
-
-var baseLayers = {
-	"OSM Mapnik": osmMap,
-	"Landscape": landMap
-};*/
-
-///
 var cartoLink = '<a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>';
 var cartoUrl = 'http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png';
 var cartoAttr = '&copy; ' + cartoLink;
-//var mountUrl = 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Shaded_Relief/MapServer/tile/{z}/{y}/{x}';
-//var mountAttr = 'Tiles &copy; Esri &mdash; Source: Esri';
-var mountUrl = 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Terrain_Base/MapServer/tile/{z}/{y}/{x}';
-var mountAttr = 'Tiles &copy; Esri &mdash; Source: USGS, Esri, TANA, DeLorme, and NPS';
+var mountUrl = 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Shaded_Relief/MapServer/tile/{z}/{y}/{x}';
+var mountAttr = 'Tiles &copy; Esri &mdash; Source: Esri';
+//var mountUrl = 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Terrain_Base/MapServer/tile/{z}/{y}/{x}';
+//var mountAttr = 'Tiles &copy; Esri &mdash; Source: USGS, Esri, TANA, DeLorme, and NPS';
 var satUrl = 'https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
 var satAttr = 'Tiles &copy; Esri &mdash; Sources: Esri, DigitalGlobe, Earthstar Geographics, CNES/Airbus DS, GeoEye, USDA FSA, USGS, Getmapping, Aerogrid, IGN, IGP, and the GIS User Community';
 
@@ -191,17 +169,12 @@ var cartoMap = L.tileLayer(cartoUrl, {attribution: cartoAttr});
 var mountMap = L.tileLayer(mountUrl, {attribution: mountAttr});
 var satMap = L.tileLayer(satUrl, {attribution: satAttr});
 
-
-var map = L.map('map', {
-  layers: [cartoMap]}).setView([41.2, 20.1], 8);
-/*L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
-    }).addTo(map);*/
+var map = L.map('map', {layers: [cartoMap]}).setView([41.2, 20.1], 8);
 
 var baseLayers = {
-  "Road": cartoMap,
-  "Terrain": mountMap,
-  "Satellite": satMap
+  "{{gettext('Road')}}": cartoMap,
+  "{{gettext('Terrain')}}": mountMap,
+  "{{gettext('Satellite')}}": satMap
 };
 
 //L.control.layers(baseLayers).addTo(map);

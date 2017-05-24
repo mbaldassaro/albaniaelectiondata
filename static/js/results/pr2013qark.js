@@ -12,10 +12,12 @@ function prstyle(feature) {
   }
 
 function getColor(d) {
-    return d > 5 ? '#0570b0' :
-           d > 2 ? '#c6dbef' :
-           d > 0 ? '#eff3ff' :
-                    '#fee5d9';
+  return d > 20 ? '#023858' :
+         d > 10 ? '#045a8d' :
+         d > 5 ? '#0570b0' :
+         d > 2 ? '#c6dbef' :
+         d > 0 ? '#eff3ff' :
+                  '#fee5d9';
       }
   }
 

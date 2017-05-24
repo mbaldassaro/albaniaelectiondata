@@ -57,19 +57,19 @@ infoDiff.onAdd = function(map) {
 
 infoDiff.update = function(props) {
     this._div.innerHTML = (props ? '<h3>' + props.name + '</h3>'
-    + '<h4>Total Votes: ' + props.totalVotes + '</h4>'
-    + '<h4>Total Seats: ' + props.totalSeats + '</h4>'
+    + '<h4>{{gettext('Total Votes')}}: ' + props.totalVotes + '</h4>'
+    + '<h4>{{gettext('Total Seats')}}: ' + props.totalSeats + '</h4>'
     + '<h3>' + props.partyASE + '</h3>'
-    + '<h4>Votes Received: ' + props.votesASE + '</h4>'
-    + '<h4>Percentage: ' + props.ashePCT + '%</h4>'
-    + '<h4>Seats Won: ' + props.seatsASE + '</h4>'
+    + '<h4>{{gettext('Votes Received')}}: ' + props.votesASE + '</h4>'
+    + '<h4>{{gettext('Percentage')}}: '  + props.ashePCT + '%</h4>'
+    + '<h4>{{gettext('Seats Won')}}: ' + props.seatsASE + '</h4>'
     + '<h3>' + props.partyAPMI + '</h3>'
-    + '<h4>Votes Received: ' + props.votesAPMI + '</h4>'
-    + '<h4>Percentage: ' + props.apmiPCT + '%</h4>'
-    + '<h4>Seats Won: ' + props.seatsAPMI + '</h4><br>'
-    + '<h4>Difference (+/-): ' + props.percent + '%</h4><br>'
-    + '<h4>Votes Other: ' + props.votesOther + '</h4>'
-    + '<h4>Percentage: ' + props.otherPCT + '%</h4>'
+    + '<h4>{{gettext('Votes Received')}}: ' + props.votesAPMI + '</h4>'
+    + '<h4>{{gettext('Percentage')}}: ' + props.apmiPCT + '%</h4>'
+    + '<h4>{{gettext('Seats Won')}}: ' + props.seatsAPMI + '</h4><br>'
+    + '<h4>{{gettext('Difference')}}(+/-): ' + props.percent + '%</h4><br>'
+    + '<h4>{{gettext('Votes Other')}}: ' + props.votesOther + '</h4>'
+    + '<h4>{{gettext('Percentage')}}: ' + props.otherPCT + '%</h4>'
     + '<br><br><br><br><br><br>' + '' : '')
   };
 

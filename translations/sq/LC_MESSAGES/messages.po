@@ -1,0 +1,52 @@
+# Albanian translations for PROJECT.
+# Copyright (C) 2017 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2017-05-24 10:56+0200\n"
+"PO-Revision-Date: 2017-05-24 11:39+0200\n"
+"Language-Team: sq <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.4.0\n"
+"X-Generator: Poedit 2.0.2\n"
+"Last-Translator: \n"
+"Language: sq_AL\n"
+
+#: templates/base.html:96
+msgid "Albania Election Data"
+msgstr "Albania Election Data"
+
+#: templates/base.html:101
+msgid "Results"
+msgstr "Rezultatet"
+
+#: templates/base.html:102
+msgid "Turnout"
+msgstr "Pjesëmarrja"
+
+#: templates/base.html:103
+msgid "Election"
+msgstr "Zgjedhjet"
+
+#: templates/base.html:104 templates/base.html:123
+msgid "About"
+msgstr "Rreth"
+
+#: templates/base.html:105 templates/base.html:142
+msgid "Data"
+msgstr "Të Dhëna"
+
+#: templates/base.html:126 templates/base.html:145
+msgid "Some text in the modal"
+msgstr "Disa tekst në modale"
+
+#: templates/base.html:129 templates/base.html:148
+msgid "Close"
+msgstr "Mbyll"

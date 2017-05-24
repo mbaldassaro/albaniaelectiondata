@@ -1,0 +1,51 @@
+# Translations template for PROJECT.
+# Copyright (C) 2017 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2017-05-24 10:56+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.4.0\n"
+
+#: templates/base.html:96
+msgid "Albania Election Data"
+msgstr ""
+
+#: templates/base.html:101
+msgid "Results"
+msgstr ""
+
+#: templates/base.html:102
+msgid "Turnout"
+msgstr ""
+
+#: templates/base.html:103
+msgid "Election"
+msgstr ""
+
+#: templates/base.html:104 templates/base.html:123
+msgid "About"
+msgstr ""
+
+#: templates/base.html:105 templates/base.html:142
+msgid "Data"
+msgstr ""
+
+#: templates/base.html:126 templates/base.html:145
+msgid "Some text in the modal"
+msgstr ""
+
+#: templates/base.html:129 templates/base.html:148
+msgid "Close"
+msgstr ""
+

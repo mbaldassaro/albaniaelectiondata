@@ -1,10 +1,19 @@
-from flask import Flask, render_template
+from flask import Flask, request, render_template
 from flask_script import Manager
 from flask_bootstrap import Bootstrap
+from flask_babel import Babel, gettext
 
 app = Flask(__name__)
+app.config.from_object('config')
 bootstrap = Bootstrap(app)
 manager = Manager(app)
+babel = Babel(app)
+from config import LANGUAGES
+
+@babel.localeselector
+def get_locale():
+    return 'sq'
+    #return request.accept_languages.best_match(LANGUAGES.keys())
 
 """@app.route('/')
 def index():

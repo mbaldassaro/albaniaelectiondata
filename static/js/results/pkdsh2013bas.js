@@ -15,7 +15,7 @@ function getColor(d) {
     return d > 20 ? '#fe9929' :
            d > 10 ? '#fec44f' :
            d > 5 ?  '#fee391' :
-           d > 0 ?  '#fff7bc' :
+           d > 2 ?  '#fff7bc' :
                     '#ffffe5';
       }
   }
