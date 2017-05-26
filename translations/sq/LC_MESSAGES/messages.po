@@ -105,7 +105,7 @@ msgstr ""
 
 #: templates/base.html:156
 msgid "Central Election Commission"
-msgstr "Komisioni Qendror Zgjedhor"
+msgstr "Komisioni Qendror i Zgjedhjeve"
 
 #: templates/base.html:157
 msgid ""

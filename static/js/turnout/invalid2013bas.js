@@ -62,7 +62,7 @@ infoBasINV.update = function(props) {
     + '<h4>' + castBallot + props.ballotsCast + '</h4>'
     + '<h4>' + votesInv + props.invalidBallots + '</h4>'
     + '<h4>' + pctInv + props.percent + '%</h4>'
-    + '<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
+    + '<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
   };
 
 infoBasINV.addTo(map);

@@ -70,7 +70,7 @@ infoDiff.update = function(props) {
     + '<h4>' + diff + props.percent + '%</h4><br>'
     + '<h4>' + otherVotes + props.votesOther + '</h4>'
     + '<h4>' + pctVote + props.otherPCT + '%</h4>'
-    + '<br><br><br><br><br><br>' + '' : '')
+    + '<br><br><br><br><br>' + '' : '')
   };
 
 infoDiff.addTo(map);

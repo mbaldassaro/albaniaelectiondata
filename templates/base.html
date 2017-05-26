@@ -34,13 +34,13 @@
    #cdo {
      width: 10.5em;
      height: 3.5em;
-     margin-left: 2em;
-
+     margin-left: 1em;
    }
 
    #logo {
      width: 8em;
      height: 2em;
+     margin-left: 1em;
      /*margin-top: .8em;*/
      z-index: 5;
    }
@@ -58,45 +58,55 @@
      height: 100%;
    }
 
-  /*.leaflet-right .leaflet-control {
-     margin-right: 10px;
-     margin-bottom: 20px;
+   .navbar-default .navbar-nav>li>a:hover  {
+      color: #ffffff;
    }
 
-   .leaflet-left .leaflet-control {
-     margin-left: 5em;
-     margin-bottom: 15em;
-   }*/
+   .navbar-default .navbar-nav>li>a:focus {
+     color: #777!important;
+     outline: none!important;
+     outline-offset: none!important;
+   }
+
+   .navbar-default .navbar-nav>li>a:active {
+     color: #ffffff!important;
+   }
 
    .modal-content {
      font-family: 'Lato';
      color: rgba(0,0,0, 0.7);
    }
 
+   form {
+     font-family: 'Lato';
+     font-size: 12px;
+     font-weight: 200;
+   }
+
    .info {
      font-family: 'Lato';
      color: rgba(0,0,0, 0.7);
      padding-right: 2em;
-      /*color: rgba(0,0,0, 0.6);*/
+     font-weight: lighter;
    }
  </style>
 
 {% endblock %}
 
 {% block navbar %}
-<div class="navbar navbar-inverse" role="navigation">
+<div class="navbar navbar-default" role="navigation">
     <div class="container">
-	<div class="navbar-header" id="navhover">
-	    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="navbar-collapse">
+  <div class="navbar-header" id="navhover">
+	    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
 		    <span class="icon-bar"></span>
 		    <span class="icon-bar"></span>
 	    </button>
-	    <a class="navbar-brand" href="#">{{ _('Albania Election Data') }}</a>
+	    <a class="navbar-brand" href="/">{{ _('Albania Election Data') }}</a>
       <img id="brand" src="{{ url_for('static', filename='img/albflag.png' )}}">
 	</div>
-	<div class="navbar-collapse collapse">
+	<div class="navbar-collapse collapse navbar-ex1-collapse">
 	    <ul class="nav navbar-nav">
     <li><a href="/results">{{ _('Results') }}</a></li>
     <li><a href="/">{{ _('Turnout') }}</a></li>
@@ -155,8 +165,8 @@
         <div class="modal-body">
           {{ _('The Albania Election Data platform utilizes official election data published the ') }}<a href="http://cec.org.al/sq-al/elections" target="_blank">{{ _('Central Election Commission') }}</a>.
                 <br><br>{{ _('Platform data and maps are available for download by the Coalition of Domestic Observers and') }} Democracy International {{ _('via') }} <a href="https://github.com/mbaldassaro/albaniaelectiondata/tree/master/static/js/data" target="_blank">Github</a>.
-                {{ _('The data is licensed under ') }}<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">CC By S.A. 4.0</a>.
-                <br><br>{{ _('The map layers are available via ') }}<a href="http://www.openstreetmap.org/about" target="_blank">OpenStreetMap</a>, <a href="https://www.cartodb.com/" target="_blank">Carto</a>, and <a href="https://www.mapbox.com/" target="_blank">Mapbox</a>
+                {{ _('The data is licensed under ') }}<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">CC-BY-SA 4.0</a>.
+                <br><br>{{ _('The map layers are available via ') }}<a href="http://www.openstreetmap.org/about" target="_blank">OpenStreetMap</a>, <a href="https://www.cartodb.com/" target="_blank">Carto</a> and <a href="http://www.esri.com/about-esri" target="_blank">ESRI</a>
               </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">{{ _('Close') }}</button>
@@ -176,8 +186,10 @@ var mountUrl = 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Shaded
 var mountAttr = 'Tiles &copy; Esri &mdash; Source: Esri';
 //var mountUrl = 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Terrain_Base/MapServer/tile/{z}/{y}/{x}';
 //var mountAttr = 'Tiles &copy; Esri &mdash; Source: USGS, Esri, TANA, DeLorme, and NPS';
-var satUrl = 'https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
-var satAttr = 'Tiles &copy; Esri &mdash; Sources: Esri, DigitalGlobe, Earthstar Geographics, CNES/Airbus DS, GeoEye, USDA FSA, USGS, Getmapping, Aerogrid, IGN, IGP, and the GIS User Community';
+var satUrl = 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
+var satAttr = 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community';
+//var satUrl = 'https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
+//var satAttr = 'Tiles &copy; Esri &mdash; Sources: Esri, DigitalGlobe, Earthstar Geographics, CNES/Airbus DS, GeoEye, USDA FSA, USGS, Getmapping, Aerogrid, IGN, IGP, and the GIS User Community';
 
 var cartoMap = L.tileLayer(cartoUrl, {attribution: cartoAttr});
 var mountMap = L.tileLayer(mountUrl, {attribution: mountAttr});
@@ -190,8 +202,6 @@ var baseLayers = {
   "{{gettext('Terrain')}}": mountMap,
   "{{gettext('Satellite')}}": satMap
 };
-
-//L.control.layers(baseLayers).addTo(map);
 
 </script>
 {% endblock %}

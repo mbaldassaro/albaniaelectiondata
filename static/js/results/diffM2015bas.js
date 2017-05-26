@@ -70,7 +70,7 @@ infoDiffM15.update = function(props) {
     + '<h4>' + diff + props.percent + '%</h4><br>'
     + '<h4>' + otherVotes + props.otherMayor + '</h4>'
     + '<h4>' + otherPct + props.otherPCT + '%</h4>'
-    + '<br><br><br><br><br>' + '' : '')
+    + '<br><br><br><br><br><br><br>' + '' : '')
   };
 
 infoDiffM15.addTo(map);

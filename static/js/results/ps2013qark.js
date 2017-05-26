@@ -62,7 +62,7 @@ infoPS.update = function(props) {
     + '<h4>' + pctVote + props.percent + '%</h4>'
     + '<h4>' + recVotes + props.votes + '</h4>'
     + '<h4>' + wonSeats + props.seats + '</h4>'
-    + '</h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '');
+    + '<br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '');
   };
 
 infoPS.addTo(map);

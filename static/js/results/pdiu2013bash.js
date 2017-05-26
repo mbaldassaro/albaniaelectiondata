@@ -42,8 +42,8 @@ function pdiu2013basresetHighlight(e) {
 
 function pdiu2013basEachFeature(feature, layer) {
       layer.on({
-          mouseover: pdiu2013highlightFeature,
-          mouseout: pdiu2013resetHighlight,
+          mouseover: pdiu2013bashighlightFeature,
+          mouseout: pdiu2013basresetHighlight,
           click: zoomToFeature
       });
     }
@@ -60,7 +60,7 @@ infoPDIU2013bas.update = function(props) {
   + '<h4>' + totalVotes + props.validVotes + '</h4>'
   + '<h4>' + recVotes + props.votes + '</h4>'
   + '<h4>' + pctVote + props.percent + '%</h4>'
-  + '<br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
+  + '<br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
 };
 
 infoPDIU2013bas.addTo(map);

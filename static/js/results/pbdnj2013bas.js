@@ -60,7 +60,7 @@ infoPBDNJ2013bas.update = function(props) {
   + '<h4>' + totalVotes + props.validVotes + '</h4>'
   + '<h4>' + recVotes + props.votes + '</h4>'
   + '<h4>' + pctVote + props.percent + '%</h4>'
-  + '<br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
+  + '<br><br><br><br><br><br><br><br><br>' + '' : '')
 };
 
 infoPBDNJ2013bas.addTo(map);

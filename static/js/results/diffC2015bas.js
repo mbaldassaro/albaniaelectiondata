@@ -72,7 +72,7 @@ infoDiffC15.update = function(props) {
   + '<h4>' + otherVotes + props.otherCouncil + '</h4>'
   //+ '<h4>Other Percentage: ' + props.otherPCT + '%</h4>'
   + '<h4>' + otherSeats + props.otherSeats + '</h4>'
-  + '<br><br><br><br>'
+  + '<br><br><br><br><br><br>'
   + '' : '')
 };
 

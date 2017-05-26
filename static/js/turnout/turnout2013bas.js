@@ -60,7 +60,7 @@ infoBasVT.update = function(props) {
     + '<h4>' + voterReg + props.registeredVoters + '</h4>'
     + '<h4>' + voterTot + props.totalVoters + '</h4>'
     + '<h4>' + turnout + props.percent + '%</h4>'
-    + '<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
+    + '<br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
   };
 
 infoBasVT.addTo(map);
