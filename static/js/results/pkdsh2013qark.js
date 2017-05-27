@@ -16,6 +16,7 @@ function getColor(d) {
          d > 10 ? '#fec44f' :
          d > 5 ?  '#fee391' :
          d > 2 ?  '#fff7bc' :
+                  //'rgba(0,0,0,0)';
                   '#ffffe5';
       }
   }

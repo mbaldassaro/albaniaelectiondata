@@ -1,24 +1,25 @@
+var legendPD2013 = L.control({position: 'topright'});
 var infoPD = L.control({position: 'bottomright'});
 
 //PD 2013 ////////////////////////////////////////////
 function pdstyle(feature) {
   return {
-    fillColor: getColor(feature.properties.percent),
+    fillColor: getColorPD(feature.properties.percent),
     weight: 0.5,
     opacity: 1,
     color: '#FFFFFF',
     dashArray: '0',
     fillOpacity: 0.5
   }
+}
 
-function getColor(d) {
+function getColorPD(d) {
     return d > 50 ? '#2171b5' :
            d > 40 ? '#4292c6' :
            d > 30 ? '#6baed6' :
            d > 20 ? '#9ecae1' :
                     '#c6dbef';
       }
-  }
 
 function pd2013highlightFeature(e) {
     var layer = e.target;
@@ -68,6 +69,27 @@ infoPD.addTo(map);
 function zoomToFeature(e) {
     map.fitBounds(e.target.getBounds());
   }
+
+  legendPD2013.onAdd = function(map) {
+          this._div = L.DomUtil.create('div', 'info legend'),
+          grades = [20, 30, 40, 50],
+          labels = [];
+          this.update();
+          return this._div;
+  };
+
+
+    legendPD2013.update = function(e) {
+      for (var i = 0; i < grades.length; i++) {
+        this._div.innerHTML +=
+          '<i style="background: ' + getColorPD(grades[i] + 1) + '"></i> '
+          + grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1]
+          + '%<br>' : '%+');
+        }
+      return this._div;
+    };
+
+  //legendPD2013.addTo(map);
 
   //PD
 var pd2013geojson = L.geoJson(pd2013, {

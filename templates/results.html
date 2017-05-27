@@ -110,9 +110,28 @@ var overlayMaps = {
 };
 
 map.addLayer(qarkdiff2013geojson);
-L.control.layers(baseLayers, null, {collapsed: true, position: 'topright'}).addTo(map);
-L.control.layers(overlayMaps, null, {collapsed:false, position: 'bottomleft'}).addTo(map);
+L.control.layers(baseLayers, null, {collapsed: true, position: 'topleft'}).addTo(map);
+L.control.layers(overlayMaps, null, {collapsed: false, position: 'bottomleft'}).addTo(map);
 
+var currentLegend = legend;
+
+map.on('baselayerchange', function(eventLayer) {
+  if(eventLayer.name === '2013 PD - Qark') {
+    map.removeControl(currentLegend);
+    currentLegend = legendPD2013;
+    legendPD2013.addTo(map);
+  }
+  else if (eventLayer.name === '2013 PBDNJ - Qark') {
+    map.removeControl(currentLegend);
+    currentLegend = legendPBDNJ;
+    legendPBDNJ.addTo(map);
+  }
+  else if (eventLayer.name === '2013 LSI - Qark') {
+    map.removeControl(currentLegend);
+    currentLegend = legendLSI2013qark;
+    legendLSI2013qark.addTo(map);
+  }
+})
 </script>
 {{super()}}
 {% endblock %}

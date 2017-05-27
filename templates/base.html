@@ -31,22 +31,41 @@
      z-index: 5;
    }
 
+#AL {
+     position: absolute;
+     right: 45px;
+     width: 2em;
+     height: 1.5em;
+     margin-top: 1em;
+ }
+
+#EN {
+  position: absolute;
+  right: 15px;
+  width: 2em;
+  height: 1.5em;
+  margin-top: 1em;
+}
+
    #cdo {
      width: 10.5em;
      height: 3.5em;
-     margin-left: 1em;
+     position: absolute;
+     right: 220px;
+     /*margin-left: 1em;*/
    }
 
    #logo {
-     width: 8em;
-     height: 2em;
-     margin-left: 1em;
-     /*margin-top: .8em;*/
-     z-index: 5;
+       width: 8em;
+       height: 2em;
+       position: absolute;
+       right: 100px;
+       z-index: 5;
+       margin-top: .8em;
    }
 
    .logoholder {
-     margin-left: 1.5em;
+     /*margin-left: 1.5em;*/
    }
 
    #map {
@@ -83,12 +102,46 @@
      font-weight: 200;
    }
 
+   div.info.legend.leaflet-control {
+     margin-right: 2em!important;
+   }
+
    .info {
      font-family: 'Lato';
      color: rgba(0,0,0, 0.7);
      padding-right: 2em;
      font-weight: lighter;
    }
+
+   .legend {
+     text-align: left;
+     line-height: 18px;
+     color: #555;
+     margin-top: 52em!important;
+     background-color: #ffffff;
+     padding-bottom: 8px;
+     padding-left: 8px;
+     padding-right: 8px;
+     border-radius: 5px;
+     border: 2px solid rgba(0,0,0,0.2)!important;
+     background-clip: padding-box!important;
+   }
+
+  .legend i {
+    width: 18px;
+    height: 18px;
+    float: left;
+    margin-right: 8px;
+    opacity: 0.7;
+  }
+
+  .legend .circle {
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    margin-top: 8px;
+  }
+
  </style>
 
 {% endblock %}
@@ -108,13 +161,13 @@
 	</div>
 	<div class="navbar-collapse collapse navbar-ex1-collapse">
 	    <ul class="nav navbar-nav">
-    <li><a href="/results">{{ _('Results') }}</a></li>
-    <li><a href="/">{{ _('Turnout') }}</a></li>
+    <li><a href="{{ url_for('results') }}">{{ _('Results') }}</a></li>
+    <li><a href="{{ url_for('turnout') }}">{{ _('Turnout') }}</a></li>
     <li><a href="#">{{ _('Election') }} 2017</a></li>
     <li><a href='#' data-toggle="modal" data-target="#aboutModal">{{ _('About') }}</a></li>
     <li><a href="#" data-toggle="modal" data-target="#dataModal">{{ _('Data') }}</a></li>
-    <!--<li><button class="toggleLang" id="toggleEN">EN</button></li>
-    <li><button class="toggleLang" id="toggleAL">SQ</button></li>-->
+    <a href="/sq" class="toggleLang" id="toggleAL"><img id="AL" src="{{ url_for('static', filename='img/albflag.png' )}}"></a>
+    <a href="/en" class="toggleLang" id="toggleEN"><img id="EN" src="{{ url_for('static', filename='img/usflag.png' )}}"></a>
     <a class="logoholder" href="http://www.zgjedhje.al/" target="_blank"><img id="cdo" src="{{ url_for('static', filename='img/cdologo2.png' )}}"></a>
     <a class="logoholder" href="http://democracyinternational.com" target="_blank"><img id="logo" src="{{ url_for('static', filename='img/dilogo.png' )}}"></a>
 	    </ul>
@@ -178,6 +231,7 @@
 
 <!--map-->
 <div class="jumbotron" id="map"></div>
+<div id="legend">Hi</div>
 <script>
 var cartoLink = '<a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>';
 var cartoUrl = 'http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png';
