@@ -1,28 +1,30 @@
+var legendMINV2015bas = L.control({position: 'topright'});
 var infoBasMINV = L.control({position: 'bottomright'});
 
 //BAS Mayor INV 2015 /////////////////////////////////////
 function basminv15style(feature) {
   return {
-    fillColor: getColor(feature.properties.percent),
+    fillColor: getColorMINV2015bas(feature.properties.percent),
     weight: 0.5,
     opacity: 1,
     color: '#FFFFFF',
     dashArray: '0',
     fillOpacity: 0.5
   }
+}
 
-function getColor(d) {
+function getColorMINV2015bas(d) {
   return d > 5 ? '#000000' :
 				 d > 4 ? '#252525' :
 				 d > 3 ? '#525252' :
          d > 2 ? '#737373' :
          d > 1 ? '#969696' :
-         d > 0 ? '#bdbdbd' :
+         //d > 0 ? '#bdbdbd' :
          //d > 1 ? '#d9d9d9' :
          //d > 0 ? '#f0f0f0' :
                   '#ffffff';
       }
-  }
+
 
 function basminv2015highlightFeature(e) {
     var layer = e.target;
@@ -59,9 +61,9 @@ infoBasMINV.onAdd = function(map) {
 
 infoBasMINV.update = function(props) {
     this._div.innerHTML = (props ? '<h3>' + props.bashkia + '</h3>'
-    + '<h4>' + castBallot + props.mayorTurnout + '</h4>'
-    + '<h4>' + votesInv + props.mayorInvalid + '</h4>'
-    + '<h4>' + pctInv + props.percent + '%</h4>'
+    + '<h4>' + castBallot + ': ' + props.mayorTurnout + '</h4>'
+    + '<h4>' + votesInv + ': ' + props.mayorInvalid + '</h4>'
+    + '<h4>' + pctInv + ': ' + props.percent + '%</h4>'
     + '<br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
   };
 
@@ -71,6 +73,26 @@ infoBasMINV.addTo(map);
 function zoomToFeature(e) {
     map.fitBounds(e.target.getBounds());
   }
+
+  legendMINV2015bas.onAdd = function(map) {
+              this._div = L.DomUtil.create('div', 'info legend'),
+              grades = [1, 2, 3, 4, 5],
+              labels = ['<h5>' + pctInv + '</h5>'];
+              this.update();
+              return this._div;
+      };
+
+        legendMINV2015bas.update = function(e) {
+          for (var i = 0; i < grades.length; i++) {
+            labels.push(
+              '<i style="background: ' + getColorMINV2015bas(grades[i] + 1) + '"></i> '
+              + grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1]
+              + '%<br>' : '%+'));
+            }
+          this._div.innerHTML = labels.join('');
+          return this._div;
+        };
+
 
 //MINVBas
 var invalidMayor2015basgeojson = L.geoJson(invalidMayor2015bas, {

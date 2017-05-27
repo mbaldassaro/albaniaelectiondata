@@ -1,26 +1,26 @@
+var legendMVT2015bas = L.control({position: 'topright'});
 var infoMVT = L.control({position: 'bottomright'});
 
 //BAS MALE VT 2015 /////////////////////////////////////
 function basmvtstyle(feature) {
   return {
-    fillColor: getColor(feature.properties.percent),
+    fillColor: getColorMVT2015bas(feature.properties.percent),
     weight: 0.5,
     opacity: 1,
     color: '#FFFFFF',
     dashArray: '0',
     fillOpacity: 0.5
   }
+}
 
-function getColor(d) {
-  return d > 70 ? '#034e7b' :
-         d > 60 ? '#0570b0' :
+function getColorMVT2015bas(d) {
+  return d > 60 ? '#0570b0' :
          d > 50 ? '#3690c0' :
          d > 40 ? '#74a9cf' :
          d > 30 ? '#a6bddb' :
          d > 20 ? '#d0d1e6' :
                   '#f1eef6';
       }
-  }
 
 function basMVThighlightFeature(e) {
     var layer = e.target;
@@ -57,9 +57,9 @@ infoMVT.onAdd = function(map) {
 
 infoMVT.update = function(props) {
     this._div.innerHTML = (props ? '<h3>' + props.bashkia + '</h3>'
-    + '<h4>' + voterRegM + props.registeredM + '</h4>'
-    + '<h4>'+ voterTotM + props.turnoutM + '</h4>'
-    + '<h4>' + voterPctM + props.percent + '%</h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
+    + '<h4>' + voterRegM + ': ' + props.registeredM + '</h4>'
+    + '<h4>'+ voterTotM + ': ' + props.turnoutM + '</h4>'
+    + '<h4>' + voterPctM + ': ' + props.percent + '%</h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
   };
 
 infoMVT.addTo(map);
@@ -69,6 +69,25 @@ infoMVT.addTo(map);
 function zoomToFeature(e) {
     map.fitBounds(e.target.getBounds());
   }
+
+  legendMVT2015bas.onAdd = function(map) {
+            this._div = L.DomUtil.create('div', 'info legend'),
+            grades = [20, 30, 40, 50, 60],
+            labels = ['<h5>' + voterPctM + '</h5>'];
+            this.update();
+            return this._div;
+    };
+
+      legendMVT2015bas.update = function(e) {
+        for (var i = 0; i < grades.length; i++) {
+          labels.push(
+            '<i style="background: ' + getColorMVT2015bas(grades[i] + 1) + '"></i> '
+            + grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1]
+            + '%<br>' : '%+'));
+          }
+        this._div.innerHTML = labels.join('');
+        return this._div;
+      };
 
 //VTMale
   var maleTurnout2015basgeojson = L.geoJson(maleTurnout2015bas, {

@@ -62,15 +62,15 @@ var pkdsh2013basgeojson;
 var pbdnj2013geojson;
 var pbdnj2013basgeojson;
 
-var totalVotes = "{{gettext('Total Votes')}}: ";
-var totalSeats = "{{gettext('Total Seats')}}: ";
-var pctVote = "{{gettext('Vote Percentage')}}: ";
-var recVotes = "{{gettext('Votes Received')}}: ";
-var wonSeats = "{{gettext('Seats Won')}}: ";
-var diff = "{{gettext('Difference')}} (+/-): ";
-var otherVotes = "{{gettext('Other Votes')}}: ";
-var otherSeats = "{{gettext('Other Seats')}}: ";
-var otherPct = "{{gettext('Other Percentage')}}: ";
+var totalVotes = "{{gettext('Total Votes')}}";
+var totalSeats = "{{gettext('Total Seats')}}";
+var pctVote = "{{gettext('Vote Percentage')}}";
+var recVotes = "{{gettext('Votes Received')}}";
+var wonSeats = "{{gettext('Seats Won')}}";
+var diff = "{{gettext('Difference')}} (+/-)";
+var otherVotes = "{{gettext('Other Votes')}}";
+var otherSeats = "{{gettext('Other Seats')}}";
+var otherPct = "{{gettext('Other Percentage')}}";
 
 //heatmap - json array
 //var heat = L.heatLayer(heatData, {
@@ -110,27 +110,110 @@ var overlayMaps = {
 };
 
 map.addLayer(qarkdiff2013geojson);
+legendDiff2013qark.addTo(map);
 L.control.layers(baseLayers, null, {collapsed: true, position: 'topleft'}).addTo(map);
 L.control.layers(overlayMaps, null, {collapsed: false, position: 'bottomleft'}).addTo(map);
 
-var currentLegend = legend;
+var currentLegend = legendDiff2013qark;
 
 map.on('baselayerchange', function(eventLayer) {
-  if(eventLayer.name === '2013 PD - Qark') {
+  if(eventLayer.name === '2013 ASHE vs APMI - Qark') {
     map.removeControl(currentLegend);
-    currentLegend = legendPD2013;
-    legendPD2013.addTo(map);
+    currentLegend = legendDiff2013qark;
+    legendDiff2013qark.addTo(map);
+  }
+  else if(eventLayer.name === '2015 ASHE vs APPD ({{gettext('Council')}})') {
+    map.removeControl(currentLegend);
+    currentLegend = legendDiff2015C;
+    legendDiff2015C.addTo(map);
+  }
+  else if(eventLayer.name === '2015 ASHE vs APPD ({{gettext('Mayor')}})') {
+    map.removeControl(currentLegend);
+    currentLegend = legendDiff2015M;
+    legendDiff2015M.addTo(map);
+  }
+  else if(eventLayer.name === '2013 PD - Qark') {
+    map.removeControl(currentLegend);
+    currentLegend = legendPD2013qark;
+    legendPD2013qark.addTo(map);
+  }
+
+  else if(eventLayer.name === '2013 PD - Bashkia') {
+    map.removeControl(currentLegend);
+    currentLegend = legendPD2013bas;
+    legendPD2013bas.addTo(map);
   }
   else if (eventLayer.name === '2013 PBDNJ - Qark') {
     map.removeControl(currentLegend);
-    currentLegend = legendPBDNJ;
-    legendPBDNJ.addTo(map);
+    currentLegend = legendPBDNJ2013qark;
+    legendPBDNJ2013qark.addTo(map);
+  }
+  else if(eventLayer.name === '2013 PBDNJ - Bashkia') {
+    map.removeControl(currentLegend);
+    currentLegend = legendPBDNJ2013bas;
+    legendPBDNJ2013bas.addTo(map);
   }
   else if (eventLayer.name === '2013 LSI - Qark') {
     map.removeControl(currentLegend);
     currentLegend = legendLSI2013qark;
     legendLSI2013qark.addTo(map);
   }
+  else if(eventLayer.name == '2013 LSI - Bashkia') {
+    map.removeControl(currentLegend);
+    currentLegend = legendLSI2013bas;
+    legendLSI2013bas.addTo(map);
+  }
+  else if (eventLayer.name === '2013 APMI - Qark') {
+    map.removeControl(currentLegend);
+    currentLegend = legendAPMI2013qark;
+    legendAPMI2013qark.addTo(map);
+  }
+  else if(eventLayer.name === '2013 ASHE - Qark') {
+    map.removeControl(currentLegend);
+    currentLegend = legendASE2013qark;
+    legendASE2013qark.addTo(map);
+  }
+  else if(eventLayer.name === '2013 PS - Qark') {
+    map.removeControl(currentLegend);
+    currentLegend = legendPS2013qark;
+    legendPS2013qark.addTo(map);
+  }
+  else if(eventLayer.name === '2013 PS - Bashkia') {
+    map.removeControl(currentLegend);
+    currentLegend = legendPS2013bas;
+    legendPS2013bas.addTo(map);
+  }
+  else if(eventLayer.name === '2013 PDIU - Qark') {
+    map.removeControl(currentLegend);
+    currentLegend = legendPDIU2013qark;
+    legendPDIU2013qark.addTo(map);
+  }
+  else if(eventLayer.name === '2013 PDIU - Bashkia') {
+    map.removeControl(currentLegend);
+    currentLegend = legendPDIU2013bas;
+    legendPDIU2013bas.addTo(map);
+  }
+  else if(eventLayer.name === '2013 PR - Qark') {
+    map.removeControl(currentLegend);
+    currentLegend = legendPR2013qark;
+    legendPR2013qark.addTo(map);
+  }
+  else if(eventLayer.name === '2013 PR - Bashkia') {
+    map.removeControl(currentLegend);
+    currentLegend = legendPR2013bas;
+    legendPR2013bas.addTo(map);
+  }
+  else if(eventLayer.name === '2013 PKDSH - Qark') {
+    map.removeControl(currentLegend);
+    currentLegend = legendPKD2013qark;
+    legendPKD2013qark.addTo(map);
+  }
+  else if(eventLayer.name === '2013 PKDSH - Bashkia') {
+    map.removeControl(currentLegend);
+    currentLegend = legendPKD2013bas;
+    legendPKD2013bas.addTo(map);
+  }
+
 })
 </script>
 {{super()}}

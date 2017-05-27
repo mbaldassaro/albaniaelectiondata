@@ -1,20 +1,20 @@
+var legendINV2013bas = L.control({position: 'topright'});
 var infoBasINV = L.control({position: 'bottomright'});
 
 //BAS INV 2013 /////////////////////////////////////
 function basinvstyle(feature) {
   return {
-    fillColor: getColor(feature.properties.percent),
+    fillColor: getColorINV2013bas(feature.properties.percent),
     weight: 0.5,
     opacity: 1,
     color: '#FFFFFF',
     dashArray: '0',
     fillOpacity: 0.5
   }
+}
 
-function getColor(d) {
-  return d > 5 ? '#000000' :
-				 d > 4 ? '#252525' :
-				 d > 3 ? '#525252' :
+function getColorINV2013bas(d) {
+  return d > 3 ? '#525252' :
          d > 2 ? '#737373' :
          d > 1 ? '#969696' :
          d > 0 ? '#bdbdbd' :
@@ -22,7 +22,6 @@ function getColor(d) {
          //d > 0 ? '#f0f0f0' :
                   '#ffffff';
       }
-  }
 
 function basinv2013highlightFeature(e) {
     var layer = e.target;
@@ -59,9 +58,9 @@ infoBasINV.onAdd = function(map) {
 
 infoBasINV.update = function(props) {
     this._div.innerHTML = (props ? '<h3>' + props.bashkia + '</h3>'
-    + '<h4>' + castBallot + props.ballotsCast + '</h4>'
-    + '<h4>' + votesInv + props.invalidBallots + '</h4>'
-    + '<h4>' + pctInv + props.percent + '%</h4>'
+    + '<h4>' + castBallot + ': ' + props.ballotsCast + '</h4>'
+    + '<h4>' + votesInv + ': ' + props.invalidBallots + '</h4>'
+    + '<h4>' + pctInv + ': ' + props.percent + '%</h4>'
     + '<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
   };
 
@@ -71,6 +70,26 @@ infoBasINV.addTo(map);
 function zoomToFeature(e) {
     map.fitBounds(e.target.getBounds());
   }
+
+  legendINV2013bas.onAdd = function(map) {
+              this._div = L.DomUtil.create('div', 'info legend'),
+              grades = [0, 1, 2, 3],
+              labels = ['<h5>' + pctInv + '</h5>'];
+              this.update();
+              return this._div;
+      };
+
+        legendINV2013bas.update = function(e) {
+          for (var i = 0; i < grades.length; i++) {
+            labels.push(
+              '<i style="background: ' + getColorINV2013bas(grades[i] + 1) + '"></i> '
+              + grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1]
+              + '%<br>' : '%+'));
+            }
+          this._div.innerHTML = labels.join('');
+          return this._div;
+        };
+
 
     //INVBas
   var invalid2013basgeojson = L.geoJson(invalid2013bas, {

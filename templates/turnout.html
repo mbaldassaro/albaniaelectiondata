@@ -38,19 +38,19 @@ var femaleTurnout2015basgeojson;
 var invalidMayor2015basgeojson;
 var invalidCouncil2015basgeojson;
 
-var voterReg = "{{gettext('Registered Voters')}}: ";
-var voterTot = "{{gettext('Total Voters')}}: ";
-var turnout = "{{gettext('Turnout Percentage')}}: ";
-var voterRegF = "{{gettext('Registered Female Voters')}}: ";
-var voterTotF = "{{gettext('Female Voter Turnout')}}: ";
-var voterPctF = "{{gettext('Female Turnout Percentage')}}: ";
-var voterRegM = "{{gettext('Registered Male Voters')}}: ";
-var voterTotM = "{{gettext('Male Voter Turnout')}}: ";
-var voterPctM = "{{gettext('Male Turnout Percentage')}}: ";
-var difference = "{{gettext('Difference')}} (+/-): ";
-var castBallot = "{{gettext('Ballots Cast')}}: ";
-var votesInv = "{{gettext('Invalid Votes')}}: ";
-var pctInv = "{{gettext('Invalid Percentage')}}: ";
+var voterReg = "{{gettext('Registered Voters')}}";
+var voterTot = "{{gettext('Total Voters')}}";
+var turnout = "{{gettext('Turnout Percentage')}}";
+var voterRegF = "{{gettext('Registered Female Voters')}}";
+var voterTotF = "{{gettext('Female Voter Turnout')}}";
+var voterPctF = "{{gettext('Female Turnout Percentage')}}";
+var voterRegM = "{{gettext('Registered Male Voters')}}";
+var voterTotM = "{{gettext('Male Voter Turnout')}}";
+var voterPctM = "{{gettext('Male Turnout Percentage')}}";
+var difference = "{{gettext('Difference')}} (+/-)";
+var castBallot = "{{gettext('Ballots Cast')}}";
+var votesInv = "{{gettext('Invalid Votes')}}";
+var pctInv = "{{gettext('Invalid Percentage')}}";
 
 var overlayMaps = {
   "2015 {{gettext('Turnout')}} - Bashkia": turnout2015basgeojson,
@@ -66,9 +66,70 @@ var overlayMaps = {
 	"2013 {{gettext('Invalid')}} - Komune": invalid2013komgeojson
 };
 
-map.addLayer(turnout2015basgeojson);
-L.control.layers(baseLayers, null, {collapsed: true, position: 'topright'}).addTo(map);
+map.addLayer(turnout2013Komgeojson);
+legendVT2013kom.addTo(map);
+L.control.layers(baseLayers, null, {collapsed: true, position: 'topleft'}).addTo(map);
 L.control.layers(overlayMaps, null, {collapsed:false, position: 'bottomleft'}).addTo(map);
+
+var currentLegend = legendVT2013kom;
+
+map.on('baselayerchange', function(eventLayer) {
+  if(eventLayer.name === '2013 {{gettext('Turnout')}} - Komune') {
+    map.removeControl(currentLegend);
+    currentLegend = legendVT2013kom;
+    legendVT2013kom.addTo(map);
+  }
+  else if(eventLayer.name === '2015 {{gettext('Turnout')}} - Bashkia ({{gettext('Female')}})') {
+    map.removeControl(currentLegend);
+    currentLegend = legendFVT2015bas;
+    legendFVT2015bas.addTo(map);
+  }
+  else if(eventLayer.name === '2015 {{gettext('Turnout')}} - Bashkia ({{gettext('Male')}})') {
+    map.removeControl(currentLegend);
+    currentLegend = legendMVT2015bas;
+    legendMVT2015bas.addTo(map);
+  }
+  else if(eventLayer.name === '2015 {{gettext('Turnout')}} - Bashkia (M vs F)') {
+    map.removeControl(currentLegend);
+    currentLegend = legendMVF2015bas;
+    legendMVF2015bas.addTo(map);
+  }
+  else if(eventLayer.name === '2013 {{gettext('Turnout')}} - Bashkia') {
+    map.removeControl(currentLegend);
+    currentLegend = legendVT2013bas;
+    legendVT2013bas.addTo(map);
+  }
+  else if(eventLayer.name === '2013 {{gettext('Turnout')}} - Qark') {
+    map.removeControl(currentLegend);
+    currentLegend = legendVT2013qark;
+    legendVT2013qark.addTo(map);
+  }
+  else if(eventLayer.name === '2015 {{gettext('Turnout')}} - Bashkia') {
+    map.removeControl(currentLegend);
+    currentLegend = legendVT2015bas;
+    legendVT2015bas.addTo(map);
+  }
+  else if(eventLayer.name === '2015 {{gettext('Invalid')}} - Bashkia ({{gettext('Mayor')}})') {
+    map.removeControl(currentLegend);
+    currentLegend = legendMINV2015bas;
+    legendMINV2015bas.addTo(map);
+  }
+  else if(eventLayer.name === '2015 {{gettext('Invalid')}} - Bashkia ({{gettext('Council')}})') {
+    map.removeControl(currentLegend);
+    currentLegend = legendCINV2015bas;
+    legendCINV2015bas.addTo(map);
+  }
+  else if(eventLayer.name === '2013 {{gettext('Invalid')}} - Bashkia') {
+    map.removeControl(currentLegend);
+    currentLegend = legendINV2013bas;
+    legendINV2013bas.addTo(map);
+  }
+  else if(eventLayer.name === '2013 {{gettext('Invalid')}} - Komune') {
+    map.removeControl(currentLegend);
+    currentLegend = legendINV2013kom;
+    legendINV2013kom.addTo(map);
+  }
+});
 
 </script>
 {{super()}}

@@ -1,10 +1,10 @@
-var legendPD2013 = L.control({position: 'topright'});
+var legendPD2013qark = L.control({position: 'topright'});
 var infoPD = L.control({position: 'bottomright'});
 
 //PD 2013 ////////////////////////////////////////////
 function pdstyle(feature) {
   return {
-    fillColor: getColorPD(feature.properties.percent),
+    fillColor: getColorPD2013qark(feature.properties.percent),
     weight: 0.5,
     opacity: 1,
     color: '#FFFFFF',
@@ -13,7 +13,7 @@ function pdstyle(feature) {
   }
 }
 
-function getColorPD(d) {
+function getColorPD2013qark(d) {
     return d > 50 ? '#2171b5' :
            d > 40 ? '#4292c6' :
            d > 30 ? '#6baed6' :
@@ -55,12 +55,12 @@ infoPD.onAdd = function(map) {
 
 infoPD.update = function(props) {
     this._div.innerHTML = (props ? '<h3>' + props.name + '</h3>'
-    + '<h4>' + totalVotes + props.totalVotes + '</h4>'
-    + '<h4>' + totalSeats + props.totalSeats + '</h4>'
+    + '<h4>' + totalVotes + ': ' + props.totalVotes + '</h4>'
+    + '<h4>' + totalSeats + ': ' + props.totalSeats + '</h4>'
     + '<h3>' + props.party + '</h3>'
-    + '<h4>' + pctVote + props.percent + '%</h4>'
-    + '<h4>' + recVotes + props.votes + '</h4>'
-    + '<h4>' + wonSeats + props.seats + '</h4>'
+    + '<h4>' + pctVote + ': ' + props.percent + '%</h4>'
+    + '<h4>' + recVotes + ': ' + props.votes + '</h4>'
+    + '<h4>' + wonSeats + ': ' + props.seats + '</h4>'
     + '<br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
   };
 
@@ -70,26 +70,25 @@ function zoomToFeature(e) {
     map.fitBounds(e.target.getBounds());
   }
 
-  legendPD2013.onAdd = function(map) {
+  legendPD2013qark.onAdd = function(map) {
           this._div = L.DomUtil.create('div', 'info legend'),
-          grades = [20, 30, 40, 50],
-          labels = [];
+          grades = [10, 20, 30, 40],
+          labels = ['<h5>PD ' + pctVote + '</h5>'];
           this.update();
           return this._div;
   };
 
-
-    legendPD2013.update = function(e) {
+    legendPD2013qark.update = function(e) {
       for (var i = 0; i < grades.length; i++) {
-        this._div.innerHTML +=
-          '<i style="background: ' + getColorPD(grades[i] + 1) + '"></i> '
+        //this._div.innerHTML +=
+        labels.push(
+          '<i style="background: ' + getColorPD2013qark(grades[i] + 1) + '"></i> '
           + grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1]
-          + '%<br>' : '%+');
+          + '%<br>' : '%+'));
         }
+      this._div.innerHTML = labels.join('');
       return this._div;
     };
-
-  //legendPD2013.addTo(map);
 
   //PD
 var pd2013geojson = L.geoJson(pd2013, {

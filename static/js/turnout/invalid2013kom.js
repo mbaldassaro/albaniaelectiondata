@@ -1,17 +1,19 @@
+var legendINV2013kom = L.control({position: 'topright'});
 var infoKomINV = L.control({position: 'bottomright'});
 
 //KOM INV 2013 /////////////////////////////////////
 function kominvstyle(feature) {
   return {
-    fillColor: getColor(feature.properties.percent),
+    fillColor: getColorINV2013kom(feature.properties.percent),
     weight: 0.5,
     opacity: 1,
     color: '#FFFFFF',
     dashArray: '0',
     fillOpacity: 0.5
   }
+}
 
-function getColor(d) {
+function getColorINV2013kom(d) {
   return d > 5 ? '#000000' :
 				 d > 4 ? '#252525' :
 				 d > 3 ? '#525252' :
@@ -22,7 +24,6 @@ function getColor(d) {
          //d > 0 ? '#f0f0f0' :
                   '#ffffff';
       }
-  }
 
 function kominv2013highlightFeature(e) {
     var layer = e.target;
@@ -59,9 +60,9 @@ infoKomINV.onAdd = function(map) {
 
 infoKomINV.update = function(props) {
     this._div.innerHTML = (props ? '<h3>' + props.komune + '</h3>'
-    + '<h4>' + castBallot + props.ballotsCast + '</h4>'
-    + '<h4>' + votesInv + props.invalidVotes + '</h4>'
-    + '<h4>' + pctInv + props.percent + '%</h4>'
+    + '<h4>' + castBallot + ': ' + props.ballotsCast + '</h4>'
+    + '<h4>' + votesInv + ': ' + props.invalidVotes + '</h4>'
+    + '<h4>' + pctInv + ': ' + props.percent + '%</h4>'
     + '<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
   };
 
@@ -71,6 +72,26 @@ infoKomINV.addTo(map);
 function zoomToFeature(e) {
     map.fitBounds(e.target.getBounds());
   }
+
+  legendINV2013kom.onAdd = function(map) {
+              this._div = L.DomUtil.create('div', 'info legend'),
+              grades = [0, 1, 2, 3, 4, 5],
+              labels = ['<h5>' + pctInv + '</h5>'];
+              this.update();
+              return this._div;
+      };
+
+        legendINV2013kom.update = function(e) {
+          for (var i = 0; i < grades.length; i++) {
+            labels.push(
+              '<i style="background: ' + getColorINV2013kom(grades[i] + 1) + '"></i> '
+              + grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1]
+              + '%<br>' : '%+'));
+            }
+          this._div.innerHTML = labels.join('');
+          return this._div;
+        };
+
 
   //INVKom
   var invalid2013komgeojson = L.geoJson(invalid2013kom, {

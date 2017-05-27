@@ -1,24 +1,19 @@
-
-
-
+var legendCINV2015bas = L.control({position: 'topright'});
 var infoBasCINV = L.control({position: 'bottomright'});
-
-
-
-
 
 //BAS Council INV 2015 /////////////////////////////////////
 function bascinv15style(feature) {
   return {
-    fillColor: getColor(feature.properties.percent),
+    fillColor: getColorCINV2015bas(feature.properties.percent),
     weight: 0.5,
     opacity: 1,
     color: '#FFFFFF',
     dashArray: '0',
     fillOpacity: 0.5
   }
+}
 
-function getColor(d) {
+function getColorCINV2015bas(d) {
   return d > 5 ? '#000000' :
 				 d > 4 ? '#252525' :
 				 d > 3 ? '#525252' :
@@ -29,7 +24,7 @@ function getColor(d) {
          //d > 0 ? '#f0f0f0' :
                   '#ffffff';
       }
-  }
+
 
 function bascinv2015highlightFeature(e) {
     var layer = e.target;
@@ -66,9 +61,9 @@ infoBasCINV.onAdd = function(map) {
 
 infoBasCINV.update = function(props) {
     this._div.innerHTML = (props ? '<h3>' + props.bashkia + '</h3>'
-      + '<h4>' + castBallot + props.councilTurnout + '</h4>'
-      + '<h4>' + votesInv + props.councilInvalid + '</h4>'
-      + '<h4>' + pctInv + props.percent + '%</h4>'
+      + '<h4>' + castBallot + ': ' + props.councilTurnout + '</h4>'
+      + '<h4>' + votesInv + ': ' + props.councilInvalid + '</h4>'
+      + '<h4>' + pctInv + ': ' + props.percent + '%</h4>'
       + '<br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
   };
 
@@ -80,6 +75,24 @@ function zoomToFeature(e) {
     map.fitBounds(e.target.getBounds());
   }
 
+  legendCINV2015bas.onAdd = function(map) {
+              this._div = L.DomUtil.create('div', 'info legend'),
+              grades = [0, 1, 2, 3, 4, 5],
+              labels = ['<h5>' + pctInv + '</h5>'];
+              this.update();
+              return this._div;
+      };
+
+        legendCINV2015bas.update = function(e) {
+          for (var i = 0; i < grades.length; i++) {
+            labels.push(
+              '<i style="background: ' + getColorCINV2015bas(grades[i] + 1) + '"></i> '
+              + grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1]
+              + '%<br>' : '%+'));
+            }
+          this._div.innerHTML = labels.join('');
+          return this._div;
+        };
 
 
 //CINVBas

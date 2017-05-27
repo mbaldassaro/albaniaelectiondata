@@ -11636,7 +11636,8 @@ var ps2013 =
     "totalSeats": 13,
     "party": "Partia Socialiste e Shqipërisë",
     "votes": 60833,
-    "percent": 39.24
+    "percent": 39.24,
+    "seats": 6
   },
   "geometry": {
     "type": "MultiPolygon",
@@ -44659,7 +44660,8 @@ var ps2013 =
     "totalSeats": 16,
     "party": "Partia Socialiste e Shqipërisë",
     "votes": 89637,
-    "percent": 44.18
+    "percent": 44.18,
+    "seats": 9
   },
   "geometry": {
     "type": "MultiPolygon",

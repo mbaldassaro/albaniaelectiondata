@@ -1,12 +1,12 @@
 //PBDNJ 2013 ////////////////////////////////////////////
 
 var infoPBDNJ = L.control({position: 'bottomright'});
-var legendPBDNJ = L.control({position: 'topright'});
+var legendPBDNJ2013qark = L.control({position: 'topright'});
 
 
 function pbdnjstyle(feature) {
   return {
-    fillColor: getColor(feature.properties.percent),
+    fillColor: getColorPBDNJ2013qark(feature.properties.percent),
     weight: 0.5,
     opacity: 1,
     color: '#FFFFFF',
@@ -15,7 +15,7 @@ function pbdnjstyle(feature) {
   }
 }
 
-function getColor(d) {
+function getColorPBDNJ2013qark(d) {
   return d > 5 ? '#6baed6' :
          d > 2 ? '#bdd7e7' :
          d > 0 ? '#eff3ff' :
@@ -56,12 +56,12 @@ infoPBDNJ.onAdd = function(map) {
 
 infoPBDNJ.update = function(props) {
     this._div.innerHTML = (props ? '<h3>' + props.name + '</h3>'
-    + '<h4>' + totalVotes + props.totalVotes + '</h4>'
-    + '<h4>' + totalSeats + props.totalSeats + '</h4>'
+    + '<h4>' + totalVotes + ': ' + props.totalVotes + '</h4>'
+    + '<h4>' + totalSeats + ': ' + props.totalSeats + '</h4>'
     + '<h3>' + props.party + '</h3>'
-    + '<h4>' + pctVote + props.percent + '%</h4>'
-    + '<h4>' + recVotes + props.votes + '</h4>'
-    + '<h4>' + wonSeats + props.seats + '</h4>'
+    + '<h4>' + pctVote + ': ' + props.percent + '%</h4>'
+    + '<h4>' + recVotes + ': ' + props.votes + '</h4>'
+    + '<h4>' + wonSeats + ': ' + props.seats + '</h4>'
     + '<br><br><br><br><br><br><br><br>' + '' : '')
   };
 
@@ -72,26 +72,25 @@ function zoomToFeature(e) {
     map.fitBounds(e.target.getBounds());
   }
 
-  legendPBDNJ.onAdd = function(map) {
+  legendPBDNJ2013qark.onAdd = function(map) {
           this._div = L.DomUtil.create('div', 'info legend'),
           grades = [0, 2, 5],
-          labels = [];
+          labels = ['<h5>PBDNJ ' + pctVote + '</h5>'];
           this.update();
           return this._div;
   };
 
 
-    legendPBDNJ.update = function(e) {
+    legendPBDNJ2013qark.update = function(e) {
       for (var i = 0; i < grades.length; i++) {
-        this._div.innerHTML +=
-          '<i style="background: ' + getColor(grades[i] + 1) + '"></i> '
+        labels.push(
+          '<i style="background: ' + getColorPBDNJ2013qark(grades[i] + 1) + '"></i> '
           + grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1]
-          + '%<br>' : '%+');
+          + '%<br>' : '%+'));
         }
+      this._div.innerHTML = labels.join('');
       return this._div;
     };
-
-  //legendPBDNJ.addTo(map);
 
 var pbdnj2013geojson = L.geoJson(pbdnj2013, {
     style: pbdnjstyle,

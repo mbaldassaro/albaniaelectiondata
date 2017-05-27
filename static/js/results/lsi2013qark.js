@@ -17,11 +17,12 @@ function lsistyle(feature) {
 function getColorLSI2013qark(d) {
   return d > 20 ? '#ef3b2c' :
          d > 10 ? '#fb6a4a' :
-         d > 5 ? '#fc9272' :
          d > 0 ? '#fcbba1' :
-                  '#fee5d9';
+                  '#gray';
       }
 
+
+            //d > 5 ? '#fc9272' :
 
 function lsi2013highlightFeature(e) {
     var layer = e.target;
@@ -57,12 +58,12 @@ infoLSI.onAdd = function(map) {
 
 infoLSI.update = function(props) {
     this._div.innerHTML = (props ? '<h3>' + props.name + '</h3>'
-    + '<h4>' + totalVotes + props.totalVotes + '</h4>'
-    + '<h4>' + totalSeats + props.totalSeats + '</h4>'
+    + '<h4>' + totalVotes + ': ' + props.totalVotes + '</h4>'
+    + '<h4>' + totalSeats + ': ' + props.totalSeats + '</h4>'
     + '<h3>' + props.party + '</h3>'
-    + '<h4>' + pctVote + props.percent + '%</h4>'
-    + '<h4>' + recVotes + props.votes + '</h4>'
-    + '<h4>' + wonSeats + props.seats + '</h4>'
+    + '<h4>' + pctVote + ': ' + props.percent + '%</h4>'
+    + '<h4>' + recVotes + ': ' + props.votes + '</h4>'
+    + '<h4>' + wonSeats + ': ' + props.seats + '</h4>'
     + '<br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
   };
 
@@ -75,8 +76,8 @@ function zoomToFeature(e) {
 
   legendLSI2013qark.onAdd = function(map) {
           this._div = L.DomUtil.create('div', 'info legend'),
-          grades = [0, 5, 10, 20],
-          labels = ['<h5>' + pctVote + '</h5>'];
+          grades = [0, 10, 20],
+          labels = ['<h5>LSI ' + pctVote + '</h5>'];
           this.update();
           return this._div;
   };

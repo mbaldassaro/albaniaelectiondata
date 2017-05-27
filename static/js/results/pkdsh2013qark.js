@@ -1,25 +1,27 @@
+var legendPKD2013qark = L.control({position: 'topright'});
 var infoPKDSH = L.control({position: 'bottomright'});
 
 //PKDSH 2013 ////////////////////////////////////////////
 function pkdshstyle(feature) {
   return {
-    fillColor: getColor(feature.properties.percent),
+    fillColor: getColorPKD2013qark(feature.properties.percent),
     weight: 0.5,
     opacity: 1,
     color: '#FFFFFF',
     dashArray: '0',
     fillOpacity: 0.5
   }
+}
 
-function getColor(d) {
-  return d > 20 ? '#fe9929' :
-         d > 10 ? '#fec44f' :
-         d > 5 ?  '#fee391' :
-         d > 2 ?  '#fff7bc' :
+function getColorPKD2013qark(d) {
+  return d > 5 ?  '#fee391' :
+         d > 0 ?  '#ffffe5' :
                   //'rgba(0,0,0,0)';
-                  '#ffffe5';
+                  '#ffffff';
       }
-  }
+
+//d > 20 ? '#fe9929' :
+//d > 10 ? '#fec44f' :
 
 function pkdsh2013highlightFeature(e) {
     var layer = e.target;
@@ -55,12 +57,12 @@ infoPKDSH.onAdd = function(map) {
 
 infoPKDSH.update = function(props) {
     this._div.innerHTML = (props ? '<h3>' + props.name + '</h3>'
-    + '<h4>' + totalVotes + props.totalVotes + '</h4>'
-    + '<h4>' + totalSeats + props.totalSeats + '</h4>'
+    + '<h4>' + totalVotes + ': ' + props.totalVotes + '</h4>'
+    + '<h4>' + totalSeats + ': ' + props.totalSeats + '</h4>'
     + '<h3>' + props.party + '</h3>'
-    + '<h4>' + pctVote + props.percent + '%</h4>'
-    + '<h4>' + recVotes + props.votes + '</h4>'
-    + '<h4>' + wonSeats + props.seats + '</h4>'
+    + '<h4>' + pctVote + ': ' + props.percent + '%</h4>'
+    + '<h4>' + recVotes + ': ' + props.votes + '</h4>'
+    + '<h4>' + wonSeats + ': ' + props.seats + '</h4>'
     + '<br><br><br><br><br><br><br><br><br>' + '' : '')
   };
 
@@ -71,6 +73,25 @@ infoPKDSH.addTo(map);
 function zoomToFeature(e) {
     map.fitBounds(e.target.getBounds());
   }
+
+  legendPKD2013qark.onAdd = function(map) {
+          this._div = L.DomUtil.create('div', 'info legend'),
+          grades = [0, 5],
+          labels = ['<h5>PKDSH ' + pctVote + '</h5>'];
+          this.update();
+          return this._div;
+  };
+
+    legendPKD2013qark.update = function(e) {
+      for (var i = 0; i < grades.length; i++) {
+        labels.push(
+      '<i style="background: ' + getColorPKD2013qark(grades[i] + 1) + '"></i> '
+      + grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1]
+      + '%<br>' : '%+'));
+    }
+      this._div.innerHTML = labels.join('');
+      return this._div;
+    };
 
 //PKDSH
 var pkdsh2013geojson = L.geoJson(pkd2013, {

@@ -1,27 +1,28 @@
+var legendFVT2015bas = L.control({postion: 'topright'});
 var infoFVT = L.control({position: 'bottomright'});
 
 
 //BAS Female VT 2015 /////////////////////////////////////
 function basfvtstyle(feature) {
   return {
-    fillColor: getColor(feature.properties.percent),
+    fillColor: getColorFVT2015bas(feature.properties.percent),
     weight: 0.5,
     opacity: 1,
     color: '#FFFFFF',
     dashArray: '0',
     fillOpacity: 0.5
   }
+}
 
-function getColor(d) {
-  return d > 70 ? '#7a0177' :
-         d > 60 ? '#ae017e' :
+function getColorFVT2015bas(d) {
+  return d > 60 ? '#ae017e' :
          d > 50 ? '#dd3497' :
          d > 40 ? '#f768a1' :
          d > 30 ? '#fa9fb5' :
          d > 20 ? '#fcc5c0' :
                   '#feebe2';
       }
-  }
+
 
 function basFVThighlightFeature(e) {
     var layer = e.target;
@@ -58,9 +59,9 @@ infoFVT.onAdd = function(map) {
 
 infoFVT.update = function(props) {
     this._div.innerHTML = (props ? '<h3>' + props.bashkia + '</h3>'
-    + '<h4>' + voterRegF + props.registeredF + '</h4>'
-    + '<h4>' + voterTotF + props.turnoutF + '</h4>'
-    + '<h4>' + voterPctF + props.percent + '%</h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
+    + '<h4>' + voterRegF + ': ' + props.registeredF + '</h4>'
+    + '<h4>' + voterTotF + ': ' + props.turnoutF + '</h4>'
+    + '<h4>' + voterPctF + ': ' + props.percent + '%</h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
   };
 
 infoFVT.addTo(map);
@@ -69,6 +70,27 @@ infoFVT.addTo(map);
 function zoomToFeature(e) {
     map.fitBounds(e.target.getBounds());
   }
+
+legendFVT2015bas.onAdd = function(map) {
+          this._div = L.DomUtil.create('div', 'info legend'),
+          grades = [20, 30, 40, 50, 60],
+          labels = ['<h5>' + voterPctF + '</h5>'];
+          this.update();
+          return this._div;
+  };
+
+    legendFVT2015bas.update = function(e) {
+      for (var i = 0; i < grades.length; i++) {
+        labels.push(
+          '<i style="background: ' + getColorFVT2015bas(grades[i] + 1) + '"></i> '
+          + grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1]
+          + '%<br>' : '%+'));
+        }
+      this._div.innerHTML = labels.join('');
+      return this._div;
+    };
+
+
 
 //VTFemale
 var femaleTurnout2015basgeojson = L.geoJson(femaleTurnout2015bas, {

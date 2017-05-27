@@ -1,26 +1,27 @@
+var legendLSI2013bas = L.control({position: 'topright'});
 var infoLSI2013bas = L.control({position: 'bottomright'});
 
 //LSI 2013 ////////////////////////////////////////////
 function lsi2013basstyle(feature) {
   return {
-    fillColor: getColor(feature.properties.percent),
+    fillColor: getColorLSI2013bas(feature.properties.percent),
     weight: 0.5,
     opacity: 1,
     color: '#FFFFFF',
     dashArray: '0',
     fillOpacity: 0.5
   }
+}
 
-function getColor(d) {
+function getColorLSI2013bas(d) {
     return d > 40 ? '#99000d' :
            d > 30 ? '#cb181d' :
            d > 20 ? '#ef3b2c' :
            d > 10 ? '#fb6a4a' :
-           d > 5 ? '#fc9272' :
+           //d > 5 ? '#fc9272' :
            d > 0 ? '#fcbba1' :
                     '#fee5d9';
       }
-  }
 
 function lsi2013bashighlightFeature(e) {
     var layer = e.target;
@@ -57,9 +58,9 @@ infoLSI2013bas.onAdd = function(map) {
 infoLSI2013bas.update = function(props) {
     this._div.innerHTML = (props ? '<h3>' + props.bashkia + '</h3>'
   + '<h3>' + props.party + '</h3>'
-  + '<h4>' + totalVotes + props.validVotes + '</h4>'
-  + '<h4>' + recVotes + props.votes + '</h4>'
-  + '<h4>' + pctVote + props.percent + '%</h4>'
+  + '<h4>' + totalVotes + ': ' + props.validVotes + '</h4>'
+  + '<h4>' + recVotes + ': ' + props.votes + '</h4>'
+  + '<h4>' + pctVote + ': ' + props.percent + '%</h4>'
   + '<br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
   };
 
@@ -69,6 +70,25 @@ infoLSI2013bas.addTo(map);
 function zoomToFeature(e) {
     map.fitBounds(e.target.getBounds());
   }
+
+legendLSI2013bas.onAdd = function(map) {
+          this._div = L.DomUtil.create('div', 'info legend'),
+          grades = [0, 10, 20, 30, 40],
+          labels = ['<h5>LSI ' + pctVote + '</h5>'];
+          this.update();
+          return this._div;
+  };
+
+    legendLSI2013bas.update = function(e) {
+      for (var i = 0; i < grades.length; i++) {
+        labels.push(
+      '<i style="background: ' + getColorLSI2013bas(grades[i] + 1) + '"></i> '
+      + grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1]
+      + '%<br>' : '%+'));
+    }
+      this._div.innerHTML = labels.join('');
+      return this._div;
+    };
 //LSI
 var lsi2013basgeojson = L.geoJson(lsi2013bas, {
     style: lsi2013basstyle,

@@ -1,27 +1,28 @@
+var legendDiff2015C = L.control({position: 'topright'});
 var infoDiffC15 = L.control({position: 'bottomright'});
 
 //DIFF 2015 Council ///////////////
 function diffC15style(feature) {
   return {
-    fillColor: getColor(feature.properties.percent),
+    fillColor: getColorDiff2015C(feature.properties.percent),
     weight: 0.5,
     opacity: 1,
     color: '#FFFFFF',
     dashArray: '0',
     fillOpacity: 0.5
   }
+}
 
-function getColor(d) {
+function getColorDiff2015C(d) {
   return d > 40 ? '#4a1486' :
          d > 25 ? '#6a51a3' :
          d > 10 ? '#807dba' :
-         d > 0 ?  '#9e9ac8' :
-         d > -10 ? '#4292c6' :
-         d > -25 ? '#2171b5' :
-         d > -40 ? '#084594' :
+         d > 1 ?  '#bcbddc' :
+         d > -10 ? '#9ecae1' :
+         d > -25 ? '#4292c6' :
                   'gray';
       }
-  }
+         //d > -40 ? '#084594' :
 
 function diffC15highlightFeature(e) {
     var layer = e.target;
@@ -59,19 +60,19 @@ infoDiffC15.onAdd = function(map) {
 infoDiffC15.update = function(props) {
   this._div.innerHTML = (props ? '<h3>' + props.bashkia + '</h3>'
   //+ '<h4>Registered Voters: ' + props.registeredVoters + '</h4>'
-  + '<h4>' + totalVotes + props.totalCouncil + '</h4>'
+  + '<h4>' + totalVotes + ': ' + props.totalCouncil + '</h4>'
   + '<h3>' + props.partyASE + '</h3>'
-  + '<h4>' + recVotes + props.aseCouncil + '</h4>'
-  + '<h4>' + pctVote + props.pctASE + '%</h4>'
-  + '<h4>' + wonSeats + props.aseSeats + '</h4>'
+  + '<h4>' + recVotes + ': ' + props.aseCouncil + '</h4>'
+  + '<h4>' + pctVote + ': ' + props.pctASE + '%</h4>'
+  + '<h4>' + wonSeats + ': ' + props.aseSeats + '</h4>'
   + '<h3>' + props.partyAPPD + '</h3>'
-  + '<h4>' + recVotes + props.appdCouncil + '</h4>'
-  + '<h4>' + pctVote + props.pctAPPD + '%</h4>'
-  + '<h4>' + wonSeats + props.appdSeats + '</h4><br>'
-  + '<h4>' + diff + props.percent + '%</h4><br>'
-  + '<h4>' + otherVotes + props.otherCouncil + '</h4>'
+  + '<h4>' + recVotes + ': ' + props.appdCouncil + '</h4>'
+  + '<h4>' + pctVote + ': ' + props.pctAPPD + '%</h4>'
+  + '<h4>' + wonSeats + ': ' + props.appdSeats + '</h4><br>'
+  + '<h4>' + diff + ': ' + props.percent + '%</h4><br>'
+  + '<h4>' + otherVotes + ': ' + props.otherCouncil + '</h4>'
   //+ '<h4>Other Percentage: ' + props.otherPCT + '%</h4>'
-  + '<h4>' + otherSeats + props.otherSeats + '</h4>'
+  + '<h4>' + otherSeats + ': ' + props.otherSeats + '</h4>'
   + '<br><br><br><br><br><br>'
   + '' : '')
 };
@@ -83,6 +84,27 @@ infoDiffC15.addTo(map);
 function zoomToFeature(e) {
     map.fitBounds(e.target.getBounds());
   }
+  legendDiff2015C.onAdd = function(map) {
+          this._div = L.DomUtil.create('div', 'info legend'),
+          grades = [-25, -10, 1, 10, 25, 40],
+          range = ['10-25%', '0-10%', '0-10%', '10-25%', '25-40%', '40%+'],
+          labels = ['<h5>ASHE-APPD ' + diff + '</h5>'];
+          this.update();
+          return this._div;
+  };
+
+
+    legendDiff2015C.update = function(e) {
+      for (var i = 0; i < grades.length; i++) {
+        labels.push(
+          '<i style="background: ' + getColorDiff2015C(grades[i] + 1) + '"></i> '
+          + (grades[i] ? range[i] + '<br>' : '+'));
+        }
+      this._div.innerHTML = labels.join('');
+      return this._div;
+    };
+
+
 
 //Diff Bas Council
 var diffCouncil2015basgeojson = L.geoJson(diffCouncil2015bas, { //diffCouncil2015bas

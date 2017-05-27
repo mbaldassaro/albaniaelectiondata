@@ -1,25 +1,25 @@
+var legendPS2013qark = L.control({position: 'topright'});
 var infoPS = L.control({position: 'bottomright'});
 
 //PS 2013 ////////////////////////////////////////////
 function psstyle(feature) {
   return {
-    fillColor: getColor(feature.properties.percent),
+    fillColor: getColorPS2013qark(feature.properties.percent),
     weight: 0.5,
     opacity: 1,
     color: '#FFFFFF',
     dashArray: '0',
     fillOpacity: 0.5
-  };
+  }
+}
 
-function getColor(d) {
-  return d > 50 ? '#4a1486' :
-         d > 40 ? '#6a51a3' :
+function getColorPS2013qark(d) {
+  return d > 40 ? '#6a51a3' :
          //d > 40 ? '#807dba' :
          d > 30 ? '#9e9ac8' :
          d > 20 ? '#bcbddc' :
                   '#dadaeb';
       }
-  }
 
 function ps2013highlightFeature(e) {
     var layer = e.target;
@@ -56,12 +56,12 @@ infoPS.onAdd = function(map) {
 
 infoPS.update = function(props) {
     this._div.innerHTML = (props ? '<h3>' + props.name + '</h3>'
-    + '<h4>' + totalVotes + props.totalVotes + '</h4>'
-    + '<h4>' + totalSeats + props.totalSeats + '</h4>'
+    + '<h4>' + totalVotes + ': ' + props.totalVotes + '</h4>'
+    + '<h4>' + totalSeats + ': ' + props.totalSeats + '</h4>'
     + '<h3>' + props.party + '</h3>'
-    + '<h4>' + pctVote + props.percent + '%</h4>'
-    + '<h4>' + recVotes + props.votes + '</h4>'
-    + '<h4>' + wonSeats + props.seats + '</h4>'
+    + '<h4>' + pctVote + ': ' + props.percent + '%</h4>'
+    + '<h4>' + recVotes + ': ' + props.votes + '</h4>'
+    + '<h4>' + wonSeats + ': ' + props.seats + '</h4>'
     + '<br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '');
   };
 
@@ -71,6 +71,26 @@ infoPS.addTo(map);
 function zoomToFeature(e) {
     map.fitBounds(e.target.getBounds());
   }
+
+  legendPS2013qark.onAdd = function(map) {
+          this._div = L.DomUtil.create('div', 'info legend'),
+          grades = [20, 30, 40],
+          labels = ['<h5>PS ' + pctVote + '</h5>'];
+          this.update();
+          return this._div;
+  };
+
+
+    legendPS2013qark.update = function(e) {
+      for (var i = 0; i < grades.length; i++) {
+        labels.push(
+          '<i style="background: ' + getColorPS2013qark(grades[i] + 1) + '"></i> '
+          + grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1]
+          + '%<br>' : '%+'));
+        }
+      this._div.innerHTML = labels.join('');
+      return this._div;
+    };
 
 //PS
 var ps2013geojson = L.geoJson(ps2013, {
