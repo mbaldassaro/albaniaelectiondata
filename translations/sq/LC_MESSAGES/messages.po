@@ -79,7 +79,7 @@ msgstr ""
 "           <br>\n"
 "           <br> 2. Ofrimi i informacionit me qasjen, ku palët e interesuara mund të matin ecurinë dhe identifikojnë trendet e cikleve zgjedhore në vijimësi.\n"
 "           <br>\n"
-"           <br> 3. Sigurimi i pasqyrimit tërësor mbi gjetjet e vëzhgimit të zgjedhjeve apo zhvillimeve zgjedhore, të cilat mund të studiohen dhe kuptohen."
+"           <br> 3. Mundësimi i mekanizmave realiste të cilat i japin kuptimin dhe kontekstin e duhur konkluzioneve mbi vëzhgimet apo zhvillimet zgjedhore."
 
 #: templates/base.html:140 templates/base.html:162
 msgid "Close"
@@ -113,7 +113,7 @@ msgstr "Të dhënat u licencuan "
 
 #: templates/base.html:159
 msgid "The map layers are available via "
-msgstr "Shtresat e hartës i gjeni në "
+msgstr "Harta përbërëse digitale gjendet në "
 
 #: templates/base.html:189
 msgid "Road"
