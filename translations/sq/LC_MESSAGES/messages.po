@@ -90,7 +90,7 @@ msgid ""
 "The Albania Election Data platform utilizes official election data published "
 "the "
 msgstr ""
-"Platforma e të Dhënave mbi Zgjedhjet në Shqipëri ofron të dhëna zyrtare mbi zgjedhjet, botuar nga "
+"Platforma e të Dhënave Zgjedhore në Shqipëri ofron të dhëna zyrtare mbi zgjedhjet, botuar nga "
 
 #: templates/base.html:156
 msgid "Central Election Commission"
