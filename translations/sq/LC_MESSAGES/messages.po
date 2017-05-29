@@ -21,7 +21,7 @@ msgstr ""
 
 #: templates/base.html:96
 msgid "Albania Election Data"
-msgstr "Dhënat Zgjedhjeve Shqipëri"
+msgstr "Të Dhënat Zgjedhore në Shqipëri"
 
 #: templates/base.html:101
 msgid "Results"
@@ -69,27 +69,17 @@ msgid ""
 "developments or election observation findings can be contextualized and "
 "understood"
 msgstr ""
-"Dhënat Zgjedhjeve Shqipëri janë një projekt për mbledhjen, hapjen, "
-"vizualizimin dhe analizimin e të dhënave zgjedhore në baza të vazhdueshme. "
-"Projekti menaxhohet nga Koalicioni i Vëzhguesve Vendorë (KVV) me "
+"Projekti mbi mbledhjen, hapjen, shikueshmërinë dhe analizimin e të Dhënave Zgjedhore në Shqipëri hartohet mbi bazën e vijueshme të të dhënave. "
+"Projekti drejtohet nga Koalicioni i Vëzhguesve Vendorë (KVV) me "
 "mbështetjen e Democracy International (DI).\n"
 "           <br>\n"
-"           <br> Qëllimi i të Dhënave Zgjedhore të Shqipërisë është të "
-"forcojë demokracinë shqiptare nëpërmjet një transparence më të madhe, "
-"llogaridhënie dhe përfshirje. CDO dhe DI synojnë të arrijnë këtë qëllim "
-"duke:\n"
+"           <br> Qëllimi i të Dhënave Zgjedhore të Shqipërisë është forcimi i demokracisë shqiptare me transparencë, llogaridhënie dhe gjithë përfshirje. CDO dhe DI synojnë të arrijnë këtë qëllim duke:\n"
 "           <br>\n"
-"           <br> 1. Krijimi i një qendre të centralizuar të të dhënave dhe "
-"hartave të lidhura me zgjedhjet që lehtësojnë vendimmarrjen e bazuar në "
-"fakte dhe të bazuara në të dhëna për të përmirësuar procesin zgjedhor\n"
+"           <br> 1. Krijuar qendrën e përqëndruar të të dhënave dhe hartave zgjedhore për lehtësim në vendimmarrje, bazuar në fakte dhe të dhëna në përmirësim të procesit zgjedhor.\n"
 "           <br>\n"
-"           <br> 2. Paraqitja e informacionit në një mënyrë shumë të qasshme "
-"në mënyrë që palët e interesuara të mund të matin progresin dhe të "
-"identifikojnë trendet nga një cikël zgjedhor në tjetrin\n"
+"           <br> 2. Ofrimi i informacionit me qasjen, ku palët e interesuara mund të matin ecurinë dhe identifikojnë trendet e cikleve zgjedhore në vijimësi.\n"
 "           <br>\n"
-"           <br> 3. Sigurimi i një lente kuptimplote përmes së cilës "
-"zhvillimet zgjedhore ose gjetjet e vëzhgimit të zgjedhjeve mund të "
-"kontekstualizohen dhe të kuptohen"
+"           <br> 3. Sigurimi i pasqyrimit tërësor mbi gjetjet e vëzhgimit të zgjedhjeve apo zhvillimeve zgjedhore, të cilat mund të studiohen dhe kuptohen."
 
 #: templates/base.html:140 templates/base.html:162
 msgid "Close"
@@ -100,8 +90,7 @@ msgid ""
 "The Albania Election Data platform utilizes official election data published "
 "the "
 msgstr ""
-"Platforma e Dhënat Zgjedhjeve Shqipëri përdor të dhënat zyrtare të "
-"zgjedhjeve të botuara nga "
+"Platforma e të Dhënave mbi Zgjedhjet në Shqipëri ofron të dhëna zyrtare mbi zgjedhjet, botuar nga "
 
 #: templates/base.html:156
 msgid "Central Election Commission"
@@ -112,8 +101,7 @@ msgid ""
 "Platform data and maps are available for download by the Coalition of "
 "Domestic Observers and"
 msgstr ""
-"Të dhënat dhe hartat e platformës janë në dispozicion për shkarkim nga "
-"Koalicioni i Vëzhguesve Vendorë dhe"
+"Të dhënat dhe hartat e platformës mund t’i gjeni nëpërmjet Koalicionit të Vëzhguesve Vendorë dhe "
 
 #: templates/base.html:157
 msgid "via"
@@ -121,11 +109,11 @@ msgstr "nga"
 
 #: templates/base.html:158
 msgid "The data is licensed under "
-msgstr "Të dhënat janë të licencuara nën "
+msgstr "Të dhënat u licencuan "
 
 #: templates/base.html:159
 msgid "The map layers are available via "
-msgstr "Shtresat e hartë janë në dispozicion nga "
+msgstr "Shtresat e hartës i gjeni në "
 
 #: templates/base.html:189
 msgid "Road"
@@ -133,7 +121,7 @@ msgstr "Rrugë"
 
 #: templates/base.html:190
 msgid "Terrain"
-msgstr "Tokë"
+msgstr "Territore"
 
 #: templates/base.html:191
 msgid "Satellite"
@@ -141,11 +129,11 @@ msgstr "Satelit"
 
 #: templates/results.html:65
 msgid "Total Votes"
-msgstr "Votimi total"
+msgstr "Votimi tërësor"
 
 #: templates/results.html:66
 msgid "Total Seats"
-msgstr "Mandatet totale"
+msgstr "Të gjitha mandatet"
 
 #: templates/results.html:67
 msgid "Vote Percentage"
@@ -153,7 +141,7 @@ msgstr "Përqindja e votimit"
 
 #: templates/results.html:68
 msgid "Votes Received"
-msgstr "Vota e marrë"
+msgstr "Votat e fituara"
 
 #: templates/results.html:69
 msgid "Seats Won"
@@ -161,7 +149,7 @@ msgstr "Mandatet"
 
 #: templates/results.html:70 templates/turnout.html:50
 msgid "Difference"
-msgstr "Diferencë"
+msgstr "Ndryshimi"
 
 #: templates/results.html:71
 msgid "Other Votes"
@@ -197,7 +185,7 @@ msgstr "Pjesëmarrja"
 
 #: templates/turnout.html:44
 msgid "Registered Female Voters"
-msgstr "Votuesit femra regjistruar"
+msgstr "Votuesit femra të regjistruara"
 
 #: templates/turnout.html:45
 msgid "Female Voter Turnout"
@@ -221,7 +209,7 @@ msgstr "Përqindja e pjesëmarrjes së meshkujve"
 
 #: templates/turnout.html:51
 msgid "Ballots Cast"
-msgstr "Votimet e hedhura"
+msgstr "Të gjitha votat"
 
 #: templates/turnout.html:52
 msgid "Invalid Votes"
