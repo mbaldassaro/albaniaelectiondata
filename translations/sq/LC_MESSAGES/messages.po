@@ -40,7 +40,7 @@ msgstr "Zgjedhjet"
 
 #: templates/base.html:104 templates/base.html:125
 msgid "About"
-msgstr "Iniciativë"
+msgstr "Mbi Iniciativën"
 
 #: templates/base.html:105 templates/base.html:153
 msgid "Data"
@@ -161,7 +161,7 @@ msgstr "Mandate të fituara"
 
 #: templates/results.html:73
 msgid "Other Percentage"
-msgstr "Përqindja e votave"
+msgstr "Përqindja për parti të tjera"
 
 #: templates/results.html:90 templates/turnout.html:63
 msgid "Mayor"

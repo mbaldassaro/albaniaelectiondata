@@ -57,20 +57,20 @@ infoDiff.onAdd = function(map) {
   };
 
 infoDiff.update = function(props) {
-    this._div.innerHTML = (props ? '<h3>' + props.name + '</h3>'
-    + '<h4>' + totalVotes + ': ' + props.totalVotes + '</h4>'
-    + '<h4>' + totalSeats + ': ' + props.totalSeats + '</h4>'
-    + '<h3>' + props.partyASE + '</h3>'
-    + '<h4>' + recVotes + ': ' + props.votesASE + '</h4>'
-    + '<h4>' + pctVote + ': ' + props.ashePCT + '%</h4>'
-    + '<h4>' + wonSeats + ': ' + props.seatsASE + '</h4>'
-    + '<h3>' + props.partyAPMI + '</h3>'
-    + '<h4>' + recVotes + ': ' + props.votesAPMI + '</h4>'
-    + '<h4>' + pctVote + ': ' + props.apmiPCT + '%</h4>'
-    + '<h4>' + wonSeats + ': ' + props.seatsAPMI + '</h4><br>'
-    + '<h4>' + diff + ': ' + props.percent + '%</h4><br>'
-    + '<h4>' + otherVotes + ': ' + props.votesOther + '</h4>'
-    + '<h4>' + pctVote + ': ' + props.otherPCT + '%</h4>'
+    this._div.innerHTML = (props ? '<h4>' + props.name + '</h4>'
+    + '<h5>' + totalVotes + ': ' + props.totalVotes + '</h5>'
+    + '<h5>' + totalSeats + ': ' + props.totalSeats + '</h5><br>'
+    + '<h4>' + props.partyASE + '</h4>'
+    + '<h5>' + recVotes + ': ' + props.votesASE + '</h5>'
+    + '<h5>' + pctVote + ': ' + props.ashePCT + '%</h5>'
+    + '<h5>' + wonSeats + ': ' + props.seatsASE + '</h5>'
+    + '<h4>' + props.partyAPMI + '</h4>'
+    + '<h5>' + recVotes + ': ' + props.votesAPMI + '</h5>'
+    + '<h5>' + pctVote + ': ' + props.apmiPCT + '%</h5>'
+    + '<h5>' + wonSeats + ': ' + props.seatsAPMI + '</h5><br>'
+    + '<h5>' + diff + ': ' + props.percent + '%</h5><br>'
+    + '<h5>' + otherVotes + ': ' + props.votesOther + '</h5>'
+    + '<h5>' + pctVote + ': ' + props.otherPCT + '%</h5>'
     + '<br><br><br><br><br>' + '' : '')
   };
 
