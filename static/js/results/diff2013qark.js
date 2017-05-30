@@ -63,7 +63,7 @@ infoDiff.update = function(props) {
     + '<h4>' + props.partyASE + '</h4>'
     + '<h5>' + recVotes + ': ' + props.votesASE + '</h5>'
     + '<h5>' + pctVote + ': ' + props.ashePCT + '%</h5>'
-    + '<h5>' + wonSeats + ': ' + props.seatsASE + '</h5>'
+    + '<h5>' + wonSeats + ': ' + props.seatsASE + '</h5><br>'
     + '<h4>' + props.partyAPMI + '</h4>'
     + '<h5>' + recVotes + ': ' + props.votesAPMI + '</h5>'
     + '<h5>' + pctVote + ': ' + props.apmiPCT + '%</h5>'
