@@ -1,4 +1,4 @@
-var legendPR2013bas = L.control({position: 'topright'});
+var legendPR2013bas = L.control({position: 'bottomright'});
 var infoPR2013bas = L.control({position: 'bottomright'});
 
 //PR 2013 ////////////////////////////////////////////
@@ -56,15 +56,15 @@ infoPR2013bas.onAdd = function(map) {
   };
 
 infoPR2013bas.update = function(props) {
-  this._div.innerHTML = (props ? '<h3>' + props.bashkia + '</h3>'
-  + '<h3>' + props.party + '</h3>'
-  + '<h4>' + totalVotes + ': ' + props.validVotes + '</h4>'
-  + '<h4>' + recVotes + ': ' + props.votes + '</h4>'
-  + '<h4>' + pctVote + ': ' + props.percent + '%</h4>'
-  + '<br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
+  this._div.innerHTML = (props ? '<h4>' + props.bashkia + '</h4>'
+  + '<h4>' + props.party + '</h4>'
+  + '<h5>' + totalVotes + ': ' + props.validVotes + '</h5>'
+  + '<h5>' + recVotes + ': ' + props.votes + '</h5>'
+  + '<h5>' + pctVote + ': ' + props.percent + '%</h5>'
+  + '' : '')
 };
 
-infoPR2013bas.addTo(map);
+//infoPR2013bas.addTo(map);
 
 
 //ALL  /////////////

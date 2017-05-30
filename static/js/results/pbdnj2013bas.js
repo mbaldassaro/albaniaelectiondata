@@ -1,5 +1,5 @@
 //PBDNJ 2013 ////////////////////////////////////////////
-var legendPBDNJ2013bas = L.control({position: 'topright'});
+var legendPBDNJ2013bas = L.control({position: 'bottomright'});
 var infoPBDNJ2013bas = L.control({position: 'bottomright'});
 
 function pbdnj2013basstyle(feature) {
@@ -57,15 +57,15 @@ infoPBDNJ2013bas.onAdd = function(map) {
   };
 
 infoPBDNJ2013bas.update = function(props) {
-  this._div.innerHTML = (props ? '<h3>' + props.bashkia + '</h3>'
-  + '<h3>' + props.party + '</h3>'
-  + '<h4>' + totalVotes + ': ' + props.validVotes + '</h4>'
-  + '<h4>' + recVotes + ': ' + props.votes + '</h4>'
-  + '<h4>' + pctVote + ': ' + props.percent + '%</h4>'
-  + '<br><br><br><br><br><br><br><br><br>' + '' : '')
+  this._div.innerHTML = (props ? '<h4>' + props.bashkia + '</h4>'
+  + '<h4>' + props.party + '</h4>'
+  + '<h5>' + totalVotes + ': ' + props.validVotes + '</h5>'
+  + '<h5>' + recVotes + ': ' + props.votes + '</h5>'
+  + '<h5>' + pctVote + ': ' + props.percent + '%</h5>'
+  + '' : '')
 };
 
-infoPBDNJ2013bas.addTo(map);
+//infoPBDNJ2013bas.addTo(map);
 
 //ALL  /////////////
 function zoomToFeature(e) {

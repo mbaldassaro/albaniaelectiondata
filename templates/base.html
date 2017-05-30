@@ -29,7 +29,7 @@
    }
 
    .navbar-default .navbar-nav>li>a {
-     font-size: 13px;
+     font-size: .9em;
    }
 
    #brand {
@@ -43,7 +43,7 @@
 
 #AL {
      position: absolute;
-     right: 45px;
+     right: 3em;
      width: 2em;
      height: 1.5em;
      margin-top: 1em;
@@ -51,7 +51,7 @@
 
 #EN {
   position: absolute;
-  right: 15px;
+  right: 1em;
   width: 2em;
   height: 1.5em;
   margin-top: 1em;
@@ -61,7 +61,7 @@
      width: 10.5em;
      height: 3.5em;
      position: absolute;
-     right: 220px;
+     right: 15em;
      /*margin-left: 1em;*/
    }
 
@@ -69,13 +69,9 @@
        width: 8em;
        height: 2em;
        position: absolute;
-       right: 100px;
+       right: 7em;
        z-index: 5;
        margin-top: .8em;
-   }
-
-   .logoholder {
-     /*margin-left: 1.5em;*/
    }
 
    #map {
@@ -108,30 +104,43 @@
 
    form {
      font-family: 'Lato', sans-serif;
-     font-size: .8em;
+     font-size: 1em;
      font-weight: 200;
+     background: rgba(255,255,255,0.8);
    }
 
    div.info.legend.leaflet-control {
-     margin-right: 2em!important;
+     /*margin-right: 2em!important;*/
    }
 
    .info {
-     font-family: 'Lato', sans-serif;
-     color: rgba(0,0,0, 0.7);
-     padding-right: 2em;
-     font-weight: lighter;
-   }
+    /*padding: 6px 8px;*/
+    font-family: 'Lato', Helvetica, sans-serif;
+    color: #555;
+    background: white;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    padding-right: 1em;
+    padding-left: 1em;
+    border-radius: 5px;
+    border: 2px solid rgba(0,0,0,0.2)!important;
+    background-clip: padding-box!important;
+}
+  /*.info h4 {
+    margin: 0 0 5px;
+    color: #777;
+}*/
 
    .legend {
      text-align: left;
      line-height: 18px;
      color: #555;
-     margin-top: 40em!important;
-     background-color: #ffffff;
-     padding-bottom: 8px;
-     padding-left: 8px;
-     padding-right: 8px;
+     /*margin-top: 40em!important;*/
+     background: rgba(255,255,255,0.8);
+     /*background-color: #ffffff;*/
+     padding-bottom: 1em;
+     padding-left: 1em;
+     padding-right: 1em;
      border-radius: 5px;
      border: 2px solid rgba(0,0,0,0.2)!important;
      background-clip: padding-box!important;
@@ -141,7 +150,7 @@
     width: 18px;
     height: 18px;
     float: left;
-    margin-right: 8px;
+    margin-right: 1em;
     opacity: 0.7;
   }
 
@@ -198,10 +207,9 @@
           <h4 class="modal-title">{{ _('About') }}</h4>
         </div>
         <div class="modal-body">
-          {{ _('Albania Election Data is an initiative to collect, open, visualize and analyze election data on an ongoing basis.
-          The initiative is managed by the <a href="http://www.zgjedhje.al/" target="_blank">Coalition of Domestic Observers (CDO)</a> with support from <a href="http://democracyinternational.com" target="_blank">Democracy International (DI)</a>.
+          {{ _('Albania Election Data is an initiative to collect, open, visualize and analyze election data on an ongoing basis. The initiative is managed by the ')}}<a href="http://www.zgjedhje.al/" target="_blank">{{ _('Coalition of Domestic Observers (CDO) ')}}</a>{{ _('with support from ')}}<a href="https://www.democracyinternational.com" target="_blank">Democracy International (DI)</a>.
           <br>
-          <br>The goal of Albania Election Data is to strengthen Albanian democracy through greater transparency and accountability. CDO and DI aim to achieve this goal by:
+          <br>{{ _('The goal of Albania Election Data is to strengthen Albanian democracy through greater transparency and accountability. CDO and DI aim to achieve this goal by:
           <br>
           <br>1. Creating a centralized hub of election-related data and maps that facilitate evidence-based, data-driven decision-making to improve the electoral process
           <br>
@@ -241,7 +249,6 @@
 
 <!--map-->
 <div class="jumbotron" id="map"></div>
-<div id="legend">Hi</div>
 <script>
 //var cartoLink = '<a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>';
 //var cartoUrl = 'http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png';

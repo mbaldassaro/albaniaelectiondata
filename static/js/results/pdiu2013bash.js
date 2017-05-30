@@ -1,4 +1,4 @@
-var legendPDIU2013bas = L.control({position: 'topright'});
+var legendPDIU2013bas = L.control({position: 'bottomright'});
 var infoPDIU2013bas = L.control({position: 'bottomright'});
 
 //PDIU 2013 ////////////////////////////////////////////
@@ -56,15 +56,15 @@ infoPDIU2013bas.onAdd = function(map) {
   };
 
 infoPDIU2013bas.update = function(props) {
-  this._div.innerHTML = (props ? '<h3>' + props.bashkia + '</h3>'
-  + '<h3>' + props.party + '</h3>'
-  + '<h4>' + totalVotes + ': ' + props.validVotes + '</h4>'
-  + '<h4>' + recVotes + ': ' + props.votes + '</h4>'
-  + '<h4>' + pctVote + ': ' + props.percent + '%</h4>'
-  + '<br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
+  this._div.innerHTML = (props ? '<h4>' + props.bashkia + '</h4>'
+  + '<h4>' + props.party + '</h4>'
+  + '<h5>' + totalVotes + ': ' + props.validVotes + '</h5>'
+  + '<h5>' + recVotes + ': ' + props.votes + '</h5>'
+  + '<h5>' + pctVote + ': ' + props.percent + '%</h5>'
+  + '' : '')
 };
 
-infoPDIU2013bas.addTo(map);
+//infoPDIU2013bas.addTo(map);
 //ALL  /////////////
 function zoomToFeature(e) {
     map.fitBounds(e.target.getBounds());

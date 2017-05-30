@@ -1,4 +1,4 @@
-var legendMVT2015bas = L.control({position: 'topright'});
+var legendMVT2015bas = L.control({position: 'bottomright'});
 var infoMVT = L.control({position: 'bottomright'});
 
 //BAS MALE VT 2015 /////////////////////////////////////
@@ -56,13 +56,14 @@ infoMVT.onAdd = function(map) {
   };
 
 infoMVT.update = function(props) {
-    this._div.innerHTML = (props ? '<h3>' + props.bashkia + '</h3>'
-    + '<h4>' + voterRegM + ': ' + props.registeredM + '</h4>'
-    + '<h4>'+ voterTotM + ': ' + props.turnoutM + '</h4>'
-    + '<h4>' + voterPctM + ': ' + props.percent + '%</h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
+    this._div.innerHTML = (props ? '<h4>' + props.bashkia + '</h4>'
+    + '<h5>' + voterRegM + ': ' + props.registeredM + '</h5>'
+    + '<h5>'+ voterTotM + ': ' + props.turnoutM + '</h5>'
+    + '<h5>' + voterPctM + ': ' + props.percent + '%</h5>'
+    + '' : '')
   };
 
-infoMVT.addTo(map);
+//infoMVT.addTo(map);
 
 
 //ALL  /////////////

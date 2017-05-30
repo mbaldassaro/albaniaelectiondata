@@ -1,4 +1,4 @@
-var legendVT2013qark = L.control({position: 'topright'});
+var legendVT2013qark = L.control({position: 'bottomright'});
 var infoQarkVT = L.control({position: 'bottomright'});
 
 //QARK VT 2013 /////////////////////////////////////
@@ -56,14 +56,14 @@ infoQarkVT.onAdd = function(map) {
   };
 
 infoQarkVT.update = function(props) {
-    this._div.innerHTML = (props ? '<h3>' + props.name + '</h3>'
-      + '<h4>' + voterReg + ': ' + props.registeredVoters + '</h4>'
-      + '<h4>' + voterTot + ': ' + props.totalVoters + '</h4>'
-      + '<h4>' + turnout + ': ' + props.percent + '%</h4>'
-    + '<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
+    this._div.innerHTML = (props ? '<h4>' + props.name + '</h4>'
+      + '<h5>' + voterReg + ': ' + props.registeredVoters + '</h5>'
+      + '<h5>' + voterTot + ': ' + props.totalVoters + '</h5>'
+      + '<h5>' + turnout + ': ' + props.percent + '%</h5>'
+      + '' : '')
   };
 
-infoQarkVT.addTo(map);
+//infoQarkVT.addTo(map);
 
 //ALL  /////////////
 function zoomToFeature(e) {

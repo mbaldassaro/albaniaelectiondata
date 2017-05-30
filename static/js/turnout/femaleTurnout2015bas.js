@@ -1,4 +1,4 @@
-var legendFVT2015bas = L.control({postion: 'topright'});
+var legendFVT2015bas = L.control({position: 'bottomright'});
 var infoFVT = L.control({position: 'bottomright'});
 
 
@@ -58,13 +58,14 @@ infoFVT.onAdd = function(map) {
   };
 
 infoFVT.update = function(props) {
-    this._div.innerHTML = (props ? '<h3>' + props.bashkia + '</h3>'
-    + '<h4>' + voterRegF + ': ' + props.registeredF + '</h4>'
-    + '<h4>' + voterTotF + ': ' + props.turnoutF + '</h4>'
-    + '<h4>' + voterPctF + ': ' + props.percent + '%</h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
+    this._div.innerHTML = (props ? '<h4>' + props.bashkia + '</h4>'
+    + '<h5>' + voterRegF + ': ' + props.registeredF + '</h5>'
+    + '<h5>' + voterTotF + ': ' + props.turnoutF + '</h5>'
+    + '<h5>' + voterPctF + ': ' + props.percent + '%</h5>'
+    + '' : '')
   };
 
-infoFVT.addTo(map);
+//infoFVT.addTo(map);
 
 //ALL  /////////////
 function zoomToFeature(e) {

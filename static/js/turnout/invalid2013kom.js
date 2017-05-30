@@ -1,4 +1,4 @@
-var legendINV2013kom = L.control({position: 'topright'});
+var legendINV2013kom = L.control({position: 'bottomright'});
 var infoKomINV = L.control({position: 'bottomright'});
 
 //KOM INV 2013 /////////////////////////////////////
@@ -59,14 +59,14 @@ infoKomINV.onAdd = function(map) {
   };
 
 infoKomINV.update = function(props) {
-    this._div.innerHTML = (props ? '<h3>' + props.komune + '</h3>'
-    + '<h4>' + castBallot + ': ' + props.ballotsCast + '</h4>'
-    + '<h4>' + votesInv + ': ' + props.invalidVotes + '</h4>'
-    + '<h4>' + pctInv + ': ' + props.percent + '%</h4>'
-    + '<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
+    this._div.innerHTML = (props ? '<h4>' + props.komune + '</h4>'
+    + '<h5>' + castBallot + ': ' + props.ballotsCast + '</h5>'
+    + '<h5>' + votesInv + ': ' + props.invalidVotes + '</h5>'
+    + '<h5>' + pctInv + ': ' + props.percent + '%</h5>'
+    + '' : '')
   };
 
-infoKomINV.addTo(map);
+//infoKomINV.addTo(map);
 
 //ALL  /////////////
 function zoomToFeature(e) {

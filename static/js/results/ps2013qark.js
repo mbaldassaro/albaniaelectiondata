@@ -1,4 +1,4 @@
-var legendPS2013qark = L.control({position: 'topright'});
+var legendPS2013qark = L.control({position: 'bottomright'});
 var infoPS = L.control({position: 'bottomright'});
 
 //PS 2013 ////////////////////////////////////////////
@@ -55,17 +55,17 @@ infoPS.onAdd = function(map) {
   };
 
 infoPS.update = function(props) {
-    this._div.innerHTML = (props ? '<h3>' + props.name + '</h3>'
-    + '<h4>' + totalVotes + ': ' + props.totalVotes + '</h4>'
-    + '<h4>' + totalSeats + ': ' + props.totalSeats + '</h4>'
-    + '<h3>' + props.party + '</h3>'
-    + '<h4>' + pctVote + ': ' + props.percent + '%</h4>'
-    + '<h4>' + recVotes + ': ' + props.votes + '</h4>'
-    + '<h4>' + wonSeats + ': ' + props.seats + '</h4>'
-    + '<br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '');
+    this._div.innerHTML = (props ? '<h4>' + props.name + '</h4>'
+    + '<h5>' + totalVotes + ': ' + props.totalVotes + '</h5>'
+    + '<h5>' + totalSeats + ': ' + props.totalSeats + '</h5>'
+    + '<h4>' + props.party + '</h4>'
+    + '<h5>' + pctVote + ': ' + props.percent + '%</h5>'
+    + '<h5>' + recVotes + ': ' + props.votes + '</h5>'
+    + '<h5>' + wonSeats + ': ' + props.seats + '</h5>'
+    + '' : '');
   };
 
-infoPS.addTo(map);
+//infoPS.addTo(map);
 
 //ALL  /////////////
 function zoomToFeature(e) {

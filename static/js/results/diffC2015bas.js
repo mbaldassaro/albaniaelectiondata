@@ -1,4 +1,4 @@
-var legendDiff2015C = L.control({position: 'topright'});
+var legendDiff2015C = L.control({position: 'bottomright'});
 var infoDiffC15 = L.control({position: 'bottomright'});
 
 //DIFF 2015 Council ///////////////
@@ -58,26 +58,25 @@ infoDiffC15.onAdd = function(map) {
   };
 
 infoDiffC15.update = function(props) {
-  this._div.innerHTML = (props ? '<h3>' + props.bashkia + '</h3>'
+  this._div.innerHTML = (props ? '<h4>' + props.bashkia + '</h4>'
   //+ '<h4>Registered Voters: ' + props.registeredVoters + '</h4>'
-  + '<h4>' + totalVotes + ': ' + props.totalCouncil + '</h4>'
-  + '<h3>' + props.partyASE + '</h3>'
-  + '<h4>' + recVotes + ': ' + props.aseCouncil + '</h4>'
-  + '<h4>' + pctVote + ': ' + props.pctASE + '%</h4>'
-  + '<h4>' + wonSeats + ': ' + props.aseSeats + '</h4>'
-  + '<h3>' + props.partyAPPD + '</h3>'
-  + '<h4>' + recVotes + ': ' + props.appdCouncil + '</h4>'
-  + '<h4>' + pctVote + ': ' + props.pctAPPD + '%</h4>'
-  + '<h4>' + wonSeats + ': ' + props.appdSeats + '</h4><br>'
-  + '<h4>' + diff + ': ' + props.percent + '%</h4><br>'
-  + '<h4>' + otherVotes + ': ' + props.otherCouncil + '</h4>'
+  + '<h5>' + totalVotes + ': ' + props.totalCouncil + '</h5>'
+  + '<h4>' + props.partyASE + '</h4>'
+  + '<h5>' + recVotes + ': ' + props.aseCouncil + '</h5>'
+  + '<h5>' + pctVote + ': ' + props.pctASE + '%</h5>'
+  + '<h5>' + wonSeats + ': ' + props.aseSeats + '</h5>'
+  + '<h4>' + props.partyAPPD + '</h4>'
+  + '<h5>' + recVotes + ': ' + props.appdCouncil + '</h5>'
+  + '<h5>' + pctVote + ': ' + props.pctAPPD + '%</h5>'
+  + '<h5>' + wonSeats + ': ' + props.appdSeats + '</h5>'
+  + '<h5>' + diff + ': ' + props.percent + '%</h5>'
+  + '<h5>' + otherVotes + ': ' + props.otherCouncil + '</h5>'
   //+ '<h4>Other Percentage: ' + props.otherPCT + '%</h4>'
-  + '<h4>' + otherSeats + ': ' + props.otherSeats + '</h4>'
-  + '<br><br><br><br><br><br>'
+  + '<h5>' + otherSeats + ': ' + props.otherSeats + '</h5>'
   + '' : '')
 };
 
-infoDiffC15.addTo(map);
+//infoDiffC15.addTo(map);
 // END 2015 Diff Council
 
 //ALL  /////////////

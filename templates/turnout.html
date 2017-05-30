@@ -67,67 +67,102 @@ var overlayMaps = {
 };
 
 map.addLayer(turnout2013Komgeojson);
-legendVT2013kom.addTo(map);
-L.control.layers(baseLayers, null, {collapsed: true, position: 'topleft'}).addTo(map);
+L.control.layers(baseLayers, null, {collapsed: true, position: 'topright'}).addTo(map);
 L.control.layers(overlayMaps, null, {collapsed:false, position: 'bottomleft'}).addTo(map);
+legendVT2013kom.addTo(map);
+infoKomVT.addTo(map);
 
 var currentLegend = legendVT2013kom;
+var currentInfo = infoKomVT;
 
 map.on('baselayerchange', function(eventLayer) {
   if(eventLayer.name === '2013 {{gettext('Turnout')}} - Komuna') {
     map.removeControl(currentLegend);
     currentLegend = legendVT2013kom;
     legendVT2013kom.addTo(map);
+    map.removeControl(currentInfo);
+    currentInfo = infoKomVT;
+    infoKomVT.addTo(map);
   }
   else if(eventLayer.name === '2015 {{gettext('Turnout')}} - Bashkia ({{gettext('Female')}})') {
     map.removeControl(currentLegend);
     currentLegend = legendFVT2015bas;
     legendFVT2015bas.addTo(map);
+    map.removeControl(currentInfo);
+    currentInfo = infoFVT;
+    infoFVT.addTo(map);
   }
   else if(eventLayer.name === '2015 {{gettext('Turnout')}} - Bashkia ({{gettext('Male')}})') {
     map.removeControl(currentLegend);
     currentLegend = legendMVT2015bas;
     legendMVT2015bas.addTo(map);
+    map.removeControl(currentInfo);
+    currentInfo = infoMVT;
+    infoMVT.addTo(map);
   }
   else if(eventLayer.name === '2015 {{gettext('Turnout')}} - Bashkia (M vs F)') {
     map.removeControl(currentLegend);
     currentLegend = legendMVF2015bas;
     legendMVF2015bas.addTo(map);
+    map.removeControl(currentInfo);
+    currentInfo = infoMVF;
+    infoMVF.addTo(map);
   }
   else if(eventLayer.name === '2013 {{gettext('Turnout')}} - Bashkia') {
     map.removeControl(currentLegend);
     currentLegend = legendVT2013bas;
     legendVT2013bas.addTo(map);
+    map.removeControl(currentInfo);
+    currentInfo = infoBasVT;
+    infoBasVT.addTo(map);
   }
   else if(eventLayer.name === '2013 {{gettext('Turnout')}} - Qarku') {
     map.removeControl(currentLegend);
     currentLegend = legendVT2013qark;
     legendVT2013qark.addTo(map);
+    map.removeControl(currentInfo);
+    currentInfo = infoQarkVT;
+    infoQarkVT.addTo(map);
   }
   else if(eventLayer.name === '2015 {{gettext('Turnout')}} - Bashkia') {
     map.removeControl(currentLegend);
     currentLegend = legendVT2015bas;
     legendVT2015bas.addTo(map);
+    map.removeControl(currentInfo);
+    currentInfo = infoBasVT15;
+    infoBasVT15.addTo(map);
   }
   else if(eventLayer.name === '2015 {{gettext('Invalid')}} - Bashkia ({{gettext('Mayor')}})') {
     map.removeControl(currentLegend);
     currentLegend = legendMINV2015bas;
     legendMINV2015bas.addTo(map);
+    map.removeControl(currentInfo);
+    currentInfo = infoBasMINV;
+    infoBasMINV.addTo(map);
   }
   else if(eventLayer.name === '2015 {{gettext('Invalid')}} - Bashkia ({{gettext('Council')}})') {
     map.removeControl(currentLegend);
     currentLegend = legendCINV2015bas;
     legendCINV2015bas.addTo(map);
+    map.removeControl(currentInfo);
+    currentInfo = infoBasCINV;
+    infoBasCINV.addTo(map);
   }
   else if(eventLayer.name === '2013 {{gettext('Invalid')}} - Bashkia') {
     map.removeControl(currentLegend);
     currentLegend = legendINV2013bas;
     legendINV2013bas.addTo(map);
+    map.removeControl(currentInfo);
+    currentInfo = infoBasINV;
+    infoBasINV.addTo(map);
   }
   else if(eventLayer.name === '2013 {{gettext('Invalid')}} - Komuna') {
     map.removeControl(currentLegend);
     currentLegend = legendINV2013kom;
     legendINV2013kom.addTo(map);
+    map.removeControl(currentInfo);
+    currentInfo = infoKomINV;
+    infoKomINV.addTo(map);
   }
 });
 

@@ -1,4 +1,4 @@
-var legendVT2015bas = L.control({position: 'topright'});
+var legendVT2015bas = L.control({position: 'bottomright'});
 var infoBasVT15 = L.control({position: 'bottomright'});
 
 //BAS VT 2015 /////////////////////////////////////
@@ -56,14 +56,14 @@ infoBasVT15.onAdd = function(map) {
   };
 
 infoBasVT15.update = function(props) {
-    this._div.innerHTML = (props ? '<h3>' + props.bashkia + '</h3>'
-    + '<h4>' + voterReg + ': ' + props.registeredVoters + '</h4>'
-    + '<h4>' + voterTot + ': ' + props.totalVoters + '</h4>'
-    + '<h4>' + turnout + ': ' + props.percent + '%</h4>'
-    + '<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
+    this._div.innerHTML = (props ? '<h4>' + props.bashkia + '</h4>'
+    + '<h5>' + voterReg + ': ' + props.registeredVoters + '</h5>'
+    + '<h5>' + voterTot + ': ' + props.totalVoters + '</h5>'
+    + '<h5>' + turnout + ': ' + props.percent + '%</h5>'
+    + '' : '')
   };
 
-infoBasVT15.addTo(map);
+//infoBasVT15.addTo(map);
 
 //ALL  /////////////
 function zoomToFeature(e) {

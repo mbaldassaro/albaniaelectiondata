@@ -1,4 +1,4 @@
-var legendDiff2015M = L.control({position: 'topright'});
+var legendDiff2015M = L.control({position: 'bottomright'});
 var infoDiffM15 = L.control({position: 'bottomright'});
 
 //DIFF 2015 Mayor ///////////////
@@ -61,22 +61,22 @@ infoDiffM15.onAdd = function(map) {
   };
 
 infoDiffM15.update = function(props) {
-    this._div.innerHTML = (props ? '<h3>' + props.bashkia + '</h3>'
-    //+ '<h4>Registered Voters: ' + props.registeredVoters + '</h4>'
-    + '<h4>' + totalVotes + ': ' + props.totalMayor + '</h4><br>'
-    + '<h3>' + props.partyASE + '</h3>'
-    + '<h4>' + recVotes + ': ' + props.aseMayor + '</h4>'
-    + '<h4>' + pctVote + ': ' + props.asePCT + '%</h4><br>'
-    + '<h3>' + props.partyAPPD + '</h3>'
-    + '<h4>' + recVotes + ': ' + props.appdMayor + '</h4>'
-    + '<h4>' + pctVote + ': ' + props.appdPCT + '%</h4><br>'
-    + '<h4>' + diff + ': ' + props.percent + '%</h4><br>'
-    + '<h4>' + otherVotes + ': ' + props.otherMayor + '</h4>'
-    + '<h4>' + otherPct + ': ' + props.otherPCT + '%</h4>'
-    + '<br><br><br><br><br><br><br>' + '' : '')
+    this._div.innerHTML = (props ? '<h4>' + props.bashkia + '</h4>'
+    //+ '<h5>Registered Voters: ' + props.registeredVoters + '</h5>'
+    + '<h5>' + totalVotes + ': ' + props.totalMayor + '</h5>'
+    + '<h4>' + props.partyASE + '</h4>'
+    + '<h5>' + recVotes + ': ' + props.aseMayor + '</h5>'
+    + '<h5>' + pctVote + ': ' + props.asePCT + '%</h5>'
+    + '<h4>' + props.partyAPPD + '</h4>'
+    + '<h5>' + recVotes + ': ' + props.appdMayor + '</h5>'
+    + '<h5>' + pctVote + ': ' + props.appdPCT + '%</h5>'
+    + '<h5>' + diff + ': ' + props.percent + '%</h5>'
+    + '<h5>' + otherVotes + ': ' + props.otherMayor + '</h5>'
+    + '<h5>' + otherPct + ': ' + props.otherPCT + '%</h5>'
+    + '' : '')
   };
 
-infoDiffM15.addTo(map);
+//infoDiffM15.addTo(map);
 // END 2015 Diff Mayor
 
 //ALL  /////////////

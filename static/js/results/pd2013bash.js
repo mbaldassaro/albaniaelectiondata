@@ -1,4 +1,4 @@
-var legendPD2013bas = L.control({position: 'topright'});
+var legendPD2013bas = L.control({position: 'bottomright'});
 var infoBasPD = L.control({position: 'bottomright'});
 
 //PD BAS 2013 ////////////////////////////////////////////
@@ -58,15 +58,15 @@ infoBasPD.onAdd = function(map) {
   };
 
 infoBasPD.update = function(props) {
-    this._div.innerHTML = (props ? '<h3>' + props.bashkia + '</h3>'
-    + '<h3>' + props.party + '</h3>'
-    + '<h4>' + totalVotes + ': ' + props.totalVotes + '</h4>'
-    + '<h4>' + recVotes + ': ' + props.votes + '</h4>'
-    + '<h4>' + pctVote + ': ' + props.percent + '%</h4>'
-    + '<br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
+    this._div.innerHTML = (props ? '<h4>' + props.bashkia + '</h4>'
+    + '<h4>' + props.party + '</h4>'
+    + '<h5>' + totalVotes + ': ' + props.totalVotes + '</h5>'
+    + '<h5>' + recVotes + ': ' + props.votes + '</h5>'
+    + '<h5>' + pctVote + ': ' + props.percent + '%</h5>'
+    + '' : '')
   };
 
-infoBasPD.addTo(map);
+//infoBasPD.addTo(map);
 
 //PD BAS
 var pd2013basgeojson = L.geoJson(pd2013bas, {

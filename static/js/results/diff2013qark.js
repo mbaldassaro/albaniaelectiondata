@@ -1,4 +1,5 @@
-var legendDiff2013qark = L.control({position: 'topright'});
+//var legendDiff2013qark = L.control({position: 'topright'});
+var legendDiff2013qark = L.control({position: 'bottomright'});
 var infoDiff = L.control({position: 'bottomright'});
 
 //qark diff 2013 //////////////
@@ -59,22 +60,22 @@ infoDiff.onAdd = function(map) {
 infoDiff.update = function(props) {
     this._div.innerHTML = (props ? '<h4>' + props.name + '</h4>'
     + '<h5>' + totalVotes + ': ' + props.totalVotes + '</h5>'
-    + '<h5>' + totalSeats + ': ' + props.totalSeats + '</h5><br>'
+    + '<h5>' + totalSeats + ': ' + props.totalSeats + '</h5>'
     + '<h4>' + props.partyASE + '</h4>'
     + '<h5>' + recVotes + ': ' + props.votesASE + '</h5>'
     + '<h5>' + pctVote + ': ' + props.ashePCT + '%</h5>'
-    + '<h5>' + wonSeats + ': ' + props.seatsASE + '</h5><br>'
+    + '<h5>' + wonSeats + ': ' + props.seatsASE + '</h5>'
     + '<h4>' + props.partyAPMI + '</h4>'
     + '<h5>' + recVotes + ': ' + props.votesAPMI + '</h5>'
     + '<h5>' + pctVote + ': ' + props.apmiPCT + '%</h5>'
-    + '<h5>' + wonSeats + ': ' + props.seatsAPMI + '</h5><br>'
-    + '<h5>' + diff + ': ' + props.percent + '%</h5><br>'
+    + '<h5>' + wonSeats + ': ' + props.seatsAPMI + '</h5>'
+    + '<h5>' + diff + ': ' + props.percent + '%</h5>'
     + '<h5>' + otherVotes + ': ' + props.votesOther + '</h5>'
     + '<h5>' + pctVote + ': ' + props.otherPCT + '%</h5>'
-    + '<br><br><br><br><br>' + '' : '')
+    + '' : '')
   };
 
-infoDiff.addTo(map);
+//infoDiff.addTo(map);
 
 //ALL  /////////////
 function zoomToFeature(e) {
@@ -98,7 +99,7 @@ function zoomToFeature(e) {
             + (grades[i] ? range[i] + '<br>' : '+'));
         }
       this._div.innerHTML = labels.join('');
-      return this._div;
+      //return this._div;
     };
 
 

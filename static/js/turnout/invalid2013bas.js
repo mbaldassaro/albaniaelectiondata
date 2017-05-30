@@ -1,4 +1,4 @@
-var legendINV2013bas = L.control({position: 'topright'});
+var legendINV2013bas = L.control({position: 'bottomright'});
 var infoBasINV = L.control({position: 'bottomright'});
 
 //BAS INV 2013 /////////////////////////////////////
@@ -57,14 +57,14 @@ infoBasINV.onAdd = function(map) {
   };
 
 infoBasINV.update = function(props) {
-    this._div.innerHTML = (props ? '<h3>' + props.bashkia + '</h3>'
-    + '<h4>' + castBallot + ': ' + props.ballotsCast + '</h4>'
-    + '<h4>' + votesInv + ': ' + props.invalidBallots + '</h4>'
-    + '<h4>' + pctInv + ': ' + props.percent + '%</h4>'
-    + '<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
+    this._div.innerHTML = (props ? '<h4>' + props.bashkia + '</h4>'
+    + '<h5>' + castBallot + ': ' + props.ballotsCast + '</h5>'
+    + '<h5>' + votesInv + ': ' + props.invalidBallots + '</h5>'
+    + '<h5>' + pctInv + ': ' + props.percent + '%</h5>'
+    + '' : '')
   };
 
-infoBasINV.addTo(map);
+//infoBasINV.addTo(map);
 
 //ALL  /////////////
 function zoomToFeature(e) {

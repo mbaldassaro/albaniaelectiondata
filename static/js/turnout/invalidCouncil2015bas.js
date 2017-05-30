@@ -1,4 +1,4 @@
-var legendCINV2015bas = L.control({position: 'topright'});
+var legendCINV2015bas = L.control({position: 'bottomright'});
 var infoBasCINV = L.control({position: 'bottomright'});
 
 //BAS Council INV 2015 /////////////////////////////////////
@@ -60,14 +60,14 @@ infoBasCINV.onAdd = function(map) {
   };
 
 infoBasCINV.update = function(props) {
-    this._div.innerHTML = (props ? '<h3>' + props.bashkia + '</h3>'
-      + '<h4>' + castBallot + ': ' + props.councilTurnout + '</h4>'
-      + '<h4>' + votesInv + ': ' + props.councilInvalid + '</h4>'
-      + '<h4>' + pctInv + ': ' + props.percent + '%</h4>'
-      + '<br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
+    this._div.innerHTML = (props ? '<h4>' + props.bashkia + '</h4>'
+      + '<h5>' + castBallot + ': ' + props.councilTurnout + '</h5>'
+      + '<h5>' + votesInv + ': ' + props.councilInvalid + '</h5>'
+      + '<h5>' + pctInv + ': ' + props.percent + '%</h5>'
+      + '' : '')
   };
 
-infoBasCINV.addTo(map);
+//infoBasCINV.addTo(map);
 //END BAS CINV 2015
 
 //ALL  /////////////

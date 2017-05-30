@@ -1,4 +1,4 @@
-var legendMINV2015bas = L.control({position: 'topright'});
+var legendMINV2015bas = L.control({position: 'bottomright'});
 var infoBasMINV = L.control({position: 'bottomright'});
 
 //BAS Mayor INV 2015 /////////////////////////////////////
@@ -60,14 +60,14 @@ infoBasMINV.onAdd = function(map) {
   };
 
 infoBasMINV.update = function(props) {
-    this._div.innerHTML = (props ? '<h3>' + props.bashkia + '</h3>'
-    + '<h4>' + castBallot + ': ' + props.mayorTurnout + '</h4>'
-    + '<h4>' + votesInv + ': ' + props.mayorInvalid + '</h4>'
-    + '<h4>' + pctInv + ': ' + props.percent + '%</h4>'
-    + '<br><br><br><br><br><br><br><br><br><br><br><br><br><br>' + '' : '')
+    this._div.innerHTML = (props ? '<h4>' + props.bashkia + '</h4>'
+    + '<h5>' + castBallot + ': ' + props.mayorTurnout + '</h5>'
+    + '<h5>' + votesInv + ': ' + props.mayorInvalid + '</h5>'
+    + '<h5>' + pctInv + ': ' + props.percent + '%</h5>'
+    + '' : '')
   };
 
-infoBasMINV.addTo(map);
+//infoBasMINV.addTo(map);
 
 //ALL  /////////////
 function zoomToFeature(e) {

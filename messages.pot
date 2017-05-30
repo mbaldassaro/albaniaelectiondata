@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-05-24 19:53+0200\n"
+"POT-Creation-Date: 2017-05-30 18:28+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,43 +17,56 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.4.0\n"
 
-#: templates/base.html:96
+#: templates/base.html:178
 msgid "Albania Election Data"
 msgstr ""
 
-#: templates/base.html:101
+#: templates/base.html:183
 msgid "Results"
 msgstr ""
 
-#: templates/base.html:102 templates/turnout.html:56 templates/turnout.html:57
+#: templates/base.html:184 templates/turnout.html:56 templates/turnout.html:57
 #: templates/turnout.html:58 templates/turnout.html:59
 #: templates/turnout.html:60 templates/turnout.html:61
-#: templates/turnout.html:62
+#: templates/turnout.html:62 templates/turnout.html:79
+#: templates/turnout.html:87 templates/turnout.html:95
+#: templates/turnout.html:103 templates/turnout.html:111
+#: templates/turnout.html:119 templates/turnout.html:127
 msgid "Turnout"
 msgstr ""
 
-#: templates/base.html:103
+#: templates/base.html:185
 msgid "Election"
 msgstr ""
 
-#: templates/base.html:104 templates/base.html:125
+#: templates/base.html:186 templates/base.html:207
 msgid "About"
 msgstr ""
 
-#: templates/base.html:105 templates/base.html:153
+#: templates/base.html:187 templates/base.html:234
 msgid "Data"
 msgstr ""
 
-#: templates/base.html:128
+#: templates/base.html:210
 msgid ""
-"Albania Election Data is a project to collect, open, visualize and "
-"analyze election data on an ongoing basis.\n"
-"          The project is managed by the Coalition of Domestic Observers "
-"(CDO) with support from Democracy International (DI).\n"
-"          <br>\n"
-"          <br>The goal of Albania Election Data is to strengthen Albanian"
-" democracy through greater transparency, accountability, and inclusivity."
-" CDO and DI aim to achieve this goal by:\n"
+"Albania Election Data is an initiative to collect, open, visualize and "
+"analyze election data on an ongoing basis. The initiative is managed by "
+"the "
+msgstr ""
+
+#: templates/base.html:210
+msgid "Coalition of Domestic Observers (CDO) "
+msgstr ""
+
+#: templates/base.html:210
+msgid "with support from "
+msgstr ""
+
+#: templates/base.html:212
+msgid ""
+"The goal of Albania Election Data is to strengthen Albanian democracy "
+"through greater transparency and accountability. CDO and DI aim to "
+"achieve this goal by:\n"
 "          <br>\n"
 "          <br>1. Creating a centralized hub of election-related data and "
 "maps that facilitate evidence-based, data-driven decision-making to "
@@ -64,51 +77,51 @@ msgid ""
 "election cycle to the next\n"
 "          <br>\n"
 "          <br>3. Providing a meaningful lens through which electoral "
-"developments or election observation findings can be contextualized and "
+"developments and election observation findings can be contextualized and "
 "understood"
 msgstr ""
 
-#: templates/base.html:140 templates/base.html:162
+#: templates/base.html:221 templates/base.html:243
 msgid "Close"
 msgstr ""
 
-#: templates/base.html:156
+#: templates/base.html:237
 msgid ""
 "The Albania Election Data platform utilizes official election data "
 "published the "
 msgstr ""
 
-#: templates/base.html:156
+#: templates/base.html:237
 msgid "Central Election Commission"
 msgstr ""
 
-#: templates/base.html:157
+#: templates/base.html:238
 msgid ""
 "Platform data and maps are available for download by the Coalition of "
 "Domestic Observers and"
 msgstr ""
 
-#: templates/base.html:157
+#: templates/base.html:238
 msgid "via"
 msgstr ""
 
-#: templates/base.html:158
+#: templates/base.html:239
 msgid "The data is licensed under "
 msgstr ""
 
-#: templates/base.html:159
+#: templates/base.html:240
 msgid "The map layers are available via "
 msgstr ""
 
-#: templates/base.html:189
+#: templates/base.html:274
 msgid "Road"
 msgstr ""
 
-#: templates/base.html:190
+#: templates/base.html:275
 msgid "Terrain"
 msgstr ""
 
-#: templates/base.html:191
+#: templates/base.html:276
 msgid "Satellite"
 msgstr ""
 
@@ -148,11 +161,13 @@ msgstr ""
 msgid "Other Percentage"
 msgstr ""
 
-#: templates/results.html:90 templates/turnout.html:63
+#: templates/results.html:90 templates/results.html:137
+#: templates/turnout.html:63 templates/turnout.html:135
 msgid "Mayor"
 msgstr ""
 
-#: templates/results.html:91 templates/turnout.html:64
+#: templates/results.html:91 templates/results.html:129
+#: templates/turnout.html:64 templates/turnout.html:143
 msgid "Council"
 msgstr ""
 
@@ -204,16 +219,18 @@ msgstr ""
 msgid "Invalid Percentage"
 msgstr ""
 
-#: templates/turnout.html:57
+#: templates/turnout.html:57 templates/turnout.html:95
 msgid "Male"
 msgstr ""
 
-#: templates/turnout.html:58
+#: templates/turnout.html:58 templates/turnout.html:87
 msgid "Female"
 msgstr ""
 
 #: templates/turnout.html:63 templates/turnout.html:64
 #: templates/turnout.html:65 templates/turnout.html:66
+#: templates/turnout.html:135 templates/turnout.html:143
+#: templates/turnout.html:151 templates/turnout.html:159
 msgid "Invalid"
 msgstr ""
 
