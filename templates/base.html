@@ -228,7 +228,7 @@
           {{ _('The Albania Election Data platform utilizes official election data published the ') }}<a href="http://cec.org.al/sq-al/elections" target="_blank">{{ _('Central Election Commission') }}</a>.
                 <br><br>{{ _('Platform data and maps are available for download by the Coalition of Domestic Observers and') }} Democracy International {{ _('via') }} <a href="https://github.com/mbaldassaro/albaniaelectiondata/tree/master/static/js/data" target="_blank">Github</a>.
                 {{ _('The data is licensed under ') }}<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">CC-BY-SA 4.0</a>.
-                <br><br>{{ _('The map layers are available via ') }}<a href="http://www.openstreetmap.org/about" target="_blank">OpenStreetMap</a>, <a href="https://www.cartodb.com/" target="_blank">Carto</a> and <a href="http://www.esri.com/about-esri" target="_blank">ESRI</a>
+                <br><br>{{ _('The map layers are available via ') }}<a href="http://www.openstreetmap.org/about" target="_blank">OpenStreetMap</a> and <a href="http://www.esri.com/about-esri" target="_blank">ESRI</a>
               </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">{{ _('Close') }}</button>
@@ -242,8 +242,10 @@
 <div class="jumbotron" id="map"></div>
 <div id="legend">Hi</div>
 <script>
-var cartoLink = '<a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>';
-var cartoUrl = 'http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png';
+//var cartoLink = '<a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>';
+//var cartoUrl = 'http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png';
+var cartoLink = 'Imagery from <a href="http://giscience.uni-hd.de/">GIScience Research Group @ University of Heidelberg</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+var cartoUrl = 'http://korona.geog.uni-heidelberg.de/tiles/roadsg/x={x}&y={y}&z={z}';
 var cartoAttr = '&copy; ' + cartoLink;
 var mountUrl = 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Shaded_Relief/MapServer/tile/{z}/{y}/{x}';
 var mountAttr = 'Tiles &copy; Esri &mdash; Source: Esri';
