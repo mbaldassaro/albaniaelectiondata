@@ -129,39 +129,39 @@ msgstr "Harta e Satelitore"
 
 #: templates/results.html:65
 msgid "Total Votes"
-msgstr "Votimi tërësor"
+msgstr "Vota gjithsej"
 
 #: templates/results.html:66
 msgid "Total Seats"
-msgstr "Të gjitha mandatet"
+msgstr "Mandate gjithsej"
 
 #: templates/results.html:67
 msgid "Vote Percentage"
-msgstr "Përqindja e votimit"
+msgstr "Përqindja e votave"
 
 #: templates/results.html:68
 msgid "Votes Received"
-msgstr "Votat e fituara"
+msgstr "Vota të fituara"
 
 #: templates/results.html:69
 msgid "Seats Won"
-msgstr "Mandatet"
+msgstr "Mandate të fituara"
 
 #: templates/results.html:70 templates/turnout.html:50
 msgid "Difference"
-msgstr "Ndryshimi"
+msgstr "Diferenca"
 
 #: templates/results.html:71
 msgid "Other Votes"
-msgstr "Vota të tjera"
+msgstr "Vota për parti të tjera"
 
 #: templates/results.html:72
 msgid "Other Seats"
-msgstr "Mandate të tjera"
+msgstr "Mandate të fituara"
 
 #: templates/results.html:73
 msgid "Other Percentage"
-msgstr "Përqindje të tjera"
+msgstr "Përqindja e votave"
 
 #: templates/results.html:90 templates/turnout.html:63
 msgid "Mayor"
