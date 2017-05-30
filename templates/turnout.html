@@ -57,13 +57,13 @@ var overlayMaps = {
   "2015 {{gettext('Turnout')}} - Bashkia ({{gettext('Male')}})": maleTurnout2015basgeojson,
   "2015 {{gettext('Turnout')}} - Bashkia ({{gettext('Female')}})": femaleTurnout2015basgeojson,
   "2015 {{gettext('Turnout')}} - Bashkia (M vs F)": mvfTurnout2015basgeojson,
-  "2013 {{gettext('Turnout')}} - Qark": turnout2013qarkgeojson,
+  "2013 {{gettext('Turnout')}} - Qarku": turnout2013qarkgeojson,
   "2013 {{gettext('Turnout')}} - Bashkia": turnout2013basgeojson,
-  "2013 {{gettext('Turnout')}} - Komune": turnout2013Komgeojson,
+  "2013 {{gettext('Turnout')}} - Komuna": turnout2013Komgeojson,
 	"2015 {{gettext('Invalid')}} - Bashkia ({{gettext('Mayor')}})": invalidMayor2015basgeojson,
 	"2015 {{gettext('Invalid')}} - Bashkia ({{gettext('Council')}})": invalidCouncil2015basgeojson,
   "2013 {{gettext('Invalid')}} - Bashkia": invalid2013basgeojson,
-	"2013 {{gettext('Invalid')}} - Komune": invalid2013komgeojson
+	"2013 {{gettext('Invalid')}} - Komuna": invalid2013komgeojson
 };
 
 map.addLayer(turnout2013Komgeojson);
@@ -74,7 +74,7 @@ L.control.layers(overlayMaps, null, {collapsed:false, position: 'bottomleft'}).a
 var currentLegend = legendVT2013kom;
 
 map.on('baselayerchange', function(eventLayer) {
-  if(eventLayer.name === '2013 {{gettext('Turnout')}} - Komune') {
+  if(eventLayer.name === '2013 {{gettext('Turnout')}} - Komuna') {
     map.removeControl(currentLegend);
     currentLegend = legendVT2013kom;
     legendVT2013kom.addTo(map);
@@ -99,7 +99,7 @@ map.on('baselayerchange', function(eventLayer) {
     currentLegend = legendVT2013bas;
     legendVT2013bas.addTo(map);
   }
-  else if(eventLayer.name === '2013 {{gettext('Turnout')}} - Qark') {
+  else if(eventLayer.name === '2013 {{gettext('Turnout')}} - Qarku') {
     map.removeControl(currentLegend);
     currentLegend = legendVT2013qark;
     legendVT2013qark.addTo(map);
@@ -124,7 +124,7 @@ map.on('baselayerchange', function(eventLayer) {
     currentLegend = legendINV2013bas;
     legendINV2013bas.addTo(map);
   }
-  else if(eventLayer.name === '2013 {{gettext('Invalid')}} - Komune') {
+  else if(eventLayer.name === '2013 {{gettext('Invalid')}} - Komuna') {
     map.removeControl(currentLegend);
     currentLegend = legendINV2013kom;
     legendINV2013kom.addTo(map);

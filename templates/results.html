@@ -89,22 +89,22 @@ var otherPct = "{{gettext('Other Percentage')}}";
 var overlayMaps = {
   "2015 ASHE vs APPD ({{gettext('Mayor')}})": diffMayor2015basgeojson,
   "2015 ASHE vs APPD ({{gettext('Council')}})": diffCouncil2015basgeojson,
-  "2013 ASHE vs APMI - Qark": qarkdiff2013geojson,
-  "2013 ASHE - Qark": ase2013geojson,
-  "2013 APMI - Qark": apmi2013geojson,
-  "2013 PS - Qark": ps2013geojson,
+  "2013 ASHE vs APMI - Qarku": qarkdiff2013geojson,
+  "2013 ASHE - Qarku": ase2013geojson,
+  "2013 APMI - Qarku": apmi2013geojson,
+  "2013 PS - Qarku": ps2013geojson,
   "2013 PS - Bashkia": ps2013basgeojson,
-  "2013 PD - Qark": pd2013geojson,
+  "2013 PD - Qarku": pd2013geojson,
   "2013 PD - Bashkia": pd2013basgeojson,
-  "2013 LSI - Qark": lsi2013geojson,
+  "2013 LSI - Qarku": lsi2013geojson,
   "2013 LSI - Bashkia": lsi2013basgeojson,
-	"2013 PDIU - Qark": pdiu2013geojson,
+	"2013 PDIU - Qarku": pdiu2013geojson,
   "2013 PDIU - Bashkia": pdiu2013basgeojson,
-	"2013 PR - Qark": pr2013geojson,
+	"2013 PR - Qarku": pr2013geojson,
   "2013 PR - Bashkia": pr2013basgeojson,
-  "2013 PKDSH - Qark": pkdsh2013geojson,
+  "2013 PKDSH - Qarku": pkdsh2013geojson,
   "2013 PKDSH - Bashkia": pkdsh2013basgeojson,
-  "2013 PBDNJ - Qark": pbdnj2013geojson,
+  "2013 PBDNJ - Qarku": pbdnj2013geojson,
   "2013 PBDNJ - Bashkia": pbdnj2013basgeojson
   //"Heat": heat
 };
@@ -117,7 +117,7 @@ L.control.layers(overlayMaps, null, {collapsed: false, position: 'bottomleft'}).
 var currentLegend = legendDiff2013qark;
 
 map.on('baselayerchange', function(eventLayer) {
-  if(eventLayer.name === '2013 ASHE vs APMI - Qark') {
+  if(eventLayer.name === '2013 ASHE vs APMI - Qarku') {
     map.removeControl(currentLegend);
     currentLegend = legendDiff2013qark;
     legendDiff2013qark.addTo(map);
@@ -132,7 +132,7 @@ map.on('baselayerchange', function(eventLayer) {
     currentLegend = legendDiff2015M;
     legendDiff2015M.addTo(map);
   }
-  else if(eventLayer.name === '2013 PD - Qark') {
+  else if(eventLayer.name === '2013 PD - Qarku') {
     map.removeControl(currentLegend);
     currentLegend = legendPD2013qark;
     legendPD2013qark.addTo(map);
@@ -143,7 +143,7 @@ map.on('baselayerchange', function(eventLayer) {
     currentLegend = legendPD2013bas;
     legendPD2013bas.addTo(map);
   }
-  else if (eventLayer.name === '2013 PBDNJ - Qark') {
+  else if (eventLayer.name === '2013 PBDNJ - Qarku') {
     map.removeControl(currentLegend);
     currentLegend = legendPBDNJ2013qark;
     legendPBDNJ2013qark.addTo(map);
@@ -153,7 +153,7 @@ map.on('baselayerchange', function(eventLayer) {
     currentLegend = legendPBDNJ2013bas;
     legendPBDNJ2013bas.addTo(map);
   }
-  else if (eventLayer.name === '2013 LSI - Qark') {
+  else if (eventLayer.name === '2013 LSI - Qarku') {
     map.removeControl(currentLegend);
     currentLegend = legendLSI2013qark;
     legendLSI2013qark.addTo(map);
@@ -163,17 +163,17 @@ map.on('baselayerchange', function(eventLayer) {
     currentLegend = legendLSI2013bas;
     legendLSI2013bas.addTo(map);
   }
-  else if (eventLayer.name === '2013 APMI - Qark') {
+  else if (eventLayer.name === '2013 APMI - Qarku') {
     map.removeControl(currentLegend);
     currentLegend = legendAPMI2013qark;
     legendAPMI2013qark.addTo(map);
   }
-  else if(eventLayer.name === '2013 ASHE - Qark') {
+  else if(eventLayer.name === '2013 ASHE - Qarku') {
     map.removeControl(currentLegend);
     currentLegend = legendASE2013qark;
     legendASE2013qark.addTo(map);
   }
-  else if(eventLayer.name === '2013 PS - Qark') {
+  else if(eventLayer.name === '2013 PS - Qarku') {
     map.removeControl(currentLegend);
     currentLegend = legendPS2013qark;
     legendPS2013qark.addTo(map);
@@ -183,7 +183,7 @@ map.on('baselayerchange', function(eventLayer) {
     currentLegend = legendPS2013bas;
     legendPS2013bas.addTo(map);
   }
-  else if(eventLayer.name === '2013 PDIU - Qark') {
+  else if(eventLayer.name === '2013 PDIU - Qarku') {
     map.removeControl(currentLegend);
     currentLegend = legendPDIU2013qark;
     legendPDIU2013qark.addTo(map);
@@ -193,7 +193,7 @@ map.on('baselayerchange', function(eventLayer) {
     currentLegend = legendPDIU2013bas;
     legendPDIU2013bas.addTo(map);
   }
-  else if(eventLayer.name === '2013 PR - Qark') {
+  else if(eventLayer.name === '2013 PR - Qarku') {
     map.removeControl(currentLegend);
     currentLegend = legendPR2013qark;
     legendPR2013qark.addTo(map);
@@ -203,7 +203,7 @@ map.on('baselayerchange', function(eventLayer) {
     currentLegend = legendPR2013bas;
     legendPR2013bas.addTo(map);
   }
-  else if(eventLayer.name === '2013 PKDSH - Qark') {
+  else if(eventLayer.name === '2013 PKDSH - Qarku') {
     map.removeControl(currentLegend);
     currentLegend = legendPKD2013qark;
     legendPKD2013qark.addTo(map);
