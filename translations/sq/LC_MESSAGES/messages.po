@@ -109,7 +109,7 @@ msgstr "nga"
 
 #: templates/base.html:158
 msgid "The data is licensed under "
-msgstr "Të dhënat u licencuan "
+msgstr "Të dhënat u licencuan nga "
 
 #: templates/base.html:159
 msgid "The map layers are available via "
@@ -173,11 +173,11 @@ msgstr "Këshill"
 
 #: templates/turnout.html:41
 msgid "Registered Voters"
-msgstr "Votuesit e regjistruar"
+msgstr "Votues të regjistruar"
 
 #: templates/turnout.html:42
 msgid "Total Voters"
-msgstr "Votimi tërësor"
+msgstr "Vota gjithsej"
 
 #: templates/turnout.html:43
 msgid "Turnout Percentage"
@@ -185,11 +185,11 @@ msgstr "Pjesëmarrja"
 
 #: templates/turnout.html:44
 msgid "Registered Female Voters"
-msgstr "Votuesit femra të regjistruara"
+msgstr "Votuese femra të regjistruara"
 
 #: templates/turnout.html:45
 msgid "Female Voter Turnout"
-msgstr "Pjesëmarrja e votuesve femra"
+msgstr "Pjesëmarrja e votueseve femra"
 
 #: templates/turnout.html:46
 msgid "Female Turnout Percentage"
@@ -197,7 +197,7 @@ msgstr "Përqindja e pjesëmarrjes së femrave"
 
 #: templates/turnout.html:47
 msgid "Registered Male Voters"
-msgstr "Votuesit meshkuj të regjistruar"
+msgstr "Votues meshkuj të regjistruar"
 
 #: templates/turnout.html:48
 msgid "Male Voter Turnout"
@@ -217,15 +217,15 @@ msgstr "Vota të pavlefshme"
 
 #: templates/turnout.html:53
 msgid "Invalid Percentage"
-msgstr "Përqindje e pavlefshme e votimit"
+msgstr "Përqindja e votave të pavlefshme"
 
 #: templates/turnout.html:57
 msgid "Male"
-msgstr "Mashkull"
+msgstr "Meshkuj"
 
 #: templates/turnout.html:58
 msgid "Female"
-msgstr "Femër"
+msgstr "Femra"
 
 #: templates/turnout.html:63 templates/turnout.html:64
 #: templates/turnout.html:65 templates/turnout.html:66
