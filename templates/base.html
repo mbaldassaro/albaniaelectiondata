@@ -13,10 +13,6 @@
  {{super()}}
    <style>
 
-   /*.container {
-       width: 1180px!important;
-   }*/
-
    .navbar {
      position: absolute;
      background-color: #000000;
@@ -30,48 +26,44 @@
 
    .navbar-default .navbar-nav>li>a {
      font-size: .9em;
+     text-align: right;
    }
+
 
    #brand {
      width: 3em;
      height: 2em;
-     margin-top: .75em;
+     /*margin-top: .75em;*/
      margin-left: -.5em;
      margin-right: .5em;
      z-index: 5;
    }
 
-#AL {
-     position: absolute;
-     right: 3em;
+   #AL {
+     width: 2em;
+     height: 1.5em;
+     margin-left: 1em;
+     margin-top: 1em;
+   }
+
+   #EN {
      width: 2em;
      height: 1.5em;
      margin-top: 1em;
- }
-
-#EN {
-  position: absolute;
-  right: 1em;
-  width: 2em;
-  height: 1.5em;
-  margin-top: 1em;
-}
+   }
 
    #cdo {
-     width: 10.5em;
-     height: 3.5em;
-     position: absolute;
-     right: 15em;
-     /*margin-left: 1em;*/
+     width: 7em;
+     height: 2.5em;
+     margin-top: .5em;
    }
 
    #logo {
-       width: 8em;
-       height: 2em;
-       position: absolute;
-       right: 7em;
+       width: 6em;
+       height: 1.5em;
+       margin-top: 1em;
+       margin-left: .5em;
        z-index: 5;
-       margin-top: .8em;
    }
 
    #map {
@@ -98,19 +90,14 @@
    }
 
    .modal-content {
-     font-family: 'Lato', sans-serif;
+     font-family: 'Lato', Helvetica, sans-serif;
      color: rgba(0,0,0, 0.7);
    }
 
    form {
-     font-family: 'Lato', sans-serif;
+     font-family: 'Lato', Helvetica, sans-serif;
      font-size: 1em;
-     font-weight: 200;
-     background: rgba(255,255,255,0.8);
-   }
-
-   div.info.legend.leaflet-control {
-     /*margin-right: 2em!important;*/
+     font-weight: 100;
    }
 
    .info {
@@ -166,7 +153,7 @@
 {% endblock %}
 
 {% block navbar %}
-<div class="navbar navbar-default" role="navigation">
+<nav class="navbar navbar-default" role="navigation">
     <div class="container">
   <div class="navbar-header" id="navhover">
 	    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -179,20 +166,22 @@
       <!--<img id="brand" src="{{ url_for('static', filename='img/albflag.png' )}}">-->
 	</div>
 	<div class="navbar-collapse collapse navbar-ex1-collapse">
-	    <ul class="nav navbar-nav">
+	    <ul class="nav navbar-nav navbar-left">
     <li><a href="{{ url_for('results') }}">{{ _('Results') }}</a></li>
     <li><a href="{{ url_for('turnout') }}">{{ _('Turnout') }}</a></li>
     <li><a href="#">{{ _('Election') }} 2017</a></li>
     <li><a href='#' data-toggle="modal" data-target="#aboutModal">{{ _('About') }}</a></li>
     <li><a href="#" data-toggle="modal" data-target="#dataModal">{{ _('Data') }}</a></li>
-    <a href="/sq" class="toggleLang" id="toggleAL"><img id="AL" src="{{ url_for('static', filename='img/albflag.png' )}}"></a>
-    <a href="/en" class="toggleLang" id="toggleEN"><img id="EN" src="{{ url_for('static', filename='img/usflag.png' )}}"></a>
-    <a class="logoholder" href="http://www.zgjedhje.al/" target="_blank"><img id="cdo" src="{{ url_for('static', filename='img/cdologo2.png' )}}"></a>
-    <a class="logoholder" href="http://democracyinternational.com" target="_blank"><img id="logo" src="{{ url_for('static', filename='img/dilogo.png' )}}"></a>
-	    </ul>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <a class="pull-right" href="/en"><img class="img-responsive" id="EN" src="{{ url_for('static', filename='img/usflag.png' )}}"></a>
+        <a class="pull-right" href="/sq"><img class="img-responsive" id="AL" src="{{ url_for('static', filename='img/albflag.png' )}}"></a>
+        <a class="pull-right" href="http://democracyinternational.com" target="_blank"><img class="img-responsive" id="logo" src="{{ url_for('static', filename='img/dilogo.png' )}}"></a>
+        <a class="pull-right" href="http://www.zgjedhje.al/" target="_blank"><img class="img-responsive" id="cdo" src="{{ url_for('static', filename='img/cdologo2.png' )}}"></a>
+      </ul>
 	</div>
-    </div>
 </div>
+</nav>
 
 {% endblock %}
 
