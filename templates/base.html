@@ -1,10 +1,12 @@
 {% extends "bootstrap/base.html" %}
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#">
 
 {% block title %}Albania Election Data{% endblock %}
 
 {% block head %}
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <link rel="shortcut icon" href ="{{ url_for('static', filename='img/favicon.ico' )}}">
+   <meta property="og:image" content="{{ url_for('static', filename='img/defaultimg.png' )}}" />
    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lato">
