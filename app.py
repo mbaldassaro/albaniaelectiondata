@@ -24,10 +24,13 @@ def get_locale():
 def language(lang):
     session['language']=lang
     refresh()
-    return redirect(url_for('turnout'))
+    return redirect(url_for('elections2017'))
     #note: only works w/en + sq
 
 @app.route('/')
+def elections2017():
+    return render_template('elections2017.html')
+
 @app.route('/turnout')
 def turnout():
     return render_template('turnout.html')

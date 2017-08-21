@@ -1,0 +1,260 @@
+{% extends "base.html" %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/data/elections2017/psQark2017.geojson' )}}"></script>
+<script src="{{ url_for('static', filename='js/data/elections2017/psBas2017.geojson' )}}"></script>
+<script src="{{ url_for('static', filename='js/data/elections2017/pdQark2017.geojson' )}}"></script>
+<script src="{{ url_for('static', filename='js/data/elections2017/pdBas2017.geojson' )}}"></script>
+<script src="{{ url_for('static', filename='js/data/elections2017/lsiQark2017.geojson' )}}"></script>
+<script src="{{ url_for('static', filename='js/data/elections2017/lsiBas2017.geojson' )}}"></script>
+<script src="{{ url_for('static', filename='js/data/elections2017/pdiuQark2017.geojson' )}}"></script>
+<script src="{{ url_for('static', filename='js/data/elections2017/pdiuBas2017.geojson' )}}"></script>
+<script src="{{ url_for('static', filename='js/data/elections2017/psdQark2017.geojson') }}"></script>
+<script src="{{ url_for('static', filename='js/data/elections2017/psdBas2017.geojson') }}"></script>
+<script src="{{ url_for('static', filename='js/data/elections2017/turnoutQark2017.geojson') }}"></script>
+<script src="{{ url_for('static', filename='js/data/elections2017/turnoutBas2017.geojson') }}"></script>
+<script src="{{ url_for('static', filename='js/data/elections2017/turnoutKom2017.geojson') }}"></script>
+<script src="{{ url_for('static', filename='js/data/elections2017/invalidBas2017.geojson') }}"></script>
+<script src="{{ url_for('static', filename='js/data/elections2017/invalidKom2017.geojson') }}"></script>
+<script src="{{ url_for('static', filename='js/heatmaptest.json' )}}"></script>
+<script src="{{ url_for('static', filename='js/elections2017/psQark2017.js')}}"></script>
+<script src="{{ url_for('static', filename='js/elections2017/psBas2017.js')}}"></script>
+<script src="{{ url_for('static', filename='js/elections2017/pdQark2017.js')}}"></script>
+<script src="{{ url_for('static', filename='js/elections2017/pdBas2017.js')}}"></script>
+<script src="{{ url_for('static', filename='js/elections2017/lsiQark2017.js')}}"></script>
+<script src="{{ url_for('static', filename='js/elections2017/lsiBas2017.js')}}"></script>
+<script src="{{ url_for('static', filename='js/elections2017/pdiuQark2017.js')}}"></script>
+<script src="{{ url_for('static', filename='js/elections2017/pdiuBas2017.js')}}"></script>
+<script src="{{ url_for('static', filename='js/elections2017/psdQark2017.js')}}"></script>
+<script src="{{ url_for('static', filename='js/elections2017/psdBas2017.js')}}"></script>
+<script src="{{ url_for('static', filename='js/elections2017/turnoutQark2017.js')}}"></script>
+<script src="{{ url_for('static', filename='js/elections2017/turnoutBas2017.js')}}"></script>
+<script src="{{ url_for('static', filename='js/elections2017/turnoutKom2017.js')}}"></script>
+<script src="{{ url_for('static', filename='js/elections2017/invalidBas2017.js')}}"></script>
+<script src="{{ url_for('static', filename='js/elections2017/invalidKom2017.js')}}"></script>
+
+<script>
+
+var psQark2017geojson;
+var psBas2017geojson;
+var pdQark2017geojson;
+var pdBas2017geojson;
+var lsiQark2017geojson;
+var lsiBas2017geojson;
+var pdiuQark2017geojson;
+var pdiuBas2017geojson;
+var psdQark2017geojson;
+var psdBas2017geojson;
+var turnoutQark2017geojson;
+var turnoutBas2017geojson;
+var turnoutKom2017geojson;
+var invalidBas2017geojson;
+var invalidKom2017geojson;
+
+var totalVotes = "{{gettext('Total Votes')}}";
+var totalSeats = "{{gettext('Total Seats')}}";
+var pctVote = "{{gettext('Vote Percentage')}}";
+var recVotes = "{{gettext('Votes Received')}}";
+var wonSeats = "{{gettext('Seats Won')}}";
+var diff = "{{gettext('Difference')}} (+/-)";
+var otherVotes = "{{gettext('Other Votes')}}";
+var otherSeats = "{{gettext('Other Seats')}}";
+var otherPct = "{{gettext('Other Percentage')}}";
+var voterReg = "{{gettext('Registered Voters')}}";
+var voterTot = "{{gettext('Total Voters')}}";
+var turnout = "{{gettext('Turnout Percentage')}}";
+var voterRegF = "{{gettext('Registered Female Voters')}}";
+var voterTotF = "{{gettext('Female Voter Turnout')}}";
+var voterPctF = "{{gettext('Female Turnout Percentage')}}";
+var voterRegM = "{{gettext('Registered Male Voters')}}";
+var voterTotM = "{{gettext('Male Voter Turnout')}}";
+var voterPctM = "{{gettext('Male Turnout Percentage')}}";
+var difference = "{{gettext('Difference')}} (+/-)";
+var castBallot = "{{gettext('Ballots Cast')}}";
+var votesInv = "{{gettext('Invalid Votes')}}";
+var pctInv = "{{gettext('Invalid Percentage')}}";
+
+//heatmap - json array
+//var heat = L.heatLayer(heatData, {
+//  radius: 10,
+//  maxZoom: 10
+  /*
+  minOpacity - the minimum opacity the heat will start at
+  maxZoom - zoom level where the points reach maximum intensity (as intensity scales with zoom), equals maxZoom of the map by default
+  max - maximum point intensity, 1.0 by default
+  radius - radius of each "point" of the heatmap, 25 by default
+  blur - amount of blur, 15 by default
+  gradient - color gradient config, e.g. {0.4: 'blue', 0.65: 'lime', 1: 'red'}
+  */
+// });
+
+var overlayMaps = {
+  "2017 PS - Qarku": psQark2017geojson,
+  "2017 PS - Bashkia": psBas2017geojson,
+  "2017 PD - Qarku": pdQark2017geojson,
+  "2017 PD - Bashkia": pdBas2017geojson,
+  "2017 LSI - Qarku": lsiQark2017geojson,
+  "2017 LSI - Bashkia": lsiBas2017geojson,
+  "2017 PDIU - Qarku": pdiuQark2017geojson,
+  "2017 PDIU - Bashkia": pdiuBas2017geojson,
+  "2017 PSD - Qarku": psdQark2017geojson,
+  "2017 PSD - Bashkia": psdBas2017geojson,
+  "2017 {{gettext('Turnout')}} - Qarku": turnoutQark2017geojson,
+  "2017 {{gettext('Turnout')}} - Bashkia": turnoutBas2017geojson,
+  "2017 {{gettext('Turnout')}} - Komuna": turnoutKom2017geojson,
+  "2017 {{gettext('Invalid')}} - Bashkia": invalidBas2017geojson,
+  "2017 {{gettext('Invalid')}} - Komuna": invalidKom2017geojson
+  //"Heat": heat
+};
+
+map.addLayer(turnoutKom2017geojson);
+L.control.layers(baseLayers, null, {collapsed: true, position: 'topright'}).addTo(map);
+L.control.layers(overlayMaps, null, {collapsed: false, position: 'bottomleft'}).addTo(map);
+legendTurnoutKom2017.addTo(map);
+infoTurnoutKom2017.addTo(map);
+var currentLegend = legendTurnoutKom2017;
+var currentInfo = infoTurnoutKom2017;
+/*
+map.addLayer(psQark2017geojson);
+L.control.layers(baseLayers, null, {collapsed: true, position: 'topright'}).addTo(map);
+L.control.layers(overlayMaps, null, {collapsed: false, position: 'bottomleft'}).addTo(map);
+legendPsQark2017.addTo(map);
+infoPsQark2017.addTo(map);
+var currentLegend = legendPsQark2017;
+var currentInfo = infoPsQark2017;
+*/
+
+map.on('baselayerchange', function(eventLayer) {
+  if(eventLayer.name === '2017 {{gettext('Turnout')}} - Komuna') {
+     map.removeControl(currentLegend);
+     currentLegend = legendTurnoutKom2017;
+     legendTurnoutKom2017.addTo(map);
+     map.removeControl(currentInfo);
+     currentInfo = infoTurnoutKom2017;
+     infoTurnoutKom2017.addTo(map);
+   }
+  else if(eventLayer.name === '2017 PS - Bashkia') {
+    map.removeControl(currentLegend);
+    currentLegend = legendPsBas2017;
+    legendPsBas2017.addTo(map);
+    map.removeControl(currentInfo);
+    currentInfo = infoPsBas2017;
+    infoPsBas2017.addTo(map);
+  }
+  else if(eventLayer.name === '2017 PD - Qarku') {
+    map.removeControl(currentLegend);
+    currentLegend = legendPdQark2017;
+    legendPdQark2017.addTo(map);
+    map.removeControl(currentInfo);
+    currentInfo = infoPdQark2017;
+    infoPdQark2017.addTo(map);
+  }
+  else if(eventLayer.name === '2017 PD - Bashkia') {
+    map.removeControl(currentLegend);
+    currentLegend = legendPdBas2017;
+    legendPdBas2017.addTo(map);
+    map.removeControl(currentInfo);
+    currentInfo = infoPdBas2017;
+    infoPdBas2017.addTo(map);
+  }
+  else if (eventLayer.name === '2017 LSI - Qarku') {
+    map.removeControl(currentLegend);
+    currentLegend = legendLsiQark2017;
+    legendLsiQark2017.addTo(map);
+    map.removeControl(currentInfo);
+    currentInfo = infoLsiQark2017;
+    infoLsiQark2017.addTo(map);
+  }
+  else if(eventLayer.name === '2017 LSI - Bashkia') {
+    map.removeControl(currentLegend);
+    currentLegend = legendLsiBas2017;
+    legendLsiBas2017.addTo(map);
+    map.removeControl(currentInfo);
+    currentInfo = infoLsiBas2017;
+    infoLsiBas2017.addTo(map);
+  }
+  else if(eventLayer.name === '2017 PDIU - Qarku') {
+    map.removeControl(currentLegend);
+    currentLegend = legendPdiuQark2017;
+    legendPdiuQark2017.addTo(map);
+    map.removeControl(currentInfo);
+    currentInfo = infoPdiuQark2017;
+    infoPdiuQark2017.addTo(map);
+  }
+  else if(eventLayer.name === '2017 PDIU - Bashkia') {
+    map.removeControl(currentLegend);
+    currentLegend = legendPdiuBas2017;
+    legendPdiuBas2017.addTo(map);
+    map.removeControl(currentInfo);
+    currentInfo = infoPdiuBas2017;
+    infoPdiuBas2017.addTo(map);
+  }
+  else if(eventLayer.name === '2017 PSD - Qarku') {
+    map.removeControl(currentLegend);
+    currentLegend = legendPsdQark2017;
+    legendPsdQark2017.addTo(map);
+    map.removeControl(currentInfo);
+    currentInfo = infoPsdQark2017;
+    infoPsdQark2017.addTo(map);
+  }
+  else if (eventLayer.name === '2017 PSD - Bashkia') {
+    map.removeControl(currentLegend);
+    currentLegend = legendPsdBas2017;
+    legendPsdBas2017.addTo(map);
+    map.removeControl(currentInfo);
+    currentInfo = infoPsdBas2017;
+    infoPsdBas2017.addTo(map);
+  }
+  else if(eventLayer.name === '2017 {{gettext('Turnout')}} - Qarku') {
+    map.removeControl(currentLegend);
+    currentLegend = legendTurnoutQark2017;
+    legendTurnoutQark2017.addTo(map);
+    map.removeControl(currentInfo);
+    currentInfo = infoTurnoutQark2017;
+    infoTurnoutQark2017.addTo(map);
+  }
+  else if(eventLayer.name === '2017 {{gettext('Turnout')}} - Bashkia') {
+    map.removeControl(currentLegend);
+    currentLegend = legendTurnoutBas2017;
+    legendTurnoutBas2017.addTo(map);
+    map.removeControl(currentInfo);
+    currentInfo = infoTurnoutBas2017;
+    infoTurnoutBas2017.addTo(map);
+  }
+  else if(eventLayer.name === '2017 PS - Qarku') {
+       map.removeControl(currentLegend);
+       currentLegend = legendPsQark2017;
+       legendPsQark2017.addTo(map);
+       map.removeControl(currentInfo);
+       currentInfo = infoPsQark2017;
+       infoPsQark2017.addTo(map);
+  }
+  else if(eventLayer.name === '2017 {{gettext('Invalid')}} - Bashkia') {
+      map.removeControl(currentLegend);
+      currentLegend = legendInvalidBas2017;
+      legendInvalidBas2017.addTo(map);
+      map.removeControl(currentInfo);
+      currentInfo = infoInvalidBas2017;
+      infoInvalidBas2017.addTo(map);
+  }
+  else if(eventLayer.name === '2017 {{gettext('Invalid')}} - Komuna') {
+      map.removeControl(currentLegend);
+      currentLegend = legendInvalidKom2017;
+      legendInvalidKom2017.addTo(map);
+      map.removeControl(currentInfo);
+      currentInfo = infoInvalidKom2017;
+      infoInvalidKom2017.addTo(map);
+    }
+})
+
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-100573947-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+{{super()}}
+{% endblock %}
